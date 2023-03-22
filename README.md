@@ -1,32 +1,30 @@
 <div align="center">
-<h1>库名</h1>
+<h1>chardet4cj</h1>
 </div>
 
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.30.4-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjcov-50%25-red" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.37.2-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjcov-0%25-red" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
 
 ## 介绍
 
-介绍库或者框架符合的标准，应用领域，解决什么问题。有哪些主要的特点，与同类库相比有哪些优点。
+是一个字符编码高效识别检测库
+
+代码参考:
+1. https://github.com/albfernandez/juniversalchardet
 
 ### 特性
 
-- 🚀 特性1
+- 🚀 支持 ISO-2022-CN 编码格式
 
-- 🚀 特性2
+- 🚀 支持 UTF-8 编码格式
 
-- 💪 特性3
+- 💪 支持 UTF-16BE / UTF-16LE 编码格式
 
-- 🛠️ 特性4
-
-- 🌍 特性5
-
-- 💡  特性6
 
 ### 路线
 
