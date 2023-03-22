@@ -1,11 +1,11 @@
 [
     {
-        "Name": " xxx",
-        "License": " Apache License ",
-        "License File": " LICENSE ",
-        "Version Number": " v2.0 ",
-        "Owner": "xxx"
-        "Upstream URL": "https://github.com/xxx",
-        "Description": " xxx."
+        "Name": "Juniversalchardet",
+        "License": "MOZILLA PUBLIC",
+        "License File": "LICENSE",
+        "Version Number": "",
+        "Owner" : "",
+        "Upstream URL": "https://github.com/albfernandez/juniversalchardet",
+        "Description": "It is an efficient recognition and detection library for character coding"
     }
 ]
