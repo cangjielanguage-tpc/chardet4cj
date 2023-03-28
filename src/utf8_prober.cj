@@ -1,7 +1,7 @@
 package chardet4cj
 
 
-public class UTF8Prober {
+public class UTF8Prober <: CharsetProber {
 
     public static let ONE_CHAR_PROB: Float32 = 0.50
 
