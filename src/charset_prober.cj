@@ -25,6 +25,8 @@ public abstract class CharsetProber {
 
     public func getState(): ProbingState
 
+    public func reset(): Unit
+
     public func getConfidence(): Float32
 
     public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer {

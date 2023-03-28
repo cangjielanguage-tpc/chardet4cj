@@ -2,13 +2,13 @@ package chardet4cj
 
 from std import collection.*
 
-public class EscCharsetProber  {
+public class EscCharsetProber <: CharsetProber {
 
     private var codingSM: ArrayList<CodingStateMachine> = ArrayList<CodingStateMachine>()
     
     private var activeSM: Int32
-    private var state: ProbingState
-    private var detectedCharset: String
+    private var state: ProbingState = ProbingState.DETECTING
+    private var detectedCharset: String = ""
 
     private static let hzsModel: HZSMModel = HZSMModel()
     private static let iso2022cnModel: ISO2022CNSMModel = ISO2022CNSMModel()
@@ -17,7 +17,13 @@ public class EscCharsetProber  {
         super()
         this.codingSM.append(CodingStateMachine(hzsModel))
         this.codingSM.append(CodingStateMachine(iso2022cnModel))
+		for (i in 0..this.codingSM.size) {
+			this.codingSM[i].reset()
+		}
+		this.activeSM = Int32(this.codingSM.size)
+    }
 
+    public func reset() {
         this.state = ProbingState.DETECTING
 		for (i in 0..this.codingSM.size) {
 			this.codingSM[i].reset()

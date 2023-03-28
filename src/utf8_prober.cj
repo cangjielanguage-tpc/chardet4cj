@@ -6,7 +6,7 @@ public class UTF8Prober <: CharsetProber {
     public static let ONE_CHAR_PROB: Float32 = 0.50
 
     private var codingSM: CodingStateMachine
-    private var state: ProbingState
+    private var state: ProbingState = ProbingState.DETECTING
     private var numOfMBChar: Int32
 
     private static let smModel: SMModel = UTF8SMModel()
@@ -15,6 +15,12 @@ public class UTF8Prober <: CharsetProber {
         super()
         this.numOfMBChar = 0
         this.codingSM = CodingStateMachine(smModel)
+
+    }
+
+    public func reset() {
+        this.codingSM.reset()
+        this.numOfMBChar = 0
         this.state = ProbingState.DETECTING
     }
 

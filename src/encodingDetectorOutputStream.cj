@@ -20,7 +20,7 @@ public class EncodingDetectorOutputStream <: OutputStream {
     private func write(b: Array<UInt8>, off: Int64,  len: Int64): Unit {
         out.write(b);
         if (!detector.isDone()) {
-            detector.handleData(b, off, len);
+            detector.handleData(b, Int32(off), Int32(len))
         }
     }
 

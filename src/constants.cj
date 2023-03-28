@@ -9,4 +9,5 @@ public class Constants {
     public static let CHARSET_UTF_16LE: String = "UTF-16LE"
 
     public static let CHARSET_HZ_GB_2312: String = "HZ-GB-2312"
+    public static let CHARSET_US_ASCCI: String = "US-ASCII"
 }

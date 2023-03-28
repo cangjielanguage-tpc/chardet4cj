@@ -37,7 +37,7 @@ public class EncodingDetectorInputStream <: InputStream {
     private func read(b: Array<Byte>, off: Int64, len: Int64): Int64 {
         let nrOfBytesRead: Int64 = input.read(b)
         if (!detector.isDone() && nrOfBytesRead > 0) {
-            detector.handleData(b, off, nrOfBytesRead)
+            detector.handleData(b, Int32(off), Int32(nrOfBytesRead))
         }
         if (nrOfBytesRead == -1) {
             detector.dataEnd()
