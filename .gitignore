@@ -8,3 +8,6 @@
 *.gcda
 *.gcno
 /output
+/okio/
+/cryptocj/
+/charset/
