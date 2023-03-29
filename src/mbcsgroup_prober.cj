@@ -4,15 +4,22 @@ from std import collection.*
 
 public class MBCSGroupProber <: CharsetProber {
 
-    private var state: ProbingState
+    private var state: ProbingState = ProbingState.DETECTING
     private var probers: ArrayList<CharsetProber> = ArrayList<CharsetProber>()
 
-    private var bestGuess: ?CharsetProber
-    private var activeNum: Int32
+    private var bestGuess: ?CharsetProber =  Option<CharsetProber>.None
+    private var activeNum: Int32 = 0
 
     public init() {
         super()
         probers.append(UTF8Prober())
+        for (prober in this.probers) {
+            prober.setActive(true)
+            this.activeNum++
+        }
+    }
+
+    public func reset() {
         this.activeNum = 0
         for (prober in this.probers) {
             prober.setActive(true)
