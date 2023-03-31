@@ -8,6 +8,8 @@ main() {
     let str1 = Constants.CHARSET_ISO_2022_CN
     let str2 = Constants.CHARSET_UTF_16BE
     let str3 = Constants.CHARSET_UTF_16LE
+    let str4 = Constants.CHARSET_HZ_GB_2312
+    let str5 = Constants.CHARSET_US_ASCCI
     if (str != "UTF-8") {
         return 1
     }
@@ -22,3 +24,4 @@ main() {
     }
     return 0
 }
+
