@@ -1,4 +1,4 @@
-// DEPENDENCE: utf8.txt
+// DEPENDENCE: utf8n.txt
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
@@ -10,19 +10,11 @@ from charset import  charset.encoding.*
 
 main() {
 
-    var testFile1: File = File("./utf8.txt",Open(true, false))
-    var es = ""
-    try{
-        var originalEncoding1: BufferedInputStream = ReaderFactory.createBufferedReader(testFile1,Charsets.UTF8)
-    } catch (e: Exception){
-        es = e.toString()
-    }
-    try{
-        var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(testFile1,Charsets.UTF8)
-    } catch (e: Exception){
-        es = e.toString()
-    }
-    if (es != "FSException: The file already exists!") {
+    var testFile1: File = File("./utf8n.txt",Open(true, false))
+    var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(testFile1,Charsets.UTF8)
+    let str = originalEncoding1.length
+    println(str)
+    if (str != 1765) {
         return 1
     }
     return 0
