@@ -12,7 +12,7 @@ public class ReaderFactory {
     }
     
     public static func createBufferedReader(file: File, defaultCharset: Charset): BufferedInputStream {
-        var cs: Charset =    Charsets.forName("NULL").getOrThrow()
+        var cs: Charset = Charsets.forName("UTF8").getOrThrow()
         var detectedEncoding: String = UniversalDetector.detectCharset(file)
         if (!detectedEncoding.isEmpty()) {
             cs = Charsets.forName(detectedEncoding).getOrThrow()
@@ -21,7 +21,7 @@ public class ReaderFactory {
             return BufferedInputStream(File(file.info.path, OpenOption.Create(false)))
         }
         var path = file.info.path
-        //TODO
+
         return  BufferedInputStream(File(file.info.path, OpenOption.Create(false)))
     }
 
@@ -29,12 +29,12 @@ public class ReaderFactory {
         return createBufferedReader(file, Charsets.UTF8)
     }
     
-    public static func  createReaderFromFile(file: File, defaultCharset: Charset): BufferedInputStream {
-        return createBufferedReader(file, defaultCharset);
+    public static func createReaderFromFile(file: File, defaultCharset: Charset): BufferedInputStream {
+        return createBufferedReader(file, defaultCharset)
     }
 
     public static func createReaderFromFile(file: File): BufferedInputStream {
-        return createReaderFromFile(file, Charsets.UTF8);
+        return createReaderFromFile(file, Charsets.UTF8)
     }
 }
  

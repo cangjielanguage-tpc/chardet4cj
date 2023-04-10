@@ -6,7 +6,7 @@ from std import math.*
 public class EncodingDetectorInputStream <: InputStream {
 
     private var input: InputStream
-    private let  detector: UniversalDetector = UniversalDetector()
+    private let detector: UniversalDetector = UniversalDetector()
 
     public init(input: InputStream) {
         this.input = input
@@ -26,9 +26,9 @@ public class EncodingDetectorInputStream <: InputStream {
     }
 
     public func read(): Int64 {
-        var data: Array<Byte> = [0]
-        var nrOfBytesRead: Int64 = this.read(data);
-        if (nrOfBytesRead >= 0){
+        var data: Array<Byte> = Array<Byte>(input.length, item: 0)
+        var nrOfBytesRead: Int64 = this.read(data,0,1)
+        if (nrOfBytesRead > 0){
             return Int64(data[0])
         }
         return -1
@@ -39,7 +39,7 @@ public class EncodingDetectorInputStream <: InputStream {
         if (!detector.isDone() && nrOfBytesRead > 0) {
             detector.handleData(b, Int32(off), Int32(nrOfBytesRead))
         }
-        if (nrOfBytesRead == -1) {
+        if (nrOfBytesRead == 0) {
             detector.dataEnd()
         }
         return nrOfBytesRead
@@ -50,7 +50,7 @@ public class EncodingDetectorInputStream <: InputStream {
     }
 
     public func reset(): Unit {
-        throw IOException("mark/reset not supported")
+        throw Exception("mark/reset not supported")
     }
 
     public func skip(n: Int64): Int64{
