@@ -18,11 +18,11 @@ public class ReaderFactory {
             cs = Charsets.forName(detectedEncoding).getOrThrow()
         }
         if (!cs.nameEquals("UTF-8") || !cs.nameEquals("UTF-16BE") || !cs.nameEquals("UTF-16LE")) {
-            return BufferedInputStream(File(file.info.path, OpenOption.Create(false)))
+            return BufferedInputStream(File(file.info.path, OpenOption.Open(true, false)))
         }
         var path = file.info.path
 
-        return  BufferedInputStream(File(file.info.path, OpenOption.Create(false)))
+        return  BufferedInputStream(File(file.info.path, OpenOption.Open(true, false)))
     }
 
     public static func createBufferedReader(file: File): BufferedInputStream {
