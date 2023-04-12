@@ -5,8 +5,8 @@
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.37.2-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjcov-0%25-red" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.38.2-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjcov-90%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
 
@@ -14,8 +14,7 @@
 
 是一个字符编码高效识别检测库
 
-代码参考:
-1. https://github.com/albfernandez/juniversalchardet
+参考地址: https://github.com/albfernandez/juniversalchardet 版本2.4.0
 
 ### 特性
 
@@ -26,104 +25,154 @@
 - 💪 支持 UTF-16BE / UTF-16LE 编码格式
 
 
-### 路线
+## <img alt="" src="./doc/assets/readme-icon-framework.png" style="display: inline-block;" width=3%/> 架构
 
-<p align="center">
-<img src="./doc/assets/milestone.png" width="100%" >
-</p>
-路线图roadmap在 doc/framework-roadmap-logo.pptx 中有源文件。
+![design](./doc/assets/readme_framework.png)
 
-
-## 软件架构
-
-### 架构图
-
-<p align="center">
-<img src="./doc/assets/framework.png" width="60%" >
-</p>
-
-架构图文字说明，包括模块说明、架构层次等详细说明。
 
 ### 源码目录
 
 ```shell
 .
-├── README.md
 ├── doc
 │   ├── assets
-│   ├── cjcov
-│   ├── design.md
-│   ├── proposal.md
-│   └── xxx_lib.md
+│   └── feature_api.md
 ├── src
-│   └── Template.cj
-└── test
-    ├── HLT
-    ├── LLT
-    └── UT
+│   └── chardet4cj
+├── test
+│   ├── HLT
+│   ├── LLT
+│   └── UT
+├── CHANGELOG.md
+├── gitee_gate.cfg
+├── LICENSE.txt
+├── module.json
+├── README.md
+└── README.OpenSource
 ```
 
-- `doc`  文档目录，用于存放设计、API接口等文档
-- `src`  源码目录
-- `test` 测试目录
+- `doc`  文档目录，用于存API接口文档
+- `src`  是库源码目录
+- `test` 存放 HLT 测试用例、LLT 自测用例和 UT 单元测试用例
 
 ### 接口说明
 
-主要类和函数接口说明详见 [API](./doc/api.md)
+主要类和函数接口说明详见 [API](./doc/feature_api.md)
 
 
 ## 使用说明
 
-### 编译构建
+### 编译
 
-描述具体的编译过程：
 
 ```shell
-cpm update
 cpm build
 ```
 
 ### 功能示例
-#### xxx 功能示例
+#### 基于 UTF-8 格式使用样例
 
-功能示例描述:
-
-示例代码如下：
 
 ```cangjie
-import xxx.*
+from std import fs.*
+from chardet4cj import chardet4cj.*
+
 main() {
- xxxx
+    var testFile1: Path = Path("./utf8.txt")
+    var originalEncoding1: String = UniversalDetector.detectCharset(testFile1)
+    println(originalEncoding1)
+
+    var testFile: Path = Path("./utf8n.txt")
+    var originalEncoding: String = UniversalDetector.detectCharset(testFile)
+    println(originalEncoding)
+    
+    if (originalEncoding1 != "UTF-8") {
+        return 1
+    }
+    if (originalEncoding != "UTF-8") {
+        return 2
+    }
+    return 0
 }
 ```
 
 执行结果如下：
 
 ```shell
-xxx
+UTF-8
 ```
 
-#### xxxx 功能示例
+#### 基于 UTF-16BE 格式使用样例
 
-功能示例描述:
-
-示例代码如下：
 
 ```cangjie
-import xxx.*
+from std import fs.*
+from chardet4cj import chardet4cj.*
+
 main() {
- xxxx
+    var testFiles2: File = File("./utf16be.txt",Open(true, false))
+    var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
+    println(originalEncodings2)
+    if (originalEncodings2 != "UTF-16BE") {
+        return 1
+    }
+    return 0
 }
 ```
 
 执行结果如下：
 
 ```shell
-xxx
+UTF-16BE
 ```
 
-## 开源协议
-xx License
+#### 基于 UTF-16LE 格式使用样例
+
+
+```cangjie
+from std import fs.*
+from chardet4cj import chardet4cj.*
+
+main() {
+    var testFiles2: File = File("./utf16le.txt",Open(true, false))
+    var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
+    println(originalEncodings2)
+    if (originalEncodings2 != "UTF-16LE") {
+        return 1
+    }
+    return 0
+}
+```
+
+执行结果如下：
+
+```shell
+UTF-16LE
+```
+
+#### 基于 ISO-2022-CN 格式使用样例
+
+
+```cangjie
+from std import fs.*
+from chardet4cj import chardet4cj.*
+
+main() {
+    var testFiles: File = File("./iso2022cn.txt",Open(true, false))
+    var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
+    println(originalEncodings)
+    if (originalEncodings != "ISO-2022-CN") {
+        return 1
+    }
+    return 0
+}
+```
+
+执行结果如下：
+
+```shell
+ISO-2022-CN
+```
 
 ## 参与贡献
 
