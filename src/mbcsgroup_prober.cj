@@ -46,27 +46,27 @@ public class MBCSGroupProber <: CharsetProber {
 
     public func getConfidence(): Float32 { 
 
-        var bestConf: Float32 = 0.0
-        var cf: Float32 = 0.0
+        var bestConfs: Float32 = 0.0
+        var cfs: Float32 = 0.0
 
         if (this.state == ProbingState.FOUND_IT) {
             return 0.99
         } else if (this.state == ProbingState.NOT_ME) {
             return 0.01
         } else {
-            for(prober in probers) {
-        		if (!prober.isActive()) {
+            for(probes in probers) {
+        		if (!probes.isActive()) {
         			continue
         		}
-        		cf = prober.getConfidence()
-                if (bestConf < cf) {
-                    bestConf = cf
-                    this.bestGuess = prober
+        		cfs = probes.getConfidence()
+                if (bestConfs < cfs) {
+                    bestConfs = cfs
+                    this.bestGuess = probes
                 }
         	}
         }
 
-        return bestConf
+        return bestConfs
     }
 
     public func getState(): ProbingState {
