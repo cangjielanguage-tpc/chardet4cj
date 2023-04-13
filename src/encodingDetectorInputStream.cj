@@ -16,9 +16,14 @@ public class EncodingDetectorInputStream <: InputStream {
         return 0
     }
 
-    public func close(): Unit {}
+    public func close(): Unit {
+        detector.dataEnd()
+    }
 
     public func mark(readlimit: Int32): Unit {
+        if (readlimit !=  0) {
+            throw Exception("mark is not null")
+        }
     }
 
     public func markSupported(): Bool {
