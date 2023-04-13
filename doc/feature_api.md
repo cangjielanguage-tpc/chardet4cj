@@ -169,13 +169,13 @@ public class EncodingDetectorInputStream <: InputStream {
     public func close()
 
     /*
-     * 标记值
+     * 标记值,不为 0 则抛异常
      * 参数 readlimit - Int32 值
      */
     public func mark(readlimit: Int32): Unit
 
     /*
-     * 是否支持标记值
+     * 是否支持标记值，输入流返回值始终为 false
      * 返回值 Bool - Bool 值
      */
     public func markSupported(): Bool

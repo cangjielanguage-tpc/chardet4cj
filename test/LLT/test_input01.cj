@@ -9,7 +9,7 @@ main() {
     let str: EncodingDetectorInputStream   = EncodingDetectorInputStream(intput)
     let src =  str.available()
     str.close()
-    str.mark(3)
+    str.mark(0)
     println(src)
     if (src != 0) {
         return 1
