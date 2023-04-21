@@ -35,14 +35,26 @@
 ```shell
 .
 ├── doc
-│   ├── assets
-│   └── feature_api.md
 ├── src
-│   └── chardet4cj
+│   ├── charset_prober.cj
+│   ├── coding_stateMachine.cj
+│   ├── constants.cj
+│   ├── encodingDetectorInputStream.cj
+│   ├── encodingDetectorOutputStream.cj
+│   ├── escCharset_prober.cj
+│   ├── hzs_model.cj
+│   ├── is02022cn_model.cj
+│   ├── mbcsgroup_prober.cj
+│   ├── pkgint.cj
+│   ├── readerFactory.cj
+│   ├── smmodel.cj
+│   ├── unicode_bom.cj
+│   ├── universalDetector.cj
+│   ├── utf8_model.cj
+│   └── utf8_prober.cj
 ├── test
 │   ├── HLT
-│   ├── LLT
-│   └── UT
+│   └── LLT
 ├── CHANGELOG.md
 ├── gitee_gate.cfg
 ├── LICENSE.txt

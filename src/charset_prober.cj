@@ -30,7 +30,9 @@ public abstract class CharsetProber {
     public func getConfidence(): Float32
 
     public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer {
-        
+        if (buf.size == 0) {
+            throw Exception("this buf is Empty")
+        }
         var out: ByteBuffer = ByteBuffer.allocate(Int64(length))
 
         var meetMSB: Bool = false
@@ -39,7 +41,9 @@ public abstract class CharsetProber {
         var prevPtr: Int32 = offset
         var curPtr: Int32 = offset
         var maxPtr: Int32 = offset + length
-
+        if (maxPtr <= 0) {
+            throw Exception("this length is null")
+        }
         for (i in curPtr..maxPtr) {
             c = buf[Int64(curPtr)]
             if (!isAscii(c)) {
@@ -58,6 +62,7 @@ public abstract class CharsetProber {
                 }
 
             }
+            curPtr++
         }
 
         if (meetMSB && curPtr > prevPtr) {
@@ -67,7 +72,9 @@ public abstract class CharsetProber {
     }
 
     public func filterWithEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer {
-
+        if (buf.size == 0) {
+            throw Exception("this buf is Empty")
+        }
         var out: ByteBuffer = ByteBuffer.allocate(Int64(length))
         var isInTag: Bool = false
         var c: Byte = 0
@@ -75,7 +82,9 @@ public abstract class CharsetProber {
         var prevPtr: Int32 = offset
         var curPtr: Int32 = offset
         var maxPtr: Int32 = offset + length
-
+        if (maxPtr <= 0) {
+            throw Exception("this length is null")
+        }
         for (i in curPtr..maxPtr) {
             c = buf[Int64(curPtr)]
 
@@ -96,6 +105,7 @@ public abstract class CharsetProber {
                     prevPtr = curPtr + 1
                 }
             }
+            curPtr++
         }
 
         if (!isInTag && curPtr > prevPtr) {
