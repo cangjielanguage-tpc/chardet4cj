@@ -12,7 +12,7 @@ public class ReaderFactory {
     }
     
     public static func createBufferedReader(file: File, defaultCharset: Charset): BufferedInputStream {
-        var cs: Charset = Charsets.forName("UTF8").getOrThrow()
+        var cs: Charset = defaultCharset
         var detectedEncoding: String = UniversalDetector.detectCharset(file)
         if (!detectedEncoding.isEmpty()) {
             cs = Charsets.forName(detectedEncoding).getOrThrow()

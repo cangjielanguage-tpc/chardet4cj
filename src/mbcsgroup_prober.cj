@@ -74,14 +74,18 @@ public class MBCSGroupProber <: CharsetProber {
     }
 
     public func handleData(buf: Array<Byte>, offset: Int32, length: Int32): ProbingState {
-
+        if (buf.size == 0) {
+            throw Exception("this buf is Empty")
+        }
         var st: ProbingState = ProbingState.NOT_ME
 
         var keepNext: Bool = true
         var highbyteBuf: Array<Byte> = Array<Byte>(Int64(length), item: 0)
         var highpos: Int32 = 0
         var maxPos: Int32 = offset + length
-
+        if (maxPos <= 0) {
+            throw Exception("this length is null")
+        }
         for (i in offset..maxPos) {
             if ((buf[Int64(i)] & 0x80) != 0) {
                 highbyteBuf[Int64(highpos)] = buf[Int64(i)]

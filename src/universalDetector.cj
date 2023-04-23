@@ -64,7 +64,9 @@ public class UniversalDetector {
         if (len > 0) {
             this.gotData = true
         }
-
+        if (buf.size == 0) {
+            throw Exception("this buf is Empty")
+        }
         if (this.start) {
             this.start = false;
             if (len > 3) {
@@ -77,6 +79,9 @@ public class UniversalDetector {
             }
         }
         let maxPos: Int32 = off + len
+        if (maxPos <= 0) {
+            throw Exception("this length is null")
+        }
         for(i in off..maxPos) {
             var c = buf[Int64(i)] & 0xFF
             if ((c & 0x80) != 0 && c != 0xA0) {
@@ -241,7 +246,9 @@ public class UniversalDetector {
     
     public static func detectCharset(inputStream: InputStream): String {
         var tempBuf: Array<Byte> = Array<Byte>(4096, item: 0)
-
+        if (inputStream.length == 0) {
+            throw Exception("this inputStream is Empty")
+        }
         var detector: UniversalDetector = UniversalDetector(CharsetListener())
 
         while (true) {

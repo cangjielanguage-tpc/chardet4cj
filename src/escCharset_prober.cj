@@ -45,9 +45,14 @@ public class EscCharsetProber <: CharsetProber {
     }
 
     public func handleData(buf: Array<Byte>, offset: Int32, length: Int32): ProbingState {
-
+        if (buf.size == 0) {
+            throw Exception("this buf is Empty")
+        }
         var codingState: Int32 = 0
         let maxPos: Int32 = offset + length
+        if (maxPos <= 0) {
+            throw Exception("this length is null")
+        }
         var sc: Int32 = this.activeSM
         for (i in offset..maxPos where this.state==ProbingState.DETECTING ) {
             for(j in 0..sc) {

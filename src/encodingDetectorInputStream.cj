@@ -40,6 +40,12 @@ public class EncodingDetectorInputStream <: InputStream {
     }
 
     private func read(b: Array<Byte>, off: Int64, len: Int64): Int64 {
+        if (this.input.length == 0) {
+            throw Exception("this input is Empty")
+        }
+        if (b.size == 0) {
+            throw Exception("this buf is Empty")
+        }
         let nrOfBytesRead: Int64 = input.read(b)
         if (!detector.isDone() && nrOfBytesRead > 0) {
             detector.handleData(b, Int32(off), Int32(nrOfBytesRead))
@@ -59,6 +65,9 @@ public class EncodingDetectorInputStream <: InputStream {
     }
 
     public func skip(n: Int64): Int64{
+        if (this.input.length == 0) {
+            throw Exception("this input is Empty")
+        }
         if (detector.isDone()) {
             return skip(this.input,n)
         }
