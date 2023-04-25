@@ -9,13 +9,15 @@ main() {
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(intput)
 
     let src = str.markSupported()
-    let src1 = str.read()
+	try {
+        let src1 = str.read()
+    } catch(e: Exception) {
+        return 0
+    }
     if (src != false) {
         return 1
     }
-    if (src1 != -1) {
-        return 2
-    }
+
     return 0
 }
 

@@ -9,7 +9,7 @@ main() {
     let data: Array<Byte> = [0x4b, 0x03, 0x00]
     intput.write(data)
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(intput)
-    let bufs: Array<Byte> = Array<Byte>(5, item: 0)
+    let bufs: Array<Byte> = Array<Byte>(1, item: 0)
     str.read(bufs)
     let src = str.skip(0)
     println(src)

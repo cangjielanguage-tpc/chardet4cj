@@ -29,11 +29,15 @@ public class UTF8Prober <: CharsetProber {
     }
 
     public func handleData(buf: Array<Byte>, offset: Int32, length: Int32): ProbingState {
-
+        if (buf.size == 0) {
+            throw Exception("this buf is Empty")
+        }
         var codingState: Int32 = 0
 
         let maxPos: Int32 = offset + length
-
+        if (maxPos <= 0) {
+            throw Exception("this length is null")
+        }
         for (i in offset..maxPos) {
             codingState = this.codingSM.nextState(buf[Int64(i)])
             if (codingState == SMModel.ERROR) {
