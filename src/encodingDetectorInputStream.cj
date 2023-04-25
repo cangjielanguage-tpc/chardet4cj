@@ -7,6 +7,7 @@ public class EncodingDetectorInputStream <: InputStream {
 
     private var input: InputStream
     private let detector: UniversalDetector = UniversalDetector()
+    private var streamClosed: Bool = false
 
     public init(input: InputStream) {
         this.input = input
@@ -16,8 +17,14 @@ public class EncodingDetectorInputStream <: InputStream {
         return 0
     }
 
+    private func closed(): Unit {
+        if (streamClosed) {
+            throw Exception("this input stream close")
+        }
+    }
+
     public func close(): Unit {
-        detector.dataEnd()
+        this.streamClosed = true
     }
 
     public func mark(readlimit: Int32): Unit {
@@ -40,6 +47,7 @@ public class EncodingDetectorInputStream <: InputStream {
     }
 
     private func read(b: Array<Byte>, off: Int64, len: Int64): Int64 {
+        this.closed()
         if (this.input.length == 0) {
             throw Exception("this input is Empty")
         }
@@ -65,6 +73,7 @@ public class EncodingDetectorInputStream <: InputStream {
     }
 
     public func skip(n: Int64): Int64{
+        this.closed()
         if (this.input.length == 0) {
             throw Exception("this input is Empty")
         }
