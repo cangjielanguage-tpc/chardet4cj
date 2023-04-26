@@ -77,7 +77,7 @@ public class MBCSGroupProber <: CharsetProber {
         if (buf.size == 0) {
             throw Exception("this buf is Empty")
         }
-        var st: ProbingState = ProbingState.NOT_ME
+        var strc: ProbingState = ProbingState.NOT_ME
 
         var keepNext: Bool = true
         var highbyteBuf: Array<Byte> = Array<Byte>(Int64(length), item: 0)
@@ -100,18 +100,18 @@ public class MBCSGroupProber <: CharsetProber {
             }
         }
 
-        for(prober in probers) {
+        for(probes in probers) {
 
-            if (!prober.isActive()) {
+            if (!probes.isActive()) {
         		continue
         	}
-        	st = prober.handleData(highbyteBuf, 0, highpos)
-        	if (st == ProbingState.FOUND_IT) {
-                this.bestGuess = prober
+        	strc = probes.handleData(highbyteBuf, 0, highpos)
+        	if (strc == ProbingState.FOUND_IT) {
+                this.bestGuess = probes
                 this.state = ProbingState.FOUND_IT
                 break
-            } else if (st == ProbingState.NOT_ME) {
-                prober.setActive(false)
+            } else if (strc == ProbingState.NOT_ME) {
+                probes.setActive(false)
                 this.activeNum--
                 if (this.activeNum <= 0) {
                     this.state = ProbingState.NOT_ME
