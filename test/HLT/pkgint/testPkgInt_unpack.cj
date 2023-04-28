@@ -1,0 +1,92 @@
+// 3rd_party_lib:chardet4cj/build/chardet4cj
+// 3rd_party_lib:chardet4cj/build/charset
+// 3rd_party_lib:chardet4cj/build/cryptocj
+// 3rd_party_lib:chardet4cj/build/okio
+
+from std import fs.*
+from std import io.*
+from chardet4cj import chardet4cj.*
+from okio import nio.ByteBuffer
+
+/* 
+    public init (indexShift: Int32, shiftMask: Int32, bitShift: Int32, unitMask: Int32, data: Array<Int32>)
+    public func unpack(i: Int32): Int32
+ */
+
+@Test
+public class PkgIntTest {
+    var returnFlag: Int64 = 0
+    var res: Int32 = 0
+
+    @TestCase
+    func testPkgInt_unpack_01():Unit{
+        var arr1:Array<Int32> = Array<Int32>([12,23,-12,598,127,-1,0,12454684])
+        let pkgInt_ins1:PkgInt = PkgInt(1,2,3,-1,arr1)
+        // public func unpack(i: Int32): Int32
+        res = pkgInt_ins1.unpack(0)  // 12
+        @Assert(res, 12) 
+
+        res = pkgInt_ins1.unpack(5)  // -12
+        @Assert(res, -12) 
+
+        try{
+            res = pkgInt_ins1.unpack(12)  // 0 索引越界，java无异常
+        }catch(e1:Exception){
+            println("e1:>>>>${e1}")
+            returnFlag = 1
+        }
+        @Assert(res, 0)
+
+        @Assert(returnFlag, 0)
+    }
+
+    @TestCase
+    func testPkgInt_unpack_02():Unit{
+        returnFlag = -1
+        var arr1:Array<Int32> = Array<Int32>([12,23,-12,598,127,-1,0,12454684])
+        let pkgInt_ins1:PkgInt = PkgInt(0,2,3,-1,arr1)
+        // public func unpack(i: Int32): Int32
+        res = pkgInt_ins1.unpack(0)  // 12
+        @Assert(res, 12) 
+
+        res = pkgInt_ins1.unpack(5)  // -1
+        @Assert(res, -1) 
+
+        try{
+            res = pkgInt_ins1.unpack(12)  // 索引越界，java：ArrayIndexOutOfBoundsException: Index 12 out of bounds for length 8
+        }catch(e1:Exception){
+            println("e1:>>>>${e1}")
+            @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
+            returnFlag = 0
+        }
+
+        @Assert(returnFlag, 0)
+    }
+
+    @TestCase
+    func testPkgInt_unpack_03():Unit{
+        returnFlag = -1
+        var arr1:Array<Int32> = Array<Int32>([12,23,-12,598,127,-1,0,12454684])
+        let pkgInt_ins1:PkgInt = PkgInt(0,2,0,-1,arr1)
+        // public func unpack(i: Int32): Int32
+        res = pkgInt_ins1.unpack(0)  // 12
+        @Assert(res, 12) 
+
+        res = pkgInt_ins1.unpack(7)  // 3113671
+        println("res:>> ${res}")
+        @Assert(res, 3113671) 
+
+        try{
+            res = pkgInt_ins1.unpack(12)  // 索引越界，java：ArrayIndexOutOfBoundsException: Index 12 out of bounds for length 8
+        }catch(e1:Exception){
+            println("e1:>>>>${e1}")
+            @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
+            returnFlag = 0
+        }
+
+        @Assert(returnFlag, 0)
+    }
+
+
+
+}
