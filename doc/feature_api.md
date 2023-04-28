@@ -169,7 +169,7 @@ public class EncodingDetectorInputStream <: InputStream {
     public func close()
 
     /*
-     * 标记值,不为 0 则抛异常
+     * 标记值,不为 0 则抛异常("mark is not null")
      * 参数 readlimit - Int32 值
      */
     public func mark(readlimit: Int32): Unit
@@ -182,13 +182,13 @@ public class EncodingDetectorInputStream <: InputStream {
 
     /*
      * 读取流
-     * 返回值 input - 输入流
+     * 返回值 Int64 - 读取的字节数
      */
     public func read(): Int64
 
     /*
      * 读取流
-     * 返回值 input - 输入流
+     * 返回值 Int64 - 读取的字节数
      */
     public func read(b: Array<Byte>): Int64
 
