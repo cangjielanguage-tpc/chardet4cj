@@ -26,15 +26,15 @@ public class UnicodeBOMInputStream <: InputStream {
 
         match (read) {
 		    case 4 =>
-		    	if ((boms[0] == 0xFF) && (boms[1] == 0xFE) && (boms[2] == 0x00) && (boms[3] == 0x00)) {
+		    	if (checkval(boms)) {
 		    		this.bom = BOM.UTF_32_LE
                     
-		    	} else if ((boms[0] == 0x00) && (boms[1] == 0x00) && (boms[2] == 0xFE) && (boms[3] == 0xFF)) {
+		    	} else if (checkval2(boms)) {
 		    		this.bom = BOM.UTF_32_BE
                     
 		    	}
             case 3 =>
-			    if ((boms[0] == 0xEF) && (boms[1] == 0xBB) && (boms[2] == 0xBF)) {
+			    if (checkval3(boms)){
 			    	this.bom = BOM.UTF_8	
                     
 			    }
@@ -77,6 +77,18 @@ public class UnicodeBOMInputStream <: InputStream {
 	    }
 		
     }   
+
+    private func checkval(boms: Array<Byte>): Bool {
+        return (boms[0] == 0xFF) && (boms[1] == 0xFE) && (boms[2] == 0x00) && (boms[3] == 0x00)
+    }
+
+    private func checkval2(boms: Array<Byte>): Bool {
+        return (boms[0] == 0x00) && (boms[1] == 0x00) && (boms[2] == 0xFE) && (boms[3] == 0xFF)
+    }
+
+    private func checkval3(boms: Array<Byte>): Bool {
+        return (boms[0] == 0xEF) && (boms[1] == 0xBB) && (boms[2] == 0xBF)
+    }
 
     public func getBOM(): BOM {
 		return this.bom
