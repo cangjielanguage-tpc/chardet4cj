@@ -1,15 +1,10 @@
 {
-    "cjc_version": "0.38.2",
+    "cjc_version": "0.39.3",
     "organization": "cangjie",
     "name": "chardet4cj",
     "description": "nothing here",
     "version": "0.0.1",
     "requires": {
-      "okio": {
-        "organization": "cangjie",
-        "version": "0.0.4",
-        "path": "./okio"
-      },
       "charset": {
         "organization": "pllab",
         "version": "1.0.0",

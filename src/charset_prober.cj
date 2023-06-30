@@ -1,7 +1,5 @@
 package chardet4cj
 
-from okio import nio.ByteBuffer
-
 public abstract class CharsetProber {
 
     public static let SHORTCUT_THRESHOLD: Float32 = 0.95
