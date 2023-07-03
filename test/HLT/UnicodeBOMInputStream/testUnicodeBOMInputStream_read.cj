@@ -1,7 +1,6 @@
 // 3rd_party_lib:chardet4cj/build/chardet4cj
 // 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib:chardet4cj/build/cryptocj
-// 3rd_party_lib:chardet4cj/build/okio
+
 //dependence:../util_test/util_common.cj
 
 /* 
@@ -12,7 +11,7 @@
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
-from okio import nio.ByteBuffer
+
 
 @Test
 public class UnicodeBOMInputStreamTest {

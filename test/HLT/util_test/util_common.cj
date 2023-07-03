@@ -15,7 +15,7 @@ public  class CommonUtils {
         var res:String = ""
         for(i in 1..enter){
              for(j in 0..base.size:i){
-            res += base.charAt(j)
+            res += base[j]
             }
         }
         // println("res.size:>>>  ${res.size}")
