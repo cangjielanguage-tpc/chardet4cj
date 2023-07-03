@@ -2,7 +2,6 @@
 // EXEC: ./main
 
 from chardet4cj import chardet4cj.*
-from okio import nio.ByteBuffer
 main() {
     var charsetp: CharsetProber = UTF8Prober()
     
