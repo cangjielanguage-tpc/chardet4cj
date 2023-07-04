@@ -1,7 +1,6 @@
 // 3rd_party_lib:chardet4cj/build/chardet4cj
 // 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib:chardet4cj/build/cryptocj
-// 3rd_party_lib:chardet4cj/build/okio
+
 //data_file:../util_test/utf8.txt
 //data_file:../util_test/utf-16be.txt
 //data_file:../util_test/utf-16le.txt
@@ -17,7 +16,7 @@ public static func detectCharset(file: File): String
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
-from okio import nio.ByteBuffer
+
 
 @Test
 public class UniversalDetectorTest {
@@ -58,7 +57,7 @@ public class UniversalDetectorTest {
             resStr = UniversalDetector.detectCharset(file2_1) // UTF-16BE
         }catch(e1:Exception){
             println("e2_1:>> ${e1}")
-            @Assert(e1.toString().contains("FSException: The file does not exist!"), true)
+            @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
@@ -81,7 +80,7 @@ public class UniversalDetectorTest {
             resStr = UniversalDetector.detectCharset(file3_1) 
         }catch(e2:Exception){
             println("e3_2:>> ${e2}")
-            @Assert(e2.toString().contains("FSException: The file does not exist!"), true)
+            @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0
         }
 

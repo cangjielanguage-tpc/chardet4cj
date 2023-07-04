@@ -1,13 +1,12 @@
 // 3rd_party_lib:chardet4cj/build/chardet4cj
 // 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib:chardet4cj/build/cryptocj
-// 3rd_party_lib:chardet4cj/build/okio
+
 //data_file:../util_test/utf8.txt
 
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
-from okio import nio.ByteBuffer
+
 from charset import charset.*
 
 /* 
@@ -47,7 +46,7 @@ public class ReaderFactoryTest {
             var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(file_1,Charsets.UTF8)
         }catch(e1:Exception){
             println("e1:>>>>${e1}")
-            @Assert(e1.toString().contains("FSException: The file does not exist!"), true)
+            @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0
         }
 
