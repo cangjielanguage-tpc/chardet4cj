@@ -98,7 +98,7 @@ public class UnicodeBOMInputStream <: InputStream {
         return ins.read(buffer)
     }
 
-    public prop let length: Int64 {
+    public prop length: Int64 {
         get() {
             return ins.length
         }
