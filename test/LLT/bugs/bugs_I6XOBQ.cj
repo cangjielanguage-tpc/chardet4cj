@@ -9,12 +9,12 @@ main() {
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(intput)
     var temp = Array<Byte>(1,item:0)
     try {
-        let src =  str.read(temp)
+        str.read(temp)
     } catch(e: Exception) {
         return 0
     }
     try {
-        let src =  str.skip(1)
+        str.skip(1)
     } catch(e: Exception) {
         return 0
     }

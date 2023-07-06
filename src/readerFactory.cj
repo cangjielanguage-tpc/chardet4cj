@@ -20,7 +20,6 @@ public class ReaderFactory {
         if (!cs.nameEquals("UTF-8") || !cs.nameEquals("UTF-16BE") || !cs.nameEquals("UTF-16LE")) {
             return BufferedInputStream(File(file.info.path, OpenOption.Open(true, false)))
         }
-        var path = file.info.path
 
         return  BufferedInputStream(File(file.info.path, OpenOption.Open(true, false)))
     }

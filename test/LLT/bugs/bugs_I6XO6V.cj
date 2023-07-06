@@ -8,7 +8,7 @@ main() {
     let strs: EscCharsetProber = EscCharsetProber()
     let data: Array<Byte> = Array<Byte>()
     try {
-        let src =  strs.handleData(data,0,Int32(data.size))
+        strs.handleData(data,0,Int32(data.size))
     } catch(e: Exception) {
         return 0
     }

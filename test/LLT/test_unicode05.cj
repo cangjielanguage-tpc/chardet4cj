@@ -10,7 +10,7 @@ main() {
     intput.write(data)
     let str: UnicodeBOMInputStream = UnicodeBOMInputStream(intput,false)
     let buf: Array<Byte> = Array<Byte>(4, item: 0)
-    let boms = str.read(buf)
+    str.read(buf)
     let sc = str.length
     println(sc)
     if (sc != 0) {

@@ -15,7 +15,7 @@ main() {
     let bufs: Array<Byte> = Array<Byte>(5, item: 0)
     str.read(bufs)
     let src = str.skip(0)
-    let src1 = str.getDetectedCharset()
+    str.getDetectedCharset()
     println(src)
     if (src != 0) {
         return 1

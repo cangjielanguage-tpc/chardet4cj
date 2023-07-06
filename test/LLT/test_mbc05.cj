@@ -7,7 +7,7 @@ from std import io.*
 main() {
 
     let intput: MBCSGroupProber = MBCSGroupProber()
-    let sc = intput.reset()
+    intput.reset()
     let str = intput.getCharSetName()
     println(str)
     if (str != "UTF-8") {

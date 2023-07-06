@@ -27,7 +27,7 @@ public class EncodingDetectorInputStreamTest {
         var availableTag:Int32 = inputStream.available() // 0代表可用
         @Assert(availableTag, 0) 
 
-        var bufdata_2: Array<Byte> = [116, 101, 115, 116, 69, 110, 99, 111, 100, 105, 110, 103, 68, 49] // bufdata的子集
+        
 
         // public func skip(n: Int64): Int64
         try{
@@ -57,7 +57,7 @@ public class EncodingDetectorInputStreamTest {
     func testEncodingDetectorInputStream_skip_02():Unit{
         returnFlag = -1
         var enterStream:ByteArrayStream = ByteArrayStream()
-        var bufdata: Array<Byte> = "testEncodingDetectorInputStream_read_01".toUtf8Array()
+
         var inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(enterStream) // 缓冲区为空
         var availableTag:Int32 = inputStream.available() // 0代表可用
         @Assert(availableTag, 0) 

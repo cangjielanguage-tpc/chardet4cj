@@ -9,7 +9,7 @@ from chardet4cj import chardet4cj.*
 
 main() {
 
-    var detector: UniversalDetector = UniversalDetector()
+
     let data: String = "概要"
     var input: ByteArrayStream = ByteArrayStream()
     input.write(data.toUtf8Array())

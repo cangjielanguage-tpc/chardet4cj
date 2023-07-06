@@ -15,8 +15,7 @@ main() {
     intput1.write(data1)
     intput2.write(data2)
     let str: UnicodeBOMInputStream = UnicodeBOMInputStream(intput,false)
-    let str1: UnicodeBOMInputStream = UnicodeBOMInputStream(intput1,false)
-    let str2: UnicodeBOMInputStream = UnicodeBOMInputStream(intput2,false)
+    
     let boms = str.getBOM().toString()
     println(boms)
     if (boms != "NONE") {

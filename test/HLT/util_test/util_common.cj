@@ -4,7 +4,7 @@ public  class CommonUtils {
     public func getRandomStr(enter:UInt64):String{
         let m: Random = Random(32)
         var res:String = ""
-        for(i in 0..enter){
+        for(_ in 0..enter){
             res += m.nextUInt64(enter).toString()
         }
         return res

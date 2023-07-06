@@ -18,7 +18,7 @@ public class EncodingDetectorInputStreamTest {
 
     @TestCase
     func testEncodingDetectorInputStream_01():Unit{
-        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
+
 
         // public func available(): Int32
         var availableTag:Int32 = inputStream.available() // 0代表可用

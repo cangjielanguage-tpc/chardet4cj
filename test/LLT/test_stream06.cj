@@ -10,7 +10,7 @@ main() {
     intput.write(data)
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(intput)
     try{
-        let src = str.skip(15)
+        str.skip(15)
         return 1
     } catch (e: Exception) {
         return 0

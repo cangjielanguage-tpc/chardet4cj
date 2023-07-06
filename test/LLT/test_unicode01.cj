@@ -8,7 +8,7 @@ main() {
     let intput: ByteArrayStream = ByteArrayStream()
     var es = ""
     try{
-        let str: UnicodeBOMInputStream = UnicodeBOMInputStream(intput)
+        UnicodeBOMInputStream(intput)
     } catch (e: Exception){
         es = e.toString()
     }

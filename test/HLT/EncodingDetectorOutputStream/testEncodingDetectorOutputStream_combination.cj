@@ -19,7 +19,7 @@ public class EncodingDetectorOutputStreamTest {
     @TestCase
     func testEncodingDetectorOutputStream_01():Unit{
         returnFlag = 0
-        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
+
         // public func getDetectedCharset(): String
         var charset:String = outputStream.getDetectedCharset() 
         @Assert(charset, "") 

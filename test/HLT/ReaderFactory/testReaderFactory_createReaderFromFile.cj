@@ -49,7 +49,7 @@ public class ReaderFactoryTest {
         returnFlag = -1
         try{
             var file_1:File = File("../../../util_test/utf8_16.txt",Open(true,false)) //文件路径不存在
-            var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(file_1)
+            ReaderFactory.createReaderFromFile(file_1)
         }catch(e1:Exception){
             @Assert(e1.toString().contains("FSException: The path"), true) // FSException: The path `../../../util_test` does not exist.
             returnFlag = 0
@@ -63,7 +63,7 @@ public class ReaderFactoryTest {
         returnFlag = -1
         var file_1:File = File("../util_test/utf8.txt",Append) //文件不可读,只有写权限
         try{
-            var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(file_1)
+            ReaderFactory.createReaderFromFile(file_1)
         }catch(e1:Exception){
             // println("e31:>>>>${e1}")
             @Assert(e1.toString().contains("Exception: this inputStream is Empty"), true) 

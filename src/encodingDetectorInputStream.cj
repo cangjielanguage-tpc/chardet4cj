@@ -51,7 +51,7 @@ public class EncodingDetectorInputStream <: InputStream {
         if (this.input.length == 0) {
             throw Exception("this input is Empty")
         }
-        if (b.size == 0) {
+        if (b.size == 0 || len == 0) {
             throw Exception("this buf is Empty")
         }
         let nrOfBytesRead: Int64 = input.read(b)

@@ -12,7 +12,7 @@ main() {
     str.close()
     let bufs: Array<Byte> = Array<Byte>(5, item: 0)
     try {
-        let src = str.read(bufs)
+        str.read(bufs)
     } catch(e: Exception) {
         return 0
     }

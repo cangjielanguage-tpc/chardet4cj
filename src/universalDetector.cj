@@ -29,7 +29,7 @@ public class UniversalDetector {
         this.escCharsetProber = Option<CharsetProber>.None
         match (this.escCharsetProber) {
             case None => ()
-            case Some(v) => this.escCharsetProber.getOrThrow().reset()
+            case Some(_) => this.escCharsetProber.getOrThrow().reset()
         }
         for (i in 0..this.probers.size) {
             this.probers[i].reset()
@@ -90,7 +90,7 @@ public class UniversalDetector {
 
                     match (this.escCharsetProber) {
                         case None => ()
-                        case Some(v) => this.escCharsetProber = Option<CharsetProber>.None
+                        case Some(_) => this.escCharsetProber = Option<CharsetProber>.None
                     }
                     
                     if (this.probers.isEmpty()) {
@@ -113,7 +113,7 @@ public class UniversalDetector {
         if (this.inputState == InputState.ESC_ASCII) {
             match (this.escCharsetProber) {  
                 case None => this.escCharsetProber = Option<CharsetProber>.Some(EscCharsetProber())
-                case Some(v) => ()
+                case Some(_) => ()
             }
             st = this.escCharsetProber.getOrThrow().handleData(buf, off, len)
             if (st == ProbingState.FOUND_IT) {
@@ -186,7 +186,7 @@ public class UniversalDetector {
             this.done = true
             match (this.listener) {
                 case None => ()
-                case Some(v) => this.listener.getOrThrow().report(this.detectedCharset)
+                case Some(_) => this.listener.getOrThrow().report(this.detectedCharset)
             }
             return
         }
@@ -207,7 +207,7 @@ public class UniversalDetector {
                 this.detectedCharset = this.probers[Int64(maxProber)].getCharSetName()
                 match (this.listener) {
                     case None => ()
-                    case Some(v) => this.listener.getOrThrow().report(this.detectedCharset)
+                    case Some(_) => this.listener.getOrThrow().report(this.detectedCharset)
                 }
             }
 
@@ -225,7 +225,7 @@ public class UniversalDetector {
         this.lastChar = 0
         match (this.escCharsetProber) {
             case None => ()
-            case Some(v) => this.escCharsetProber.getOrThrow().reset()
+            case Some(_) => this.escCharsetProber.getOrThrow().reset()
         }
         
         for (i in 0..this.probers.size) {
@@ -295,6 +295,8 @@ public enum InputState <: Equatable<InputState> & ToString{
 
 public class CharsetListener {
 	
-	public func report(charset: String): Unit {}
+	public func report(charset: String): Unit {
+        if (charset.isEmpty()) {}
+    }
 }
 

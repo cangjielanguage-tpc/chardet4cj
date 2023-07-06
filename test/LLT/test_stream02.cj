@@ -7,7 +7,7 @@ from std import io.*
 main() {
     let intput: ByteArrayStream = ByteArrayStream()
     let str: EncodingDetectorInputStream   = EncodingDetectorInputStream(intput)
-    let src =  str.available()
+    str.available()
     str.close()
     try {
         str.mark(1)
