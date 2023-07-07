@@ -71,7 +71,7 @@ public class UniversalDetectorTest {
     func testUniversalDetector_detectCharsetByStream_03():Unit{
         returnFlag = -1
         var enterStream_1:ByteArrayStream = ByteArrayStream()
-        var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetByStream_03".toUtf8Array()
+
         var inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(enterStream_1)
         println("enterStream_1:>> ${enterStream_1.length}")
         try{

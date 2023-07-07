@@ -32,11 +32,11 @@ public class MBCSGroupProber <: CharsetProber {
     public func getCharSetName(): String {
 
         match (this.bestGuess) {
-            case Some(v) => ()
+            case Some(_) => ()
             case None =>
                 getConfidence()
                 match (this.bestGuess) { 
-                    case Some(v) => ()
+                    case Some(_) => ()
                     case None =>
                         this.bestGuess = probers.get(0)
                 }

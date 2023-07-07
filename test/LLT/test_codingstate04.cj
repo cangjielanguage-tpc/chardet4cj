@@ -13,7 +13,7 @@ main() {
         return 1
     }
     codingstate.reset()
-    let model2: String = codingstate.getCodingStateMachine()
+    codingstate.getCodingStateMachine()
     
     if (model != "") {
         return 0

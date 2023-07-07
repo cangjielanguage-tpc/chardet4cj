@@ -11,7 +11,7 @@ main() {
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(intput)
     var exc = ""
     try{
-        let src = str.reset()
+        str.reset()
     } catch (e: Exception){
         exc = e.toString()
     }

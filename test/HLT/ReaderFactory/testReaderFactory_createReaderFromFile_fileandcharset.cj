@@ -43,7 +43,7 @@ public class ReaderFactoryTest {
         returnFlag = -1
         try{
             var file_1:File = File("../util_test/utf8_0000.cj",Open(true,false)) //文件路径不存在
-            var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(file_1,Charsets.UTF8)
+            ReaderFactory.createReaderFromFile(file_1,Charsets.UTF8)
         }catch(e1:Exception){
             println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)

@@ -68,7 +68,7 @@ public class UnicodeBOMInputStream <: InputStream {
                     ins.read(skips)
                 }
                 var byteskips: Array<Byte> = Array<Byte>(1, item: 0)
-			    for (i in bytesSkipped..bytesToSkip) {
+			    for (_ in bytesSkipped..bytesToSkip) {
 			    	ins.read(byteskips)
 			    }
 			    skipped = true

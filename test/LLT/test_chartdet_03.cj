@@ -9,8 +9,8 @@ main() {
 
     var detector: UniversalDetector = UniversalDetector()
     let sc = CharsetListener()
-    let str = detector.setListener(sc)
-    let str1 = detector.getListener()
+    detector.setListener(sc)
+    detector.getListener()
     let data: Array<Byte> = [0x50, 0x4b, 0x03]
     detector.handleData(data)
     detector.dataEnd()

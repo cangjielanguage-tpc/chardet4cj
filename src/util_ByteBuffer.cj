@@ -485,28 +485,28 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
 
     @OverflowWrapping
     public func getUInt64(): UInt64 {
-        return UInt64(this.get()) << 56
-            | UInt64(this.get()) << 48
-            | UInt64(this.get()) << 40
-            | UInt64(this.get()) << 32
-            | UInt64(this.get()) << 24
-            | UInt64(this.get()) << 16
-            | UInt64(this.get()) << 8
-            | UInt64(this.get())
+        return UInt64(this.get()) << 56 | 
+            UInt64(this.get()) << 48 | 
+            UInt64(this.get()) << 40 | 
+            UInt64(this.get()) << 32 | 
+            UInt64(this.get()) << 24 | 
+            UInt64(this.get()) << 16 |
+            UInt64(this.get()) << 8 | 
+            UInt64(this.get())
     }
 
     @OverflowWrapping
     public func getUInt32(): UInt32 {
-        return UInt32(this.get()) << 24
-            | UInt32(this.get()) << 16
-            | UInt32(this.get()) << 8
-            | UInt32(this.get())
+        return UInt32(this.get()) << 24 | 
+            UInt32(this.get()) << 16 | 
+            UInt32(this.get()) << 8 | 
+            UInt32(this.get())
     }
 
     @OverflowWrapping
     public func getUInt16(): UInt16 {
-        return UInt16(this.get()) << 8
-            | UInt16(this.get())
+        return UInt16(this.get()) << 8 | 
+            UInt16(this.get())
     }
 
      func createSameBufferException(): IllegalArgumentException {

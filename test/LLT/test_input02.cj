@@ -10,7 +10,7 @@ main() {
 
     let src = str.markSupported()
 	try {
-        let src1 = str.read()
+        str.read()
     } catch(e: Exception) {
         return 0
     }

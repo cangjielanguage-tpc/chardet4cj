@@ -71,7 +71,7 @@ public class UTF8Prober <: CharsetProber {
         var unlike: Float32 = 0.99
         
         if (this.numOfMBChar < 6) {
-            for (i in 0..this.numOfMBChar) {
+            for (_ in 0..this.numOfMBChar) {
                 unlike *= ONE_CHAR_PROB
             }
             return (1.0 - unlike)

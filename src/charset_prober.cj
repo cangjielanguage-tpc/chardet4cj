@@ -42,7 +42,7 @@ public abstract class CharsetProber {
         if (maxPtr <= 0) {
             throw Exception("this length is null")
         }
-        for (i in curPtr..maxPtr) {
+        for (_ in curPtr..maxPtr) {
             c = buf[Int64(curPtr)]
             if (!isAscii(c)) {
                 meetMSB = true
@@ -83,7 +83,7 @@ public abstract class CharsetProber {
         if (maxPtr <= 0) {
             throw Exception("this length is null")
         }
-        for (i in curPtr..maxPtr) {
+        for (_ in curPtr..maxPtr) {
             c = buf[Int64(curPtr)]
 
             if (Int32(c) == ASCII_GT) {
