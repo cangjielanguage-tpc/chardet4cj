@@ -1,0 +1,44 @@
+// 3rd_party_lib:chardet4cj/build/chardet4cj
+// 3rd_party_lib:chardet4cj/build/charset
+// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+//data_file:../util_test/utf-16be.txt
+
+from std import fs.*
+from std import io.*
+from chardet4cj import chardet4cj.*
+
+@Test
+public class UniversalDetectorTest {
+    var detector: UniversalDetector = UniversalDetector()
+    var returnFlag: Int64 = 0
+    var res: Int64 = 0
+    var resStr: String = ""
+    var file_2:File = File("../util_test/utf-16be.txt",Open(true,false))
+
+    @TestCase
+    func test_detectCharset_UTF16BE():Unit{
+        returnFlag = -1
+        try{
+            resStr = UniversalDetector.detectCharset(file_2) // UTF-16BE
+        }catch(e1:Exception){
+            println("e3_1:>> ${e1}")
+            returnFlag = 1
+        }
+        println("resStr:3>> ${resStr}")
+        @Assert(resStr, "UTF-16BE")
+
+        try{
+            var file3_1:File = File("../util_test/仓颉utf-16be.txt",Open(true,false))//文件不存在
+            resStr = UniversalDetector.detectCharset(file3_1) 
+        }catch(e2:Exception){
+            println("e3_2:>> ${e2}")
+            @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)
+            returnFlag = 0
+        }
+
+        @Assert(returnFlag, 0)
+    }
+
+}
+
