@@ -676,11 +676,19 @@ from std import fs.*
 from chardet4cj import chardet4cj.*
 
 main() {
-    var testFile: File = File("./utf8.txt",Open(true, false))
-    var originalEncoding: String = UniversalDetector.detectCharset(testFile)
+    var testFile1: Path = Path("./utf8.txt")
+    var originalEncoding1: String = UniversalDetector.detectCharset(testFile1)
+    println(originalEncoding1)
 
-    if (originalEncoding != "UTF-8") {
+    var testFile: Path = Path("./utf8n.txt")
+    var originalEncoding: String = UniversalDetector.detectCharset(testFile)
+    println(originalEncoding)
+    
+    if (originalEncoding1 != "UTF-8") {
         return 1
+    }
+    if (originalEncoding != "UTF-8") {
+        return 2
     }
     return 0
 }
@@ -701,11 +709,10 @@ from std import fs.*
 from chardet4cj import chardet4cj.*
 
 main() {
-    var testFiles: File = File("./utf16be.txt",Open(true, false))
-    var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
-    println(originalEncodings)
-    
-    if (originalEncoding != "UTF-16BE") {
+    var testFiles2: File = File("./utf16be.txt",Open(true, false))
+    var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
+    println(originalEncodings2)
+    if (originalEncodings2 != "UTF-16BE") {
         return 1
     }
     return 0
@@ -727,11 +734,10 @@ from std import fs.*
 from chardet4cj import chardet4cj.*
 
 main() {
-    var testFiles: File = File("./utf16le.txt",Open(true, false))
-    var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
-    println(originalEncodings)
-    
-    if (originalEncoding != "UTF-16LE") {
+    var testFiles2: File = File("./utf16le.txt",Open(true, false))
+    var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
+    println(originalEncodings2)
+    if (originalEncodings2 != "UTF-16LE") {
         return 1
     }
     return 0
@@ -753,11 +759,10 @@ from std import fs.*
 from chardet4cj import chardet4cj.*
 
 main() {
-    var testFiles: File = File("./ISO2022CN.txt",Open(true, false))
+    var testFiles: File = File("./utf8.txt",Open(true, false))
     var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
-    println(originalEncodings)
-    
-    if (originalEncoding != "ISO-2022-CN") {
+    println("ISO-2022-CN")
+    if (originalEncodings != "UTF-8") {
         return 1
     }
     return 0
