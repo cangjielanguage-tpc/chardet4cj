@@ -11,7 +11,7 @@ from charset import  charset.encoding.*
 main() {
 
     var testFile1: File = File("./utf8n.txt",Open(true, false))
-    var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(testFile1,Charsets.UTF8)
+    var originalEncoding1: File = ReaderFactory.createReaderFromFile(testFile1,Charsets.UTF8)
     let str = originalEncoding1.length
     println(str)
     if (str != 1765) {

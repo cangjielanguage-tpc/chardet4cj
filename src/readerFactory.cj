@@ -11,28 +11,28 @@ public class ReaderFactory {
         throw Exception("No instances allowed")
     }
     
-    public static func createBufferedReader(file: File, defaultCharset: Charset): BufferedInputStream {
+    public static func createBufferedReader(file: File, defaultCharset: Charset): File {
         var cs: Charset = defaultCharset
         var detectedEncoding: String = UniversalDetector.detectCharset(file)
         if (!detectedEncoding.isEmpty()) {
             cs = Charsets.forName(detectedEncoding).getOrThrow()
         }
         if (!cs.nameEquals("UTF-8") || !cs.nameEquals("UTF-16BE") || !cs.nameEquals("UTF-16LE")) {
-            return BufferedInputStream(File(file.info.path, OpenOption.Open(true, false)))
+            return File(file.info.path, OpenOption.Open(true, false))
         }
 
-        return  BufferedInputStream(File(file.info.path, OpenOption.Open(true, false)))
+        return  File(file.info.path, OpenOption.Open(true, false))
     }
 
-    public static func createBufferedReader(file: File): BufferedInputStream {
+    public static func createBufferedReader(file: File): File {
         return createBufferedReader(file, Charsets.UTF8)
     }
     
-    public static func createReaderFromFile(file: File, defaultCharset: Charset): BufferedInputStream {
+    public static func createReaderFromFile(file: File, defaultCharset: Charset): File {
         return createBufferedReader(file, defaultCharset)
     }
 
-    public static func createReaderFromFile(file: File): BufferedInputStream {
+    public static func createReaderFromFile(file: File): File {
         return createReaderFromFile(file, Charsets.UTF8)
     }
 }
