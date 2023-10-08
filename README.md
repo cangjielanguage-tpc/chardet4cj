@@ -78,25 +78,18 @@
 
 #### linux环境编译
 
-```
-git clone https://gitee.com/HW-PLLab/chardet4cj.git
-```
-```
-cd chardet4cj
-cjpm build -V   ---> 编译
-cjpm test - V   ---> 执行 test/LLT 用例 
+编译描述和具体shell命令
+
+```shell
+cjpm build
 ```
 
 #### Window环境编译
 
-```
-git clone https://gitee.com/HW-PLLab/chardet4cj.git
-```
+编译描述和具体cmd命令
 
-```
-cd chardet4cj
-cjpm build -V   ---> 编译
-cjpm test - V   ---> 执行 test/LLT 用例 
+```cmd
+cjpm build
 ```
 
 ### 功能示例
@@ -188,10 +181,10 @@ from std import fs.*
 from chardet4cj import chardet4cj.*
 
 main() {
-    var testFiles: File = File("./iso2022cn.txt",Open(true, false))
+    var testFiles: File = File("./utf8.txt",Open(true, false))
     var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
-    println(originalEncodings)
-    if (originalEncodings != "ISO-2022-CN") {
+    println("ISO-2022-CN")
+    if (originalEncodings != "UTF-8") {
         return 1
     }
     return 0
