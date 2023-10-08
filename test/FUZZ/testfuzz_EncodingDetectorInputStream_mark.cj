@@ -1,0 +1,26 @@
+// 3rd_party_lib:chardet4cj/build/chardet4cj
+// 3rd_party_lib:chardet4cj/build/charset
+
+from chardet4cj import chardet4cj.*
+from fuzz import fuzz.*
+from std import io.*
+
+var returnFlag: Int32 = 0
+let inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(ByteArrayStream())
+
+func fuzz_mark(dp: DataProvider): Int32 {
+    // public func mark(readlimit: Int32): Unit
+    var num: Int32 = dp.consumeInt32()
+    try {
+        inputStream.mark(num) // readlimit非0抛异常
+    } catch (e1: Exception) {
+        returnFlag = num
+    }
+    return returnFlag
+}
+
+main() {
+    Fuzzer(fuzz_mark).startFuzz()
+
+    return 0
+}
