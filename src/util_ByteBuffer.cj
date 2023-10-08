@@ -1,6 +1,6 @@
 package chardet4cj
 
-public abstract class Buffer <: Object & ToString {
+public abstract class Buffer <: ToString {
     // Invariants: mar <= pos <= lim <= capa
     // Read / write mark
     var mar: Int64 = -1

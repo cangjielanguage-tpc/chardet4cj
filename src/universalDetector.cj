@@ -240,7 +240,7 @@ public class UniversalDetector {
     
     public static func detectCharset(inputStream: InputStream): String {
         var tempBuf: Array<Byte> = Array<Byte>(4096, item: 0)
-        if (inputStream.length == 0) {
+        if (inputStream.length <= 0) {
             throw Exception("this inputStream is Empty")
         }
         var detector: UniversalDetector = UniversalDetector(CharsetListener())
@@ -248,6 +248,7 @@ public class UniversalDetector {
         while (true) {
             var readNum = inputStream.read(tempBuf)
             if (readNum <= 0) {
+                (inputStream as Resource)?.close()
                 break
             } 
             let utf8data = tempBuf[0..readNum]

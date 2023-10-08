@@ -12,7 +12,7 @@ from chardet4cj import chardet4cj.*
 from charset import charset.*
 
 /* 
-   public static func  createReaderFromFile(file: File, defaultCharset: Charset): BufferedInputStream
+   public static func  createReaderFromFile(file: File, defaultCharset: Charset): File
  */
 
 @Test
@@ -24,13 +24,13 @@ public class ReaderFactoryTest {
     @TestCase
     func testReaderFactory_createReaderFromFile_01():Unit{
         var file_1:File = File("../util_test/utf8.txt",Open(true,false)) //文件utf8格式
-        var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(file_1,Charsets.UTF8)
+        var originalEncoding1: File = ReaderFactory.createReaderFromFile(file_1,Charsets.UTF8)
         dataLen = originalEncoding1.length
         println("dataLen:>>>>${dataLen}")
         @Assert(dataLen, 1768) 
 
         try{
-            var originalEncoding2: BufferedInputStream = ReaderFactory.createReaderFromFile(file_1,Charsets.UTF16BE) // 异常
+            var originalEncoding2: File = ReaderFactory.createReaderFromFile(file_1,Charsets.UTF16BE) // 异常
             dataLen = originalEncoding2.length
         }catch(e1:Exception){
             println("e1:>>>>${e1}")

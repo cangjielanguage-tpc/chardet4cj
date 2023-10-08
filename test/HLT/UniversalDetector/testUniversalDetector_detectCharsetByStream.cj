@@ -79,7 +79,7 @@ public class UniversalDetectorTest {
         try{
             resStr = UniversalDetector.detectCharset(inputStream) 
         }catch(e1:Exception){
-            @Assert(e1.toString().contains("Exception: this input is Empty"), true)
+            @Assert(e1.toString().contains("Exception: this inputStream is Empty"), true)
             returnFlag = 0
         }
         @Assert(resStr, "")

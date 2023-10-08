@@ -14,7 +14,7 @@ from chardet4cj import chardet4cj.*
 from charset import charset.*
 
 /* 
-   public static func createReaderFromFile(file: File): BufferedInputStream
+   public static func createReaderFromFile(file: File): File
  */
 
 @Test
@@ -30,13 +30,13 @@ public class ReaderFactoryTest {
 
     @TestCase
     func testReaderFactory_createReaderFromFile_01():Unit{
-        var originalEncoding1: BufferedInputStream = ReaderFactory.createReaderFromFile(file_1)
+        var originalEncoding1: File = ReaderFactory.createReaderFromFile(file_1)
         dataLen = originalEncoding1.length
         println("dataLen:>>>>${dataLen}")
         @Assert(dataLen, 1768) 
 
         try{
-            var originalEncoding3: BufferedInputStream = ReaderFactory.createReaderFromFile(file_3) //默认编码为utf8
+            var originalEncoding3: File = ReaderFactory.createReaderFromFile(file_3) //默认编码为utf8
             dataLen = originalEncoding3.length
         }catch(e2:Exception){
             println("e2:>>>>${e2}")
