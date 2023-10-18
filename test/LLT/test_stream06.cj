@@ -12,7 +12,7 @@ main() {
     try{
         str.skip(15)
         return 1
-    } catch (e: Exception) {
+    } catch (e: ChardetException) {
         return 0
     }
 }

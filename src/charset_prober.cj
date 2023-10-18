@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 public abstract class CharsetProber {
@@ -29,7 +33,7 @@ public abstract class CharsetProber {
 
     public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer {
         if (buf.size == 0) {
-            throw Exception("this buf is Empty")
+            throw ChardetException("this buf is empty")
         }
         var out: ByteBuffer = ByteBuffer.allocate(Int64(length))
 
@@ -40,7 +44,7 @@ public abstract class CharsetProber {
         var curPtr: Int32 = offset
         var maxPtr: Int32 = offset + length
         if (maxPtr <= 0) {
-            throw Exception("this length is null")
+            throw ChardetException("this length is null")
         }
         for (_ in curPtr..maxPtr) {
             c = buf[Int64(curPtr)]
@@ -71,7 +75,7 @@ public abstract class CharsetProber {
 
     public func filterWithEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer {
         if (buf.size == 0) {
-            throw Exception("this buf is Empty")
+            throw ChardetException("this buf is empty")
         }
         var out: ByteBuffer = ByteBuffer.allocate(Int64(length))
         var isInTag: Bool = false
@@ -81,7 +85,7 @@ public abstract class CharsetProber {
         var curPtr: Int32 = offset
         var maxPtr: Int32 = offset + length
         if (maxPtr <= 0) {
-            throw Exception("this length is null")
+            throw ChardetException("this length is null")
         }
         for (_ in curPtr..maxPtr) {
             c = buf[Int64(curPtr)]

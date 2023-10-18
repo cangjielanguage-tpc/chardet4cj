@@ -11,7 +11,7 @@ main() {
     str.close()
     try {
         str.mark(1)
-    } catch (e: Exception) {
+    } catch (e: ChardetException) {
         return 0
     }
     return 1

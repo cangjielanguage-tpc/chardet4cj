@@ -37,7 +37,7 @@ public class UniversalDetectorTest {
         // public static func detectCharset(path: Path): String
         try{
             resStr = UniversalDetector.detectCharset(path_1) // UTF-16BE
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 1
         }
@@ -58,7 +58,7 @@ public class UniversalDetectorTest {
         // public static func detectCharset(path: Path): String
         try{
             resStr = UniversalDetector.detectCharset(path_1) // UTF-16LE
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 1
         }
@@ -74,7 +74,7 @@ public class UniversalDetectorTest {
         // public static func detectCharset(path: Path): String
         try{
             resStr = UniversalDetector.detectCharset(path_1) // UTF-8
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 1
         }
@@ -84,7 +84,7 @@ public class UniversalDetectorTest {
         // public static func detectCharset(path: Path): String
         try{
             resStr = UniversalDetector.detectCharset(path_2) 
-        }catch(e2:Exception){
+        }catch(e2:FSException){
             println("e2_2:>> ${e2}")
             @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0

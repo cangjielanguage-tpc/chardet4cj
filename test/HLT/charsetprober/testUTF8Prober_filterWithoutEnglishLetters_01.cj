@@ -27,7 +27,7 @@ public class ChardetTest {
 
         try{
             charsetp.filterWithoutEnglishLetters(bufdata,-1,Int32(bufdata.size-10))
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Except:1:>> ${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             res = 1
@@ -38,9 +38,9 @@ public class ChardetTest {
 
         try{
             charsetp.filterWithoutEnglishLetters(bufdata,0,-10)
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("Except:2:>> ${e2}")
-            @Assert(e2.toString().contains("IllegalArgumentException"), true)
+            @Assert(e2.toString().contains("ChardetException"), true)
             res = 2
             if(res != 2){
                 returnFlag = 2
@@ -51,7 +51,7 @@ public class ChardetTest {
             var bytebuf_4: ByteBuffer= charsetp.filterWithoutEnglishLetters(bufdata,55,Int32(bufdata.size + 2))
             // println(bufdata.size)  // 53
             println(bytebuf_4.toString())  // ByteBuffer: [offset=0 mark=-1 pos=0 lim=55 cap=55]
-        }catch(e3:Exception){
+        }catch(e3:IndexOutOfBoundsException){
             println("Except:3:>> ${e3}")
             @Assert(e3.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0
@@ -68,9 +68,9 @@ public class ChardetTest {
         try{
             var bytebuf_1: ByteBuffer= charsetp.filterWithoutEnglishLetters(bufdata_2,0,Int32(bufdata_2.size))
             bytebuf_1.toString() // ByteBuffer: [offset=0 mark=-1 pos=0 lim=0 cap=0]
-        }catch(e4:Exception){
+        }catch(e4:ChardetException){
             println("Except:4:>> ${e4}")
-            // @Assert(e4.toString().contains("IllegalArgumentException"), true)
+            // @Assert(e4.toString().contains("ChardetException"), true)
             returnFlag = 0
         }
         @Assert(returnFlag, 0)

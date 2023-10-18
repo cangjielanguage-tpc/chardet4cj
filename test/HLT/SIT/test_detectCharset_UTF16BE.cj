@@ -21,7 +21,7 @@ public class UniversalDetectorTest {
         returnFlag = -1
         try{
             resStr = UniversalDetector.detectCharset(file_2) // UTF-16BE
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e3_1:>> ${e1}")
             returnFlag = 1
         }
@@ -31,7 +31,7 @@ public class UniversalDetectorTest {
         try{
             var file3_1:File = File("../util_test/仓颉utf-16be.txt",Open(true,false))//文件不存在
             resStr = UniversalDetector.detectCharset(file3_1) 
-        }catch(e2:Exception){
+        }catch(e2:FSException){
             println("e3_2:>> ${e2}")
             @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0

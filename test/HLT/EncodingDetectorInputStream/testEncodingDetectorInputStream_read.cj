@@ -33,9 +33,9 @@ public class EncodingDetectorInputStreamTest {
         var bufdata_2: Array<Byte> = [116, 101, 115, 116, 69, 110, 99, 111, 100, 105, 110, 103, 68] // bufdata的子集
         try{
             res = inputStream.read(bufdata_2)  // 0 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             // println("e1:>>>>${e1}")
-            @Assert(e1.toString().contains("Exception: this input is Empty"), true)
+            @Assert(e1.toString().contains("ChardetException: this input is empty"), true)
             returnFlag = 0
         }
         inputStream.close()
@@ -52,9 +52,9 @@ public class EncodingDetectorInputStreamTest {
 
         try{
             res = inputStream.read(Array<Byte>())   // 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             // println("e2:>>>>${e1}")
-            @Assert(e1.toString().contains("Exception: this buf is Empty"), true)
+            @Assert(e1.toString().contains("ChardetException: this buf is empty"), true)
             returnFlag = 0
         }
 
@@ -74,9 +74,9 @@ public class EncodingDetectorInputStreamTest {
         var bufdata_2: Array<Byte> = [116, 101, 115, 116, 69, 110, 99, 111, 100, 105, 110, 103, 68, 49] // bufdata的子集
         try{
             res = inputStream_3.read(bufdata_2)  
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             // println("e1:>>>>${e1}")
-            @Assert(e1.toString().contains("Exception: this input is Empty"), true)
+            @Assert(e1.toString().contains("ChardetException: this input is empty"), true)
             returnFlag = 0
         }
 

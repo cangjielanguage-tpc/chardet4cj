@@ -38,7 +38,7 @@ public class ReaderFactoryTest {
         try{
             var originalEncoding2: File = ReaderFactory.createBufferedReader(file_2) //默认编码为utf8
             dataLen = originalEncoding2.length
-        }catch(e1:Exception){
+        }catch(e1:FSException){
             println("e1:>>>>${e1}")
             returnFlag = 1
         }
@@ -53,7 +53,7 @@ public class ReaderFactoryTest {
         try{
             var file_1:File = File("../../../util_test/utf8_16.txt",Open(true,false)) //文件路径不存在
             ReaderFactory.createBufferedReader(file_1)
-        }catch(e1:Exception){
+        }catch(e1:FSException){
             @Assert(e1.toString().contains("FSException: The path"), true) // FSException: The path `../../../util_test` does not exist.
             returnFlag = 0
         }
@@ -67,7 +67,7 @@ public class ReaderFactoryTest {
         var file_1:File = File("../util_test/utf8.txt",Open(false,false)) //文件不可读
         try{
             ReaderFactory.createBufferedReader(file_1)
-        }catch(e1:Exception){
+        }catch(e1:FSException){
             @Assert(e1.toString().contains("FSException: The file does not have the read permission."), true) 
             returnFlag = 0
         }

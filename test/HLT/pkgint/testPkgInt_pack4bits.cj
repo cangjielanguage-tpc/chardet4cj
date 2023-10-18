@@ -23,7 +23,7 @@ public class PkgIntTest {
 
         try{
             res = PkgInt.pack4bits(Int32(0),Int32(0),Int32(0),Int32(0),Int32(0),Int32(0),Int32(0),Int32(0))  // 0
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>>>>${e1}")
             returnFlag = 1
         }
@@ -31,7 +31,7 @@ public class PkgIntTest {
 
         try{
             res = PkgInt.pack4bits(Int32(2),Int32(0),Int32(25654),Int32(0),Int32(25654),Int32(0),Int32(-2),Int32(-231))  // -25807358
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("e2:>>>>${e2}")
             returnFlag = 2
         }

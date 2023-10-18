@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 public class Constants {
@@ -10,4 +14,22 @@ public class Constants {
 
     public static let CHARSET_HZ_GB_2312: String = "HZ-GB-2312"
     public static let CHARSET_US_ASCCI: String = "US-ASCII"
+}
+public class ChardetException <: Exception {
+    private var messages: String = ""
+    public init() {
+        super()
+    }
+
+    public init(messages: String) {
+        super(messages)
+        this.messages = messages
+    }
+
+    public func getMessage(): String {
+        return messages
+    }
+    public override func toString(): String {
+        return "ChardetException: ${messages}"
+    }
 }

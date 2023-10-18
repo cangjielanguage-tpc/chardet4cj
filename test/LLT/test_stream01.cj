@@ -10,7 +10,7 @@ main() {
     if (!str.markSupported()) {
         try {
             str.mark(0)
-        } catch (e: Exception) {
+        } catch (e: ChardetException) {
             return 1
         }
         return 0

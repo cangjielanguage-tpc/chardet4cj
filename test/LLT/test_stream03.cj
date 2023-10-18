@@ -10,7 +10,7 @@ main() {
     if (Int64(str.available()) == 0) {
         try {
             str.mark(58)
-        } catch (e: Exception) {
+        } catch (e: ChardetException) {
             return 0
         }
         return 1

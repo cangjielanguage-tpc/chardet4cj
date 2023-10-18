@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 from std import fs.*
@@ -58,7 +62,7 @@ public class UniversalDetector {
 
     private func processData(buf: Array<Byte>, off: Int32, len: Int32) {
         let maxPos: Int32 = off + len
-        if (maxPos <= 0) { throw Exception("this length is null") }
+        if (maxPos <= 0) { throw ChardetException("this length is null") }
         for(i in off..maxPos) {
             var c = buf[Int64(i)] & 0xFF
             if ((c & 0x80) != 0 && c != 0xA0) {
@@ -92,7 +96,7 @@ public class UniversalDetector {
             this.gotData = true
         }
         if (buf.size == 0) {
-            throw Exception("this buf is Empty")
+            throw ChardetException("this buf is empty")
         }
         if (this.start) {
             this.start = false;
@@ -241,7 +245,7 @@ public class UniversalDetector {
     public static func detectCharset(inputStream: InputStream): String {
         var tempBuf: Array<Byte> = Array<Byte>(4096, item: 0)
         if (inputStream.length <= 0) {
-            throw Exception("this inputStream is Empty")
+            throw ChardetException("this inputStream is empty")
         }
         var detector: UniversalDetector = UniversalDetector(CharsetListener())
 

@@ -34,7 +34,7 @@ public class EncodingDetectorOutputStreamTest {
         outputStream.close() 
         try{
             charset = outputStream.getDetectedCharset() 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>>>>${e1}")
             returnFlag = 1
         }
@@ -58,7 +58,7 @@ public class EncodingDetectorOutputStreamTest {
 
         try{
             outputStream.flush() 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>>>>${e1}")
             returnFlag = 1
         }

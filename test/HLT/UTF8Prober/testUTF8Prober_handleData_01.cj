@@ -26,7 +26,7 @@ public class UTF8ProberTest {
 
         try{
             state = charsetp.handleData(bufdata,-1,Int32(bufdata.size-10))
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Except:1:>> ${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             res = 1
@@ -37,9 +37,9 @@ public class UTF8ProberTest {
 
         try{
             state = charsetp.handleData(bufdata,0,-10)  
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("Except:2:>> ${e2}")
-            @Assert(e2.toString().contains("Exception: this length is null"), true)
+            @Assert(e2.toString().contains("ChardetException: this length is null"), true)
             res = 2
             if(res != 2){
                 returnFlag = 2
@@ -50,7 +50,7 @@ public class UTF8ProberTest {
         try{
             state = charsetp.handleData(bufdata,2,Int32(bufdata.size + 2))
             println(state.toString())  // ByteBuffer: [offset=0 mark=-1 pos=0 lim=55 cap=55]
-        }catch(e3:Exception){
+        }catch(e3:IndexOutOfBoundsException){
             println("Except:3:>> ${e3}")
             @Assert(e3.toString().contains("IndexOutOfBoundsException"), true)
             res = 3
@@ -69,9 +69,9 @@ public class UTF8ProberTest {
         try{
             state = charsetp.handleData(bufdata_2,0,Int32(bufdata_2.size)) 
             println("state_22:>> ${state.toString()}")
-        }catch(e4:Exception){
+        }catch(e4:ChardetException){
             println("Except:4:>> ${e4}")
-            // @Assert(e4.toString().contains("IllegalArgumentException"), true)
+            // @Assert(e4.toString().contains("ChardetException"), true)
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
@@ -92,7 +92,7 @@ public class UTF8ProberTest {
         var bufdata_4: Array<Byte> = "testCharsetProber_UTF8_handleData_04元数据含中文哦".toUtf8Array() 
         try{
             state = charsetp.handleData(bufdata_4,0,Int32(bufdata_4.size - 5)) // FOUND_IT
-        }catch(e5:Exception){
+        }catch(e5:ChardetException){
             println("Exception5:>> ${e5}")
             returnFlag = 1
         }
@@ -107,7 +107,7 @@ public class UTF8ProberTest {
         var bufdata_5: Array<Byte> = "元数据全中文哦".toUtf8Array() 
         try{
             state = charsetp.handleData(bufdata_5,0,Int32(bufdata_5.size - 5))
-        }catch(e6:Exception){
+        }catch(e6:ChardetException){
             println("Exception5:>> ${e6}")
             returnFlag = 1
         }

@@ -54,7 +54,7 @@ public class UnicodeBOMInputStreamTest {
             @Assert(resStr, "NONE")
             res = bom.getBytes().size // 0
             @Assert(res, 0)
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>>>>${e1}")
             returnFlag = 1
         }

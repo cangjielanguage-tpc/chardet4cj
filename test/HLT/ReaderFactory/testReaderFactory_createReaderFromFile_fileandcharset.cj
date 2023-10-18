@@ -32,7 +32,7 @@ public class ReaderFactoryTest {
         try{
             var originalEncoding2: File = ReaderFactory.createReaderFromFile(file_1,Charsets.UTF16BE) // 异常
             dataLen = originalEncoding2.length
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>>>>${e1}")
             returnFlag = 0
         }
@@ -46,7 +46,7 @@ public class ReaderFactoryTest {
         try{
             var file_1:File = File("../util_test/utf8_0000.cj",Open(true,false)) //文件路径不存在
             ReaderFactory.createReaderFromFile(file_1,Charsets.UTF8)
-        }catch(e1:Exception){
+        }catch(e1:FSException){
             println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0

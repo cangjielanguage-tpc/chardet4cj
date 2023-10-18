@@ -44,7 +44,7 @@ public class EncodingDetectorOutputStreamTest {
 
         try{
             outputStream.write(256) // 超出UInt8范围
-        }catch(e1:Exception){
+        }catch(e1:OverflowException){
             println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("OverflowException: typecast"), true)
             res = 0
@@ -56,7 +56,7 @@ public class EncodingDetectorOutputStreamTest {
         outputStream.close() 
         try{
             outputStream.write(12) // 流已经关闭，预期抛异常
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("e2:>>>>${e2}")
             // @Assert(e1.toString().contains("mark/reset not supported"), true)
             returnFlag = 0

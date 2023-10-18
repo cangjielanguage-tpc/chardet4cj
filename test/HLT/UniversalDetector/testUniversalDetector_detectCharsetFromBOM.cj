@@ -27,7 +27,7 @@ public class UniversalDetectorTest {
         var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetFromBOM_01".toUtf8Array()
         try{
             resStr = UniversalDetector.detectCharsetFromBOM(bufdata)
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>> ${e1}")
             returnFlag = 1
         }
@@ -50,7 +50,7 @@ public class UniversalDetectorTest {
         var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetFromBOM_01".toUtf8Array()
         try{
             resStr = UniversalDetector.detectCharsetFromBOM(bufdata)
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 1
         }
@@ -65,7 +65,7 @@ public class UniversalDetectorTest {
 
         try{
             resStr = UniversalDetector.detectCharsetFromBOM(Array<Byte>()) // 源数据buf为空时，业务返回为空，无异常抛出
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("e2_2:>> ${e2}")
             returnFlag = 1
         }

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 public class EncodingDetectorOutputStream <: OutputStream {
@@ -12,7 +16,7 @@ public class EncodingDetectorOutputStream <: OutputStream {
 
     private func closed(): Unit {
         if (outputStreamClosed) {
-            throw Exception("this output stream close")
+            throw ChardetException("this output stream close")
         }
     }
 

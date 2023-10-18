@@ -38,7 +38,7 @@ public class ReaderFactoryTest {
         try{
             var originalEncoding3: File = ReaderFactory.createReaderFromFile(file_3) //默认编码为utf8
             dataLen = originalEncoding3.length
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("e2:>>>>${e2}")
             returnFlag = 2
         }
@@ -52,7 +52,7 @@ public class ReaderFactoryTest {
         try{
             var file_1:File = File("../../../util_test/utf8_16.txt",Open(true,false)) //文件路径不存在
             ReaderFactory.createReaderFromFile(file_1)
-        }catch(e1:Exception){
+        }catch(e1:FSException){
             @Assert(e1.toString().contains("FSException: The path"), true) // FSException: The path `../../../util_test` does not exist.
             returnFlag = 0
         }
@@ -66,9 +66,9 @@ public class ReaderFactoryTest {
         var file_1:File = File("../util_test/utf8.txt",Append) //文件不可读,只有写权限
         try{
             ReaderFactory.createReaderFromFile(file_1)
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             // println("e31:>>>>${e1}")
-            @Assert(e1.toString().contains("Exception: this inputStream is Empty"), true) 
+            @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true) 
             returnFlag = 0
         }
 
