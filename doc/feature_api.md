@@ -9,8 +9,8 @@ chardet4cj 是一个字符编码高效识别检测库。
 前置条件：NA 
 
 场景：
-1. 提供字符编码识别  是一个字符编码高效识别检测库
-2. 类型为 Chinese(ISO-2022-CN), UTF-8, UTF-16BE, UTF8-16LE
+1. 提供字符编码识别，是一个字符编码高效识别检测库
+2. 类型为 Chinese(ISO-2022-CN), UTF-8, UTF-16BE, UTF-16LE
 
 约束：NA
 
@@ -55,7 +55,6 @@ public abstract class CharsetProber {
 
     /*
      * 重置解析器，抽象函数
-     * 返回值 String - 编码名称
      */
     public func reset(): Unit
 
@@ -71,6 +70,7 @@ public abstract class CharsetProber {
      * 参数 offset - 起始位置
      * 参数 length - 长度
      * 返回值 ByteBuffer - 处理后的 ByteBuffer
+     * 异常 ChardetException 当buf是个空数组时，offset和length之和小于等于零时，抛出异常
      */
     public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer
 
@@ -80,6 +80,7 @@ public abstract class CharsetProber {
      * 参数 offset - 起始位置
      * 参数 length - 长度
      * 返回值 ByteBuffer - 处理后的 ByteBuffer
+     * 异常 ChardetException 当buf是个空数组时，offset和length之和小于等于零时，抛出异常
      */
     public func filterWithEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer
 
@@ -91,7 +92,6 @@ public abstract class CharsetProber {
 
     /*
      * 设置活动标签
-     * 返回值 active - 时候活动
      */
     public func setActive(active: Bool): Unit
 }
@@ -109,11 +109,13 @@ public enum ProbingState <: Equatable<ProbingState> & ToString {
 
     /*
      * 等号操作符
+     * 返回值 如果相等，则返回true；否则，返回false
      */
     public operator func == (that: ProbingState): Bool
 
     /*
      * 不等号操作符
+     * 返回值 如果不相等，则返回true；否则，返回false
      */
     public operator func != (that: ProbingState): Bool
 }
@@ -141,7 +143,7 @@ public class CodingStateMachine {
     /*
      * 重置解析器
      */
-    public func reset()
+    public func reset(): Unit
 
     /*
      * 获取编码器状态
@@ -166,11 +168,12 @@ public class EncodingDetectorInputStream <: InputStream {
     /*
      * 关闭输入流
      */
-    public func close()
+    public func close(): Unit
 
     /*
-     * 标记值,不为 0 则抛异常("mark is not null")
+     * 
      * 参数 readlimit - Int32 值
+     * 异常 ChardetException 当readlimit为0时,抛出异常
      */
     public func mark(readlimit: Int32): Unit
 
@@ -183,17 +186,20 @@ public class EncodingDetectorInputStream <: InputStream {
     /*
      * 读取流
      * 返回值 Int64 - 读取的字节数
+     * 异常 ChardetException 当输入流为空时,抛出异常
      */
     public func read(): Int64
 
     /*
      * 读取流
      * 返回值 Int64 - 读取的字节数
+     * 异常 ChardetException 当输入流为空时，或者b数组长度为零时,抛出异常
      */
     public func read(b: Array<Byte>): Int64
 
     /*
      * 重置流
+     * 异常 ChardetException ,抛出异常
      */
     public func reset(): Unit
 
@@ -201,6 +207,7 @@ public class EncodingDetectorInputStream <: InputStream {
      * 跳过指定字节
      * 参数 n - 跳过的数量
      * 返回值 Int64 - 实际跳过的数量
+     * 异常 ChardetException 当输入流为空时,抛出异常
      */
     public func skip(n: Int64): Int64
 
@@ -231,12 +238,14 @@ public class EncodingDetectorOutputStream <: OutputStream {
     /*
      * 写入数组数据
      * 参数 b - 要写入的 Array<UInt8> 数组
+     * 异常 ChardetException 当输出流已经关闭时,抛出异常
      */
     public func write(b: Array<UInt8>): Unit
 
     /*
      * 写入一个字节，将会转换成 UInt8 写入
      * 参数 b - 要写入的值
+     * 异常 ChardetException 当输出流已经关闭时,抛出异常
      */
     public func write(b: Int32): Unit
 
@@ -256,7 +265,7 @@ public class EscCharsetProber <: CharsetProber {
     /*
      * 重置检测器
      */
-    public func reset()
+    public func reset(): Unit
 
     /*
      * 获取检测到的编码
@@ -272,7 +281,7 @@ public class EscCharsetProber <: CharsetProber {
 
     /*
      * 当前检测状态
-     * 返回值 ProbingState - 当前的检测状态
+     * 返回值 ProbingState - ProbingState对象
      */
     public func getState(): ProbingState
 
@@ -281,7 +290,8 @@ public class EscCharsetProber <: CharsetProber {
      * 参数 buf - 要检测的原数据
      * 参数 offset - 起始位置
      * 参数 length - 长度
-     * 返回值  ProbingState - 检测状态
+     * 返回值  ProbingState - ProbingState对象
+     * 异常 ChardetException 当buf数组为空时，当offset和length之和小于等于零时，抛出异常
      */
     public func handleData(buf: Array<Byte>, offset: Int32, length: Int32): ProbingState
 }
@@ -309,7 +319,7 @@ public class MBCSGroupProber <: CharsetProber {
     /*
      * 重置检测器
      */
-    public func reset()
+    public func reset(): Unit
 
     /*
      * 获取检测到的编码
@@ -325,7 +335,7 @@ public class MBCSGroupProber <: CharsetProber {
 
     /*
      * 当前检测状态
-     * 返回值 ProbingState - 当前的检测状态
+     * 返回值 ProbingState - ProbingState对象
      */
     public func getState(): ProbingState
 
@@ -334,7 +344,8 @@ public class MBCSGroupProber <: CharsetProber {
      * 参数 buf - 要检测的原数据
      * 参数 offset - 起始位置
      * 参数 length - 长度
-     * 返回值  ProbingState - 检测状态
+     * 返回值  ProbingState - ProbingState对象
+     * 异常 ChardetException 当buf数组为空时，当offset和length之和小于等于零时，抛出异常
      */
     public func handleData(buf: Array<Byte>, offset: Int32, length: Int32): ProbingState
 }
@@ -395,31 +406,31 @@ public class ReaderFactory {
      * 从文件创建带缓冲区的输入流
      * 参数 file - 文件
      * 参数  Charset - 文件编码
-     * 返回值  BufferedInputStream - 带缓冲区的输入流
+     * 返回值  File - 文件流
      */
-    public static func createBufferedReader(file: File, defaultCharset: Charset): BufferedInputStream
+    public static func createBufferedReader(file: File, defaultCharset: Charset): File
 
     /*
      * 从文件创建带缓冲区的输入流
      * 参数 file - 文件
-     * 返回值  BufferedInputStream - 带缓冲区的输入流
+     * 返回值  File - 文件流
      */
-    public static func createBufferedReader(file: File): BufferedInputStream
+    public static func createBufferedReader(file: File): File
 
     /*
      * 从文件创建带缓冲区的输入流
      * 参数 file - 文件
      * 参数 defaultCharset - 文件编码
-     * 返回值  BufferedInputStream - 带缓冲区的输入流
+     * 返回值  File - 文件流
      */
-    public static func  createReaderFromFile(file: File, defaultCharset: Charset): BufferedInputStream
+    public static func  createReaderFromFile(file: File, defaultCharset: Charset): File
 
     /*
      * 从文件创建带缓冲区的输入流
      * 参数 file - 文件
-     * 返回值  BufferedInputStream - 带缓冲区的输入流
+     * 返回值  File - 文件流
      */
-    public static func createReaderFromFile(file: File): BufferedInputStream
+    public static func createReaderFromFile(file: File): File
 }
 
 public abstract class SMModel {
@@ -467,6 +478,7 @@ public class UnicodeBOMInputStream <: InputStream {
     /*
      * 构造函数
      * 参数  inputStream - 输入流
+     * 异常 ChardetException 当inputStream数组为空时，抛出异常
      */
     public init(inputStream: InputStream)
 
@@ -474,6 +486,7 @@ public class UnicodeBOMInputStream <: InputStream {
      * 构造函数
      * 参数  inputStream - 输入流
      * 参数  skipIfFound - 跳过已找到的字符
+     * 异常 ChardetException 当inputStream数组为空时，抛出异常
      */
     public init(inputStream: InputStream, skipIfFound: Bool)
 
@@ -486,8 +499,9 @@ public class UnicodeBOMInputStream <: InputStream {
     /*
      * 把数据读取到字节数组中
      * 参数  buffer - 保存到的字节数组
+     * 返回值  Int64 - 返回读取字节数
      */
-    public func read(buffer: Array<Byte>)
+    public func read(buffer: Array<Byte>): Int64
 }
 
 public class BOM {
@@ -532,7 +546,7 @@ public class UniversalDetector {
      * 设置一个 CharsetListener
      * 参数 listener - 设置的 CharsetListener
      */
-    public func setListener(listener: CharsetListener)
+    public func setListener(listener: CharsetListener): Unit
 
     /*
      * 获取设置的 CharsetListener
@@ -543,16 +557,18 @@ public class UniversalDetector {
     /*
      * 检测所有数据
      * 参数 buf - 要检测的原数据
+     * 异常 ChardetException 当b数组长度为空时，抛出异常
      */
-    public func handleData(b: Array<Byte>)
+    public func handleData(b: Array<Byte>): Unit
 
     /*
      * 检测数据
      * 参数 buf - 要检测的原数据
      * 参数 off - 起始位置
      * 参数 len - 长度
+     * 异常 ChardetException 当b数组长度为空时，抛出异常
      */
-    public func handleData(buf: Array<Byte>, off: Int32, len: Int32)
+    public func handleData(buf: Array<Byte>, off: Int32, len: Int32): Unit
 
      /*
      * 根据字节顺序标记检测编码
@@ -563,17 +579,18 @@ public class UniversalDetector {
     /*
      * 数据检测到末尾
      */
-    public func dataEnd()
+    public func dataEnd(): Unit
 
     /*
      * 重置检测器
      */
-    public func reset()
+    public func reset(): Unit
 
    /*
      * 根据文件路径检测编码
      * 参数 path - 文件路径
      * 返回值 String - 编码名
+     * 异常 ChardetException 当path路径的文件流长度为零时，抛出异常
      */
     public static func detectCharset(path: Path): String
 
@@ -581,6 +598,7 @@ public class UniversalDetector {
      * 根据文件检测编码
      * 参数 file - 要检测的文件
      * 返回值 String - 编码名
+     * 异常 ChardetException 当file的文件流长度为零时，抛出异常
      */
     public static func detectCharset(file: File): String
 
@@ -588,6 +606,7 @@ public class UniversalDetector {
      * 根据输入流数据检测编码
      * 参数 inputStream - 输入流
      * 返回值 String - 编码名
+     * 异常 ChardetException 当inputStream输入流长度为零时，抛出异常
      */
     public static func detectCharset(inputStream: InputStream): String
 }
@@ -605,11 +624,13 @@ public enum InputState <: Equatable<InputState> & ToString{
 
     /*
      * 等号操作符
+     * 返回值 如果相等，则返回true；否则，返回false
      */
     public operator func == (that: InputState): Bool
 
     /*
      * 不等号操作符
+     * 返回值 如果不相等，则返回true；否则，返回false
      */
     public operator func != (that: InputState): Bool
 }
@@ -638,7 +659,7 @@ public class UTF8Prober <: CharsetProber {
     /*
      * 重置检测器
      */
-    public func reset()
+    public func reset(): Unit
 
     /*
      * 获取检测到的编码
@@ -651,13 +672,14 @@ public class UTF8Prober <: CharsetProber {
      * 参数 buf - 要检测的原数据
      * 参数 offset - 起始位置
      * 参数 length - 长度
-     * 返回值  ProbingState - 检测状态
+     * 返回值  ProbingState - ProbingState对象
+     * 异常 ChardetException 当buf数组为空时，当offset和length之和小于等于零时，抛出异常
      */
     public func handleData(buf: Array<Byte>, offset: Int32, length: Int32): ProbingState
 
     /*
      * 当前检测状态
-     * 返回值 ProbingState - 当前的检测状态
+     * 返回值 ProbingState - ProbingState对象
      */
     public func getState(): ProbingState
 
@@ -666,6 +688,33 @@ public class UTF8Prober <: CharsetProber {
      * 返回值 Float32 - 置信度
      */
     public func getConfidence(): Float32
+}
+public class ChardetException <: Exception {
+    /**
+     * 异常初始化
+     */
+    public init()
+
+    /**
+     * 异常初始化
+     *
+     * 参数 messages - 异常信息
+     */
+    public init(messages: String)
+
+    /**
+     * 获取异常信息
+     *
+     * 返回值 String - 异常信息
+     */
+    public func getMessage(): String
+
+    /**
+     * 异常信息转换为 String 类型
+     *
+     * 返回值 String
+     */
+    public override func toString(): String
 }
 ```
 

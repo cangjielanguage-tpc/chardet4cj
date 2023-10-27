@@ -15,7 +15,7 @@ main() {
             return 1
         }
         return 0
-    } catch (e: Exception) {
+    } catch (e: ChardetException) {
         return 1
     }
 }

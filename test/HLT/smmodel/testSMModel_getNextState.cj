@@ -32,7 +32,7 @@ public class SMModelTest {
 
         try{
             res = ins_UTF8SMModel.getNextState(255,2) // 1
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Exception_1:>> ${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0
@@ -49,7 +49,7 @@ public class SMModelTest {
 
         try{
             res = ins_HZSMModel.getNextState(12,-12) // 1
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Exception_1:>> ${e1}")
             tag = 1
             if(tag != 1){
@@ -59,7 +59,7 @@ public class SMModelTest {
 
         try{
             res = ins_HZSMModel.getNextState(25,251) // 1
-        }catch(e2:Exception){
+        }catch(e2:IndexOutOfBoundsException){
             println("Exception_2:>> ${e2}")
             tag = 2
             if(tag != 2){
@@ -83,7 +83,7 @@ public class SMModelTest {
 
         try{
             res = ins_ISO2022CNSMModel.getNextState(-252,23) // 1
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Exception_1:>> ${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0

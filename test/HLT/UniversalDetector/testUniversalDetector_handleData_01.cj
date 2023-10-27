@@ -32,7 +32,7 @@ public class UniversalDetectorTest {
         var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
         try{
             detector.handleData(bufdata)
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>> ${e1}")
             returnFlag = 1
         }
@@ -54,7 +54,7 @@ public class UniversalDetectorTest {
         var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
         try{
             detector_2.handleData(bufdata)
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 1
         }
@@ -85,7 +85,7 @@ public class UniversalDetectorTest {
         try{
             detector_3.handleData(bufdata,46,3)
             resStr = detector_3.getDetectedCharset() 
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("e3_1:>> ${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0
@@ -105,9 +105,9 @@ public class UniversalDetectorTest {
         try{
             detector_4.handleData(bufdata,1,6)
             resStr = detector_4.getDetectedCharset() 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e4_1:>> ${e1}")
-            @Assert(e1.toString().contains("Exception: this buf is Empty"), true)
+            @Assert(e1.toString().contains("ChardetException: this buf is empty"), true)
             returnFlag = 0
         }
         @Assert(resStr, "")

@@ -33,7 +33,7 @@ public class EncodingDetectorInputStreamTest {
         // public func read(): Int64
         try{
             res = inputStream.read() // 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             // println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("Exception: this input stream close"), true)
             returnFlag = 0
@@ -49,7 +49,7 @@ public class EncodingDetectorInputStreamTest {
         // public func reset(): Unit
         try{
             inputStream.reset() 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             // println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("mark/reset not supported"), true)
         }
@@ -71,7 +71,7 @@ public class EncodingDetectorInputStreamTest {
         // public func mark(readlimit: Int32): Unit
         try{
             inputStream.mark(12) // readlimit非0抛异常
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             // println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("mark is not null"), true)
         }

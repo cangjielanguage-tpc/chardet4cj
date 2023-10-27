@@ -9,10 +9,10 @@ main() {
     var es = ""
     try{
         UnicodeBOMInputStream(intput)
-    } catch (e: Exception){
+    } catch (e: ChardetException){
         es = e.toString()
     }
-    if (es != "IllegalArgumentException: invalid input stream: null is not allowed") {
+    if (es != "ChardetException: invalid input stream: null is not allowed") {
         return 1
     }
     return 0

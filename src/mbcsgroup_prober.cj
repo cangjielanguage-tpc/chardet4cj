@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 from std import collection.*
@@ -75,7 +79,7 @@ public class MBCSGroupProber <: CharsetProber {
 
     public func handleData(buf: Array<Byte>, offset: Int32, length: Int32): ProbingState {
         if (buf.size == 0) {
-            throw Exception("this buf is Empty")
+            throw ChardetException("this buf is empty")
         }
         var strc: ProbingState = ProbingState.NOT_ME
 
@@ -84,7 +88,7 @@ public class MBCSGroupProber <: CharsetProber {
         var highpos: Int32 = 0
         var maxPos: Int32 = offset + length
         if (maxPos <= 0) {
-            throw Exception("this length is null")
+            throw ChardetException("this length is null")
         }
         for (i in offset..maxPos) {
             if ((buf[Int64(i)] & 0x80) != 0) {

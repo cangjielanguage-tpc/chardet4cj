@@ -47,7 +47,7 @@ public class UnicodeBOMInputStreamTest {
         try{
             ins_1.read(resData2)
             res = resData2.size 
-        }catch(e1:Exception){
+        }catch(e1:IllegalArgumentException){
             println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("IllegalArgumentException: The buffer cannot be empty"), true)
             returnFlag = 0

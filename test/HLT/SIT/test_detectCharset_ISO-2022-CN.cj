@@ -21,7 +21,7 @@ public class UniversalDetectorTest {
         var file5_1:File = File("../util_test/iso_2022_cn.txt",Open(true,false)) // iso_2022_cn.txt 的中文字符经java检测为UTF-8
         try{
             resStr = UniversalDetector.detectCharset(file5_1) // UTF-8  对标java
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e4_1:>> ${e1}")
             returnFlag = 1
         }

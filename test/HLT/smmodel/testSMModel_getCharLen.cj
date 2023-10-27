@@ -28,7 +28,7 @@ public class SMModelTest {
 
         try{
             res = ins_UTF8SMModel.getCharLen(5) // 1
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Exception_1:>> ${e1}")
             returnFlag = 2
         }
@@ -42,7 +42,7 @@ public class SMModelTest {
         returnFlag = -1
         try{
             res = ins_UTF8SMModel.getCharLen(23) // 0
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Exception_2:>> ${e1}")
             returnFlag = 0
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
@@ -56,7 +56,7 @@ public class SMModelTest {
         returnFlag = -1
         try{
             res = ins_ISO2022CNSMModel.getCharLen(-252) // 0
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("Exception_3:>> ${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0

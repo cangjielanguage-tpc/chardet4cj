@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 from std import io.*
@@ -17,7 +21,7 @@ public class UnicodeBOMInputStream <: InputStream {
     public init(inputStream: InputStream, skipIfFound: Bool) {
         
         if (inputStream.length == 0) {
-			throw IllegalArgumentException("invalid input stream: null is not allowed")
+			throw ChardetException("invalid input stream: null is not allowed")
 		}
         ins = BufferedInputStream(inputStream, 4)
         var boms: Array<Byte> = Array<Byte>(4, item: 0)
@@ -94,7 +98,7 @@ public class UnicodeBOMInputStream <: InputStream {
 		return this.bom
 	}
 
-    public func read(buffer: Array<Byte>) {
+    public func read(buffer: Array<Byte>): Int64 {
         return ins.read(buffer)
     }
 

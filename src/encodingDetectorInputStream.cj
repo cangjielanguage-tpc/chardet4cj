@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 from std import io.*
@@ -19,7 +23,7 @@ public class EncodingDetectorInputStream <: InputStream {
 
     private func closed(): Unit {
         if (streamClosed) {
-            throw Exception("this input stream close")
+            throw ChardetException("this input stream close")
         }
     }
 
@@ -29,7 +33,7 @@ public class EncodingDetectorInputStream <: InputStream {
 
     public func mark(readlimit: Int32): Unit {
         if (readlimit !=  0) {
-            throw Exception("mark is not null")
+            throw ChardetException("mark is not null")
         }
     }
 
@@ -49,10 +53,10 @@ public class EncodingDetectorInputStream <: InputStream {
     private func read(b: Array<Byte>, off: Int64, len: Int64): Int64 {
         this.closed()
         if (this.input.length == 0) {
-            throw Exception("this input is Empty")
+            throw ChardetException("this input is empty")
         }
         if (b.size == 0 || len == 0) {
-            throw Exception("this buf is Empty")
+            throw ChardetException("this buf is empty")
         }
         let nrOfBytesRead: Int64 = input.read(b)
         if (!detector.isDone() && nrOfBytesRead > 0) {
@@ -69,13 +73,13 @@ public class EncodingDetectorInputStream <: InputStream {
     }
 
     public func reset(): Unit {
-        throw Exception("mark/reset not supported")
+        throw ChardetException("mark/reset not supported")
     }
 
     public func skip(n: Int64): Int64{
         this.closed()
         if (this.input.length == 0) {
-            throw Exception("this input is Empty")
+            throw ChardetException("this input is empty")
         }
         if (detector.isDone()) {
             return skip(this.input,n)
@@ -87,7 +91,7 @@ public class EncodingDetectorInputStream <: InputStream {
             var temp = Array<Byte>(1,item:0)
             while ( i < n && lastRead >= 0) {
                 if (this.input.read(temp) < 1) {
-                    throw Exception("read failed")
+                    throw ChardetException("read failed")
                 }
                 lastRead = Int64(temp[0])
                 count++

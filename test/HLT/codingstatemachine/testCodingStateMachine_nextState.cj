@@ -38,7 +38,7 @@ public class CodingStateMachineTest {
         returnFlag = 0
        try{
             res = codingStateMachine_HZSMModel.nextState(255) // 1
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("Exception_1:>> ${e1}")
             returnFlag = 1
         }

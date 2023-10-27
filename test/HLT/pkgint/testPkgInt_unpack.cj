@@ -32,7 +32,7 @@ public class PkgIntTest {
 
         try{
             res = pkgInt_ins1.unpack(12)  // 0 索引越界，java无异常
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("e1:>>>>${e1}")
             returnFlag = 1
         }
@@ -55,7 +55,7 @@ public class PkgIntTest {
 
         try{
             res = pkgInt_ins1.unpack(12)  // 索引越界，java：ArrayIndexOutOfBoundsException: Index 12 out of bounds for length 8
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0
@@ -79,7 +79,7 @@ public class PkgIntTest {
 
         try{
             res = pkgInt_ins1.unpack(12)  // 索引越界，java：ArrayIndexOutOfBoundsException: Index 12 out of bounds for length 8
-        }catch(e1:Exception){
+        }catch(e1:IndexOutOfBoundsException){
             println("e1:>>>>${e1}")
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0

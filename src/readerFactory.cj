@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 from std import fs.*
@@ -8,7 +12,7 @@ from charset import  charset.encoding.*
 public class ReaderFactory {
 
     private init() {
-        throw Exception("No instances allowed")
+        throw ChardetException("no instances allowed")
     }
     
     public static func createBufferedReader(file: File, defaultCharset: Charset): File {

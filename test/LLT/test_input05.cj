@@ -12,10 +12,10 @@ main() {
     var exc = ""
     try{
         str.reset()
-    } catch (e: Exception){
+    } catch (e: ChardetException){
         exc = e.toString()
     }
-    if (exc != "Exception: mark/reset not supported") {
+    if (exc != "ChardetException: mark/reset not supported") {
         return 1
     }
     return 0

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Cangjie Library Team 2023-2023. All rights reserved.
+ * Description:
+ */
 package chardet4cj
 
 public abstract class Buffer <: ToString {
@@ -14,11 +18,11 @@ public abstract class Buffer <: ToString {
 
     Buffer (marks: Int64, position: Int64, limits: Int64, capacity: Int64) {
         if (capacity < 0) {
-            throw IllegalArgumentException()
+            throw ChardetException("capacity < 0: ${capacity}")
         }
         this.capa = capacity
         if (limits > this.capa || limits < 0 ) {
-            throw IllegalArgumentException()
+            throw ChardetException("limits < 0: ${limits}")
         }
         this.lim = limits
         if (this.pos > this.lim) {
@@ -28,7 +32,7 @@ public abstract class Buffer <: ToString {
             this.mar = -1
         }
         if (position > this.lim || position < 0) {
-            throw IllegalArgumentException()
+            throw ChardetException("position < 0: ${position}")
         }
         this.pos = position
         if (mar > pos) {
@@ -36,7 +40,7 @@ public abstract class Buffer <: ToString {
         }
         if (marks >= 0) {
             if (marks > position) {
-                throw IllegalArgumentException()
+                throw ChardetException("marks > position: ${marks} ${position}")
             }
             this.mar = marks
         }
@@ -52,7 +56,7 @@ public abstract class Buffer <: ToString {
 
     public open func position(newPosit: Int64): Buffer {
         if (newPosit > lim || newPosit < 0) {
-            throw IllegalArgumentException("newPosition")
+            throw ChardetException("newPosition")
         }
         if (mar > pos) {
             mar = -1
@@ -67,7 +71,7 @@ public abstract class Buffer <: ToString {
 
     public open func limit(newLimits: Int64): Buffer {
         if (newLimits > capa || newLimits < 0) {
-            throw IllegalArgumentException("newLimit")
+            throw ChardetException("newLimit")
         }
         lim = newLimits
         if (pos > lim) {pos = lim}
@@ -83,7 +87,7 @@ public abstract class Buffer <: ToString {
     public open func reset(): Buffer  {
         var ma = mar
         if (ma < 0){
-            throw Exception()
+            throw ChardetException("ma < 0: ${ma}")
         }
         pos = ma
         return this
@@ -132,7 +136,7 @@ public abstract class Buffer <: ToString {
 
     func nextGetIndex(): Int64 {
         if (pos >= lim){
-            throw Exception()
+            throw ChardetException("index out of bounds")
         }
         let temps = pos
         pos++
@@ -141,7 +145,7 @@ public abstract class Buffer <: ToString {
 
     func checkIndex(t: Int64): Int64 {
         if ((t < 0) || (t >= lim)){
-            throw IndexOutOfBoundsException()
+            throw ChardetException("index out of bounds : ${t}")
         }
         return t
     }
@@ -156,7 +160,7 @@ public abstract class Buffer <: ToString {
 
     func checkBounds(off: Int64, len: Int64, size: Int64) {
         if ((off | len | (off + len) | (size - (off + len))) < 0){
-            throw IndexOutOfBoundsException()
+            throw ChardetException("index out of bounds")
         }
     }
 }
@@ -175,7 +179,7 @@ public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buf
 
     public static func allocate(capacitys: Int64): ByteBuffer {
         if (capacitys < 0) {
-            throw IllegalArgumentException()
+            throw ChardetException("capacitys < 0: ${capacitys}")
         }
         return HeapByteBuffer(capacitys, capacitys)
     }
@@ -184,7 +188,7 @@ public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buf
         try{
             return HeapByteBuffer(arrays,offset,length)
         } catch (ex: IllegalArgumentException) {
-            throw IndexOutOfBoundsException()
+            throw ex
         }
     }
 
@@ -369,7 +373,7 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
     public override func get(dsts: Array<Byte>, offset: Int64, length: Int64): ByteBuffer {
         checkBounds(offset, length, dsts.size)
         if (length > this.remaining()) {
-            throw Exception() // BufferUnderflowException
+            throw ChardetException("buffer underflow") // BufferUnderflowException
         }
         ArrayCopy(hb, ix(position()), dsts, offset, length)
         position(position() + length)
@@ -389,7 +393,7 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
     public override func put(src: Array<Byte>, offsets: Int64, length: Int64): ByteBuffer {
         checkBounds(offsets, length, src.size)
         if (length > remaining()) {
-            throw Exception() // BufferOverflowException
+            throw ChardetException("buffer overflow") // BufferOverflowException
         }
         ArrayCopy(src, offsets, hb, ix(position()), length)
         position(position() + length)
@@ -399,15 +403,15 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
     public override func put(srcs: ByteBuffer): ByteBuffer {
         if (srcs is HeapByteBuffer) {
             if (srcs == this) {
-                throw createSameBufferException()
+                throw ChardetException("the source buffer is this buffer")
             }
             let sb: HeapByteBuffer = match ((srcs as HeapByteBuffer)) {
-                case None => throw NoneValueException()
+                case None => throw ChardetException("data conversion can still fail")
                 case Some (v) => v
             }
             let n = sb.remaining()
             if (n > remaining()) {
-                throw BufferOverflowException() // BufferOverflowException
+                throw ChardetException("buffer overflow") // BufferOverflowException
             }
             ArrayCopy(sb.hb, sb.ix(sb.position()), hb, ix(position()), n)
             sb.position(sb.position() + n )
@@ -509,16 +513,8 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
             UInt16(this.get())
     }
 
-     func createSameBufferException(): IllegalArgumentException {
-        throw IllegalArgumentException("The source buffer is this buffer")
-    }
+    
 }
 
-public class BufferOverflowException <: Exception {
-
-    public init() {
-        super("BufferOverflowException: \n")
-    }
-}
 
 

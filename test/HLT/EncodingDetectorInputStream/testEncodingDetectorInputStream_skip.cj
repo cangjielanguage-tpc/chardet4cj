@@ -34,7 +34,7 @@ public class EncodingDetectorInputStreamTest {
         // public func skip(n: Int64): Int64
         try{
             res = inputStream.skip(0)  // -1
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e1:>>>>${e1}")
             returnFlag = 1
         }
@@ -46,7 +46,7 @@ public class EncodingDetectorInputStreamTest {
 
         try{
             res = inputStream.skip(-5)  // 
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("e2:>>>>${e2}")
             returnFlag = 2
         }
@@ -67,9 +67,9 @@ public class EncodingDetectorInputStreamTest {
 
         try{
             res = inputStream.skip(5)  //  异常 ？？
-        }catch(e2:Exception){
+        }catch(e2:ChardetException){
             println("e2:>>>>${e2}") 
-            @Assert(e2.toString().contains("Exception: this input is Empty"), true)
+            @Assert(e2.toString().contains("ChardetException: this input is empty"), true)
             returnFlag = 0
         }
 

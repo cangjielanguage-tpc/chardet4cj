@@ -36,7 +36,7 @@ public class SMModelTest {
         returnFlag = 0
        try{
             res = ins_HZSMModel.getClass(255) // 1
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("Exception_1:>> ${e1}")
             returnFlag = 1
         }

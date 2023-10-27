@@ -40,7 +40,7 @@ public class UniversalDetectorTest {
         let unicodeBOMInputStreamIns_1:UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream)
         try{
             resStr = UniversalDetector.detectCharset(unicodeBOMInputStreamIns_1) // US-ASCII
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 1
         }
@@ -61,7 +61,7 @@ public class UniversalDetectorTest {
         let byteArrayStreamIns_1:ByteArrayStream = ByteArrayStream()// 缓冲区为空
         try{
             resStr = UniversalDetector.detectCharset(byteArrayStreamIns_1) 
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 0
         }
@@ -78,8 +78,8 @@ public class UniversalDetectorTest {
         println("enterStream_1:>> ${enterStream_1.length}")
         try{
             resStr = UniversalDetector.detectCharset(inputStream) 
-        }catch(e1:Exception){
-            @Assert(e1.toString().contains("Exception: this inputStream is Empty"), true)
+        }catch(e1:ChardetException){
+            @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true)
             returnFlag = 0
         }
         @Assert(resStr, "")

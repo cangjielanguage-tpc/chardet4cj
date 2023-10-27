@@ -21,7 +21,7 @@ public class UniversalDetectorTest {
         // public static func detectCharset(file: File): String
         try{
             resStr = UniversalDetector.detectCharset(file_1) // UTF-8
-        }catch(e1:Exception){
+        }catch(e1:ChardetException){
             println("e2_1:>> ${e1}")
             returnFlag = 1
         }
