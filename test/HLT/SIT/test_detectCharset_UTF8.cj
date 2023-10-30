@@ -3,7 +3,6 @@
 // 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
 // 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
 //data_file:../util_test/utf8.txt
-
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
@@ -14,22 +13,16 @@ public class UniversalDetectorTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-    var file_1:File = File("../util_test/utf8.txt",Open(true,false))
+    var file_1: File = File("../util_test/utf8.txt", Open(true, false))
 
     @TestCase
-    func test_detectCharset_UTF8():Unit{
-        // public static func detectCharset(file: File): String
-        try{
+    func test_detectCharset_UTF8(): Unit {
+        try {
             resStr = UniversalDetector.detectCharset(file_1) // UTF-8
-        }catch(e1:ChardetException){
-            println("e2_1:>> ${e1}")
+        } catch (e1: ChardetException) {
             returnFlag = 1
         }
-        println("resStr:>> ${resStr}")
         @Assert(resStr, "UTF-8")
-
         @Assert(returnFlag, 0)
     }
-
 }
-

@@ -8,61 +8,45 @@
 //data_file:../util_test/utf-16le.txt
 //data_file:../util_test/utf-16le.cj
 
-/* 
-public init (listener: ?CharsetListener)
-public init()
-public static func detectCharset(inputStream: InputStream): String
- */
-
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
 
-
 @Test
 public class UniversalDetectorTest {
     var detector: UniversalDetector = UniversalDetector()
-    var enterStream:ByteArrayStream = ByteArrayStream()
+    var enterStream: ByteArrayStream = ByteArrayStream()
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-
-    var file_1:File = File("../util_test/utf8.txt",Open(true,false))
-    var file_2:File = File("../util_test/utf-16be.txt",Open(true,false))
-    var file_3:File = File("../util_test/utf-16le.txt",Open(true,false))
-
+    var file_1: File = File("../util_test/utf8.txt", Open(true, false))
+    var file_2: File = File("../util_test/utf-16be.txt", Open(true, false))
+    var file_3: File = File("../util_test/utf-16le.txt", Open(true, false))
 
     @TestCase
-    func testUniversalDetector_detectCharsetByStream_01():Unit{
-        // public static func detectCharset(inputStream: InputStream): String
+    func testUniversalDetector_detectCharsetByStream_01(): Unit {
         var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetByStream_01".toUtf8Array()
         enterStream.write(bufdata)
-        let unicodeBOMInputStreamIns_1:UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream)
-        try{
-            resStr = UniversalDetector.detectCharset(unicodeBOMInputStreamIns_1) // US-ASCII
-        }catch(e1:ChardetException){
-            println("e2_1:>> ${e1}")
+        let unicodeBOMInputStreamIns_1: UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream)
+        try {
+            resStr = UniversalDetector.detectCharset(unicodeBOMInputStreamIns_1) 
+        } catch (e1: ChardetException) {
             returnFlag = 1
         }
-        println("resStr1:>> ${resStr}")
-        // @Assert(resStr, "UTF-16BE")
-
-        // public func getDetectedCharset(): String
-        resStr = detector.getDetectedCharset() // kong
+        @Assert(resStr, "US-ASCII")
+        resStr = detector.getDetectedCharset() 
         @Assert(resStr, "")
-
         @Assert(returnFlag, 0)
-
     }
 
     @TestCase
-    func testUniversalDetector_detectCharsetByStream_02():Unit{
+    func testUniversalDetector_detectCharsetByStream_02(): Unit {
         returnFlag = -1
-        let byteArrayStreamIns_1:ByteArrayStream = ByteArrayStream()// 缓冲区为空
-        try{
-            resStr = UniversalDetector.detectCharset(byteArrayStreamIns_1) 
-        }catch(e1:ChardetException){
-            println("e2_1:>> ${e1}")
+        let byteArrayStreamIns_1: ByteArrayStream = ByteArrayStream() // 缓冲区为空
+        try {
+            resStr = UniversalDetector.detectCharset(byteArrayStreamIns_1)
+        } catch (e1: ChardetException) {
+            @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true)
             returnFlag = 0
         }
 
@@ -70,23 +54,17 @@ public class UniversalDetectorTest {
     }
 
     @TestCase
-    func testUniversalDetector_detectCharsetByStream_03():Unit{
+    func testUniversalDetector_detectCharsetByStream_03(): Unit {
         returnFlag = -1
-        var enterStream_1:ByteArrayStream = ByteArrayStream()
-
+        var enterStream_1: ByteArrayStream = ByteArrayStream()
         var inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(enterStream_1)
-        println("enterStream_1:>> ${enterStream_1.length}")
-        try{
-            resStr = UniversalDetector.detectCharset(inputStream) 
-        }catch(e1:ChardetException){
+        try {
+            resStr = UniversalDetector.detectCharset(inputStream)
+        } catch (e1: ChardetException) {
             @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true)
             returnFlag = 0
         }
         @Assert(resStr, "")
-
         @Assert(returnFlag, 0)
     }
-
-
 }
-

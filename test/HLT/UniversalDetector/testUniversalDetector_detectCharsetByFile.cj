@@ -9,16 +9,10 @@
 //data_file:../util_test/utf-16le.cj
 //data_file:../util_test/iso_2022_cn.txt
 
-/* 
-public init (listener: ?CharsetListener)
-public init()
-public static func detectCharset(file: File): String
- */
 
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
-
 
 @Test
 public class UniversalDetectorTest {
@@ -26,39 +20,30 @@ public class UniversalDetectorTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-
-    var file_1:File = File("../util_test/utf8.txt",Open(true,false))
-    var file_2:File = File("../util_test/utf-16be.txt",Open(true,false))
-    var file_3:File = File("../util_test/utf-16le.txt",Open(true,false))
+    var file_1: File = File("../util_test/utf8.txt", Open(true, false))
+    var file_2: File = File("../util_test/utf-16be.txt", Open(true, false))
+    var file_3: File = File("../util_test/utf-16le.txt", Open(true, false))
 
     @TestCase
-    func testUniversalDetector_detectCharsetByFile_01():Unit{
-        // public static func detectCharset(file: File): String
-        try{
-            resStr = UniversalDetector.detectCharset(file_1) // UTF-8
-        }catch(e1:ChardetException){
-            println("e2_1:>> ${e1}")
+    func testUniversalDetector_detectCharsetByFile_01(): Unit {
+        try {
+            resStr = UniversalDetector.detectCharset(file_1) 
+        } catch (e1: ChardetException) {
             returnFlag = 1
         }
-        println("resStr:>> ${resStr}")
         @Assert(resStr, "UTF-8")
-
-        // public func getDetectedCharset(): String
-        resStr = detector.getDetectedCharset() // kong
+        resStr = detector.getDetectedCharset() 
         @Assert(resStr, "")
-
         @Assert(returnFlag, 0)
     }
 
     @TestCase
-    func testUniversalDetector_detectCharsetByFile_02():Unit{
+    func testUniversalDetector_detectCharsetByFile_02(): Unit {
         returnFlag = -1
-        // public static func detectCharset(path: Path): String
-        try{
-            var file2_1:File = File("../util_test/utf-16be.py",Open(true,false))
+        try {
+            var file2_1: File = File("../util_test/utf-16be.py", Open(true, false))
             resStr = UniversalDetector.detectCharset(file2_1) // UTF-16BE
-        }catch(e1:FSException){
-            println("e2_1:>> ${e1}")
+        } catch (e1: FSException) {
             @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0
         }
@@ -66,39 +51,34 @@ public class UniversalDetectorTest {
     }
 
     @TestCase
-    func testUniversalDetector_detectCharsetByFile_03():Unit{
+    func testUniversalDetector_detectCharsetByFile_03(): Unit {
         returnFlag = -1
-        try{
-            resStr = UniversalDetector.detectCharset(file_2) // UTF-16BE
-        }catch(e1:ChardetException){
-            println("e3_1:>> ${e1}")
+        try {
+            resStr = UniversalDetector.detectCharset(file_2) 
+        } catch (e1: ChardetException) {
             returnFlag = 1
         }
-        println("resStr:3>> ${resStr}")
         @Assert(resStr, "UTF-16BE")
 
-        try{
-            var file3_1:File = File("../util_test/仓颉utf-16be.txt",Open(true,false))//文件不存在
-            resStr = UniversalDetector.detectCharset(file3_1) 
-        }catch(e2:FSException){
-            println("e3_2:>> ${e2}")
+        try {
+            var file3_1: File = File("../util_test/仓颉utf-16be.txt", Open(true, false)) //文件不存在
+            resStr = UniversalDetector.detectCharset(file3_1)
+        } catch (e2: FSException) {
             @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)
             returnFlag = 0
         }
-
         @Assert(returnFlag, 0)
     }
 
     @TestCase
-    func testUniversalDetector_detectCharsetByFile_04():Unit{
+    func testUniversalDetector_detectCharsetByFile_04(): Unit {
         returnFlag = -1
-        resStr = UniversalDetector.detectCharset(file_3) // UTF-16LE
+        resStr = UniversalDetector.detectCharset(file_3) 
         @Assert(resStr, "UTF-16LE")
-        try{
-            var file4_1:File = File("../util_test/utf-16le.txt",Open(false,false))
-            resStr = UniversalDetector.detectCharset(file4_1) 
-        }catch(e1:FSException){
-            println("e4_1:>> ${e1}")
+        try {
+            var file4_1: File = File("../util_test/utf-16le.txt", Open(false, false))
+            resStr = UniversalDetector.detectCharset(file4_1)
+        } catch (e1: FSException) {
             @Assert(e1.toString().contains("FSException: The file does not have the read permission"), true)
             returnFlag = 0
         }
@@ -106,19 +86,15 @@ public class UniversalDetectorTest {
     }
 
     @TestCase
-    func testUniversalDetector_detectCharsetByFile_05():Unit{
+    func testUniversalDetector_detectCharsetByFile_05(): Unit {
         returnFlag = 0
-        var file5_1:File = File("../util_test/iso_2022_cn.txt",Open(true,false)) // iso_2022_cn.txt 的中文字符经java检测为UTF-8
-        try{
+        var file5_1: File = File("../util_test/iso_2022_cn.txt", Open(true, false)) // iso_2022_cn.txt 的中文字符经java检测为UTF-8
+        try {
             resStr = UniversalDetector.detectCharset(file5_1) // UTF-8  对标java
-        }catch(e1:ChardetException){
-            println("e4_1:>> ${e1}")
+        } catch (e1: ChardetException) {
             returnFlag = 1
         }
         @Assert(resStr, "UTF-8")
-
         @Assert(returnFlag, 0)
     }
-
 }
-
