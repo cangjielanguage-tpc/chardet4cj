@@ -4,7 +4,6 @@
 // 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
 //data_file:../util_test/utf-16le.txt
 //data_file:../util_test/utf-16le.cj
-
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
@@ -15,23 +14,20 @@ public class UniversalDetectorTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-    var file:File = File("../util_test/utf-16le.txt",Open(true,false))
+    var file: File = File("../util_test/utf-16le.txt", Open(true, false))
 
     @TestCase
-    func test_detectCharset_UTF16LE():Unit{
+    func test_detectCharset_UTF16LE(): Unit {
         returnFlag = -1
         resStr = UniversalDetector.detectCharset(file) // UTF-16LE
         @Assert(resStr, "UTF-16LE")
-        try{
-            var file_2:File = File("../util_test/utf-16le.txt",Open(false,false))
-            resStr = UniversalDetector.detectCharset(file_2) 
-        }catch(e1:FSException){
-            println("e4_1:>> ${e1}")
+        try {
+            var file_2: File = File("../util_test/utf-16le.txt", Open(false, false))
+            resStr = UniversalDetector.detectCharset(file_2)
+        } catch (e1: FSException) {
             @Assert(e1.toString().contains("FSException: The file does not have the read permission"), true)
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
     }
-
 }
-

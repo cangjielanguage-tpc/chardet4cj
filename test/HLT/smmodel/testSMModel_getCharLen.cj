@@ -4,67 +4,55 @@
 // 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
-
 from std import fs.*
 from std import io.*
 from chardet4cj import chardet4cj.*
 
-
 @Test
 public class SMModelTest {
-    let ins_UTF8SMModel:SMModel = UTF8SMModel()
-    let ins_HZSMModel:SMModel = HZSMModel()
-    let ins_ISO2022CNSMModel:SMModel = ISO2022CNSMModel()
+    let ins_UTF8SMModel: SMModel = UTF8SMModel()
+    let ins_HZSMModel: SMModel = HZSMModel()
+    let ins_ISO2022CNSMModel: SMModel = ISO2022CNSMModel()
     var returnFlag: Int64 = 0
-    var tag:Int32 = -1
-    var res:Int32 = -1
+    var tag: Int32 = -1
+    var res: Int32 = -1
 
     @TestCase
-    func testUTF8SMModel_getCharLen_01():Unit{
-        //public func getCharLen(cls: Int32): Int32
-        res = ins_UTF8SMModel.getCharLen(0) // 0
-        println("res:>> ${res}")
-        @Assert(res, 0) 
+    func testUTF8SMModel_getCharLen_01(): Unit {
+        res = ins_UTF8SMModel.getCharLen(0) 
+        @Assert(res, 0)
 
-        try{
-            res = ins_UTF8SMModel.getCharLen(5) // 1
-        }catch(e1:IndexOutOfBoundsException){
-            println("Exception_1:>> ${e1}")
+        try {
+            res = ins_UTF8SMModel.getCharLen(5) 
+        } catch (e1: IndexOutOfBoundsException) {
             returnFlag = 2
         }
-        println("res:>> ${res}")
         @Assert(res, 0)
         @Assert(returnFlag, 0)
     }
-    
+
     @TestCase
-    func testHZSMModel_getCharLen_01():Unit{
+    func testHZSMModel_getCharLen_01(): Unit {
         returnFlag = -1
-        try{
-            res = ins_UTF8SMModel.getCharLen(23) // 0
-        }catch(e1:IndexOutOfBoundsException){
-            println("Exception_2:>> ${e1}")
+        try {
+            res = ins_UTF8SMModel.getCharLen(23) 
+        } catch (e1: IndexOutOfBoundsException) {
             returnFlag = 0
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
         }
-
         @Assert(returnFlag, 0)
     }
 
     @TestCase
-    func testISO2022CNSMModel_getCharLen_01():Unit{
+    func testISO2022CNSMModel_getCharLen_01(): Unit {
         returnFlag = -1
-        try{
-            res = ins_ISO2022CNSMModel.getCharLen(-252) // 0
-        }catch(e1:IndexOutOfBoundsException){
-            println("Exception_3:>> ${e1}")
+        try {
+            res = ins_ISO2022CNSMModel.getCharLen(-252) 
+        } catch (e1: IndexOutOfBoundsException) {
             @Assert(e1.toString().contains("IndexOutOfBoundsException"), true)
             returnFlag = 0
         }
-        println("res:>> ${res}")
-        @Assert(res, 0) 
-
+        @Assert(res, 0)
         @Assert(returnFlag, 0)
     }
-
 }
