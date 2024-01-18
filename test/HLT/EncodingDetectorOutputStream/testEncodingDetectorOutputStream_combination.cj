@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
 from std import fs.*
@@ -35,7 +35,7 @@ public class EncodingDetectorOutputStreamTest {
     @TestCase
     func testEncodingDetectorOutputStream_02(): Unit {
         returnFlag = 0
-        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toArray()
         var out = ByteArrayStream()
         out.write(bufdata)
         var outputStream: EncodingDetectorOutputStream = EncodingDetectorOutputStream(out)

@@ -13,7 +13,7 @@ main() {
     str.read(buf)
     let sc = str.length
     println(sc)
-    if (sc != 0) {
+    if (sc != 8) {
         return 1
     }
     return 0

@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
 
@@ -19,7 +19,7 @@ public class UnicodeBOMInputStreamTest {
 
     @TestCase
     func testUnicodeBOMInputStream_read_01(): Unit {
-        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_read_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_read_01".toArray()
         enterStream.write(bufdata)
         let ins_1: UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream)
         @Assert(bufdata.size, 33)
@@ -31,7 +31,7 @@ public class UnicodeBOMInputStreamTest {
     @TestCase
     func testUnicodeBOMInputStream_read_02(): Unit {
         returnFlag = -1
-        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_read_02".toUtf8Array()
+        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_read_02".toArray()
         enterStream.write(bufdata)
         let ins_1: UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream)
         var resData2: Array<Byte> = Array<Byte>()
@@ -39,7 +39,7 @@ public class UnicodeBOMInputStreamTest {
             ins_1.read(resData2)
             res = resData2.size
         } catch (e1: IllegalArgumentException) {
-            @Assert(e1.toString().contains("IllegalArgumentException: The buffer cannot be empty"), true)
+            @Assert(e1.toString().contains("IllegalArgumentException: The buffer is Empty"), true)
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
@@ -47,7 +47,7 @@ public class UnicodeBOMInputStreamTest {
 
     @TestCase
     func testUnicodeBOMInputStream_read_03(): Unit {
-        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_read_03".toUtf8Array()
+        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_read_03".toArray()
         let ins_1: UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream) //缓冲区为空
         @Assert(bufdata.size, 33)
         ins_1.read(bufdata)

@@ -1,12 +1,12 @@
 {
-    "cjc_version": "0.39.8",
+    "cjc_version": "0.47.2",
     "organization": "cangjie",
     "name": "chardet4cj",
     "description": "nothing here",
     "version": "0.0.2",
     "requires": {
       "charset": {
-        "branch": "v0.0.3.B002",
+        "branch": "v0.0.4.B003",
         "version": "0.0.2",
         "git": "https://gitee.com/HW-PLLab/charset.git"
       }

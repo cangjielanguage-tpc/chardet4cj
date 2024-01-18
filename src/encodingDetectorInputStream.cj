@@ -7,7 +7,7 @@ package chardet4cj
 from std import io.*
 from std import math.*
 
-public class EncodingDetectorInputStream <: InputStream {
+public class EncodingDetectorInputStream <: InputStream & Seekable {
 
     private var input: InputStream
     private let detector: UniversalDetector = UniversalDetector()
@@ -41,8 +41,8 @@ public class EncodingDetectorInputStream <: InputStream {
         return false
     }
 
-    public func read(): Int64 {
-        var data: Array<Byte> = Array<Byte>(input.length, item: 0)
+    public func read(): Int64 { 
+        var data: Array<Byte> = Array<Byte>((input as Seekable).getOrThrow().length, item: 0)
         var nrOfBytesRead: Int64 = this.read(data,0,1)
         if (nrOfBytesRead > 0){
             return Int64(data[0])
@@ -52,7 +52,7 @@ public class EncodingDetectorInputStream <: InputStream {
 
     private func read(b: Array<Byte>, off: Int64, len: Int64): Int64 {
         this.closed()
-        if (this.input.length == 0) {
+        if ((this.input as Seekable).getOrThrow().length == 0) {
             throw ChardetException("this input is empty")
         }
         if (b.size == 0 || len == 0) {
@@ -78,7 +78,7 @@ public class EncodingDetectorInputStream <: InputStream {
 
     public func skip(n: Int64): Int64{
         this.closed()
-        if (this.input.length == 0) {
+        if ((this.input as Seekable).getOrThrow().length == 0) {
             throw ChardetException("this input is empty")
         }
         if (detector.isDone()) {
@@ -103,6 +103,28 @@ public class EncodingDetectorInputStream <: InputStream {
 
     public func getDetectedCharset(): String{
         return detector.getDetectedCharset();
+    }
+
+    public override func seek(_: SeekPosition): Int64 {
+        return 0
+    }
+
+    public prop length: Int64 {
+        get() {
+            return (input as Seekable).getOrThrow().length
+        }
+    }
+
+    public prop remainLength: Int64 {
+        get() {
+            return (input as Seekable).getOrThrow().remainLength
+        }
+    }
+
+    public prop position: Int64 {
+        get() {
+            return (input as Seekable).getOrThrow().position
+        }
     }
 
 }

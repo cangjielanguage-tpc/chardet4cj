@@ -11,7 +11,7 @@ main() {
     let str: UnicodeBOMInputStream = UnicodeBOMInputStream(intput)
     let es = str.length
     println(es)
-    if (es != 8) {
+    if (es != 12) {
         return 1
     }
     return 0
