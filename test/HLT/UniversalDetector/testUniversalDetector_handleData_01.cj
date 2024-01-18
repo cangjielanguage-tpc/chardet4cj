@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
 
@@ -20,7 +20,7 @@ public class UniversalDetectorTest {
 
     @TestCase
     func testUniversalDetector_handleData_01(): Unit {
-        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toArray()
         try {
             detector.handleData(bufdata)
         } catch (e1: ChardetException) {
@@ -36,7 +36,7 @@ public class UniversalDetectorTest {
     @TestCase
     func testUniversalDetector_handleData_02(): Unit {
         var detector_2: UniversalDetector = UniversalDetector(Option<CharsetListener>.None)
-        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toArray()
         try {
             detector_2.handleData(bufdata)
         } catch (e1: ChardetException) {
@@ -54,7 +54,7 @@ public class UniversalDetectorTest {
     func testUniversalDetector_handleData_03(): Unit {
         returnFlag = -1
         var detector_3: UniversalDetector = UniversalDetector(Option<CharsetListener>.None)
-        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toArray()
         isDone = detector_3.isDone()
         @Assert(isDone, false)
         @Assert(bufdata.size, 45)

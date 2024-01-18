@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 //data_file:../util_test/utf-16le.txt
 //data_file:../util_test/utf-16le.cj
 from std import fs.*

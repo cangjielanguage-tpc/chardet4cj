@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
 
@@ -19,7 +19,7 @@ public class UnicodeBOMInputStreamTest {
 
     @TestCase
     func testUnicodeBOMInputStream_getBOM_01(): Unit {
-        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_getBOM_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_getBOM_01".toArray()
         enterStream.write(bufdata)
         let ins_1: UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream)
         var bom: BOM = ins_1.getBOM()
@@ -48,7 +48,7 @@ public class UnicodeBOMInputStreamTest {
 
     @TestCase
     func testUnicodeBOMInputStream_getBOM_03(): Unit {
-        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_getBOM_03".toUtf8Array()
+        var bufdata: Array<Byte> = "testUnicodeBOMInputStream_getBOM_03".toArray()
         enterStream.write(bufdata)
         let ins_1: UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream, true)
         var bom: BOM = ins_1.getBOM()

@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 from std import fs.*
 from std import io.*
@@ -16,7 +16,7 @@ public class UniversalDetectorTest {
 
     @TestCase
     func testUniversalDetector_detectCharsetFromBOM_01(): Unit {
-        var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetFromBOM_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetFromBOM_01".toArray()
         try {
             resStr = UniversalDetector.detectCharsetFromBOM(bufdata)
         } catch (e1: ChardetException) {
@@ -32,7 +32,7 @@ public class UniversalDetectorTest {
 
     @TestCase
     func testUniversalDetector_detectCharsetFromBOM_02(): Unit {
-        var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetFromBOM_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetFromBOM_01".toArray()
         try {
             resStr = UniversalDetector.detectCharsetFromBOM(bufdata)
         } catch (e1: ChardetException) {

@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //data_file:../util_test/utf8.txt
 //data_file:../util_test/utf-16be.txt
@@ -25,7 +25,7 @@ public class UniversalDetectorTest {
 
     @TestCase
     func testUniversalDetector_detectCharsetByStream_01(): Unit {
-        var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetByStream_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testUniversalDetector_detectCharsetByStream_01".toArray()
         enterStream.write(bufdata)
         let unicodeBOMInputStreamIns_1: UnicodeBOMInputStream = UnicodeBOMInputStream(enterStream)
         try {

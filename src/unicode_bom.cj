@@ -6,7 +6,7 @@ package chardet4cj
 
 from std import io.*
 
-public class UnicodeBOMInputStream <: InputStream {
+public class UnicodeBOMInputStream <: InputStream & Seekable {
 
     private var ins: InputStream
 
@@ -20,10 +20,10 @@ public class UnicodeBOMInputStream <: InputStream {
 
     public init(inputStream: InputStream, skipIfFound: Bool) {
         
-        if (inputStream.length == 0) {
+        if ((inputStream as Seekable).getOrThrow().length == 0) {
 			throw ChardetException("invalid input stream: null is not allowed")
 		}
-        ins = BufferedInputStream(inputStream, 4)
+        ins = inputStream
         var boms: Array<Byte> = Array<Byte>(4, item: 0)
 
         var read = ins.read(boms)
@@ -62,10 +62,10 @@ public class UnicodeBOMInputStream <: InputStream {
 			if (!skipped) {
 			    var bytesToSkip: Int64 = bom.bytes.size
                 var bytesSkipped: Int64 = -1
-                if (bytesToSkip < ins.length) {
+                if (bytesToSkip < (ins as Seekable).getOrThrow().length) {
                     bytesSkipped = bytesToSkip
                 } else {
-                    bytesSkipped = ins.length
+                    bytesSkipped = (ins as Seekable).getOrThrow().length
                 }
                 if (bytesSkipped > 0) {
                     var skips: Array<Byte> = Array<Byte>(bytesSkipped, item: 0)
@@ -102,9 +102,25 @@ public class UnicodeBOMInputStream <: InputStream {
         return ins.read(buffer)
     }
 
+    public override func seek(_: SeekPosition): Int64 {
+        return 0
+    }
+
     public prop length: Int64 {
         get() {
-            return ins.length
+            return (ins as Seekable).getOrThrow().length
+        }
+    }
+
+    public prop remainLength: Int64 {
+        get() {
+            return (ins as Seekable).getOrThrow().remainLength
+        }
+    }
+
+    public prop position: Int64 {
+        get() {
+            return (ins as Seekable).getOrThrow().position
         }
     }
 }

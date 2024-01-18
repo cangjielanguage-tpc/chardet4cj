@@ -297,7 +297,7 @@ public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buf
         sbd.append(capacity())
         sbd.append("]")
         let src = sbd.toString()
-        sbd.clear()
+        sbd.reset()
         return src
     }
 

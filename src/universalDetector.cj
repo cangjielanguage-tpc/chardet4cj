@@ -244,7 +244,7 @@ public class UniversalDetector {
     
     public static func detectCharset(inputStream: InputStream): String {
         var tempBuf: Array<Byte> = Array<Byte>(4096, item: 0)
-        if (inputStream.length <= 0) {
+        if ((inputStream as Seekable).getOrThrow().length <= 0) {
             throw ChardetException("this inputStream is empty")
         }
         var detector: UniversalDetector = UniversalDetector(CharsetListener())

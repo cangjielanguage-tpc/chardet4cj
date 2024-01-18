@@ -14,8 +14,8 @@ public  class CommonUtils {
         let base: String = "AWQREAXFUXCVSOIHVJHvcdfsfaclkuhgtriugHFWTYRDJKYWVCShjyugfuyrniaudgbviwuergoqwiuegfbcuweryfHDAXFTHFDSJHGSvhgfvvjchvdapweugfyweuefouqJFDUYWFtoiunmkbzdyvy"
         var res:String = ""
         for(i in 1..enter){
-             for(j in 0..base.size:i){
-            res += base[j]
+            for(j in 0..base.size:i){
+                res += String.fromUtf8(base[j])
             }
         }
         // println("res.size:>>>  ${res.size}")

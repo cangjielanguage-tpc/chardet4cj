@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
 from std import fs.*
@@ -18,7 +18,7 @@ public class EncodingDetectorOutputStreamTest {
 
     @TestCase
     func testEncodingDetectorOutputStream_write_01(): Unit {
-        var bufdata: Array<Byte> = "testEncodingDetectorInputStream_read_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testEncodingDetectorInputStream_read_01".toArray()
         enterStream.write(bufdata)
         @Assert(bufdata.size, 39)
         var outputStream: EncodingDetectorOutputStream = EncodingDetectorOutputStream(enterStream)
@@ -32,7 +32,7 @@ public class EncodingDetectorOutputStreamTest {
         try {
             outputStream.write(256) // 超出UInt8范围
         } catch (e1: OverflowException) {
-            @Assert(e1.toString().contains("OverflowException: typecast"), true)
+            @Assert(e1.toString().contains("OverflowException: The result would be greater than UInt8.Max."), true)
             res = 0
             if (res != 0) {
                 returnFlag = 1
@@ -51,7 +51,7 @@ public class EncodingDetectorOutputStreamTest {
 
     @TestCase
     func testEncodingDetectorOutputStream_write_02(): Unit {
-        var bufdata: Array<Byte> = "testEncodingDetectorOutputStream_write_02".toUtf8Array()
+        var bufdata: Array<Byte> = "testEncodingDetectorOutputStream_write_02".toArray()
         @Assert(bufdata.size, 41)
         var out = ByteArrayStream()
         var outputStream2: EncodingDetectorOutputStream = EncodingDetectorOutputStream(out)

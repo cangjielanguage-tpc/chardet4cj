@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
 from std import fs.*
@@ -17,7 +17,7 @@ public class UTF8ProberTest {
     var state: ProbingState = ProbingState.NOT_ME
     @TestCase
     func testUTF8Prober_handleData_01(): Unit {
-        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toUtf8Array()
+        var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toArray()
         state = charsetp.handleData(bufdata, 0, Int32(bufdata.size - 10))
         @Assert(state == DETECTING,true)
         try {
@@ -70,7 +70,7 @@ public class UTF8ProberTest {
 
     @TestCase
     func testUTF8Prober_handleData_03(): Unit {
-        var bufdata_3: Array<Byte> = commonUtils_ins.getStrWithEnglishLetters(10).toUtf8Array() //源数据超长
+        var bufdata_3: Array<Byte> = commonUtils_ins.getStrWithEnglishLetters(10).toArray() //源数据超长
         state = charsetp.handleData(bufdata_3, 0, Int32(bufdata_3.size))
         @Assert(state == DETECTING,true)
         @Assert(bufdata_3.size, 431)
@@ -79,7 +79,7 @@ public class UTF8ProberTest {
     @TestCase
     func testUTF8Prober_handleData_04(): Unit {
         returnFlag = 0
-        var bufdata_4: Array<Byte> = "testCharsetProber_UTF8_handleData_04元数据含中文哦".toUtf8Array()
+        var bufdata_4: Array<Byte> = "testCharsetProber_UTF8_handleData_04元数据含中文哦".toArray()
         try {
             state = charsetp.handleData(bufdata_4, 0, Int32(bufdata_4.size - 5)) 
         } catch (e5: ChardetException) {
@@ -93,7 +93,7 @@ public class UTF8ProberTest {
     @TestCase
     func testUTF8Prober_handleData_05(): Unit {
         returnFlag = 0
-        var bufdata_5: Array<Byte> = "元数据全中文哦".toUtf8Array()
+        var bufdata_5: Array<Byte> = "元数据全中文哦".toArray()
         try {
             state = charsetp.handleData(bufdata_5, 0, Int32(bufdata_5.size - 5))
         } catch (e6: ChardetException) {

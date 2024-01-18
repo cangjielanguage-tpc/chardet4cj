@@ -1,7 +1,7 @@
-// 3rd_party_lib:chardet4cj/build/chardet4cj
-// 3rd_party_lib:chardet4cj/build/charset
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/chardet4cj
-// 3rd_party_lib_ohos:chardet4cj/build/aarch64-linux-ohos/charset
+// 3rd_party_lib:chardet4cj/build/release/chardet4cj
+// 3rd_party_lib:chardet4cj/build/release/charset
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/chardet4cj
+// 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //data_file:../util_test/utf8.txt
 //data_file:../util_test/utf-16be.txt
@@ -54,8 +54,8 @@ public class ReaderFactoryTest {
         var file_1: File = File("../util_test/utf8.txt", Append) //文件不可读,只有写权限
         try {
             ReaderFactory.createReaderFromFile(file_1)
-        } catch (e1: ChardetException) {
-            @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true)
+        } catch (e1: FSException) {
+            @Assert(e1.toString().contains("FSException: The file does not have the read permission"), true)
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
