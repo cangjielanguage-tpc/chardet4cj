@@ -3,8 +3,8 @@
         "Name": "Juniversalchardet",
         "License": "MOZILLA PUBLIC",
         "License File": "LICENSE",
-        "Version Number": "",
-        "Owner" : "",
+        "Version Number": "v2.4.0",
+        "Owner" : "Alberto Fernández",
         "Upstream URL": "https://github.com/albfernandez/juniversalchardet",
         "Description": "It is an efficient recognition and detection library for character coding"
     }

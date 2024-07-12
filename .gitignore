@@ -1,5 +1,5 @@
 .git/
-.gitee/
+.cache/
 .vscode/
 /module-resolve.json
 /build
