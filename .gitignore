@@ -11,3 +11,8 @@
 /okio/
 /cryptocj/
 /charset/
+cjpm.lock
+target/
+test/log/
+test/tmp/
+test_temp/

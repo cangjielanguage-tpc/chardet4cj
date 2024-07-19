@@ -3,10 +3,10 @@
  */
 package chardet4cj
 
-from std import fs.*
+import std.fs.*
 
-from charset import charset.*
-from charset import  charset.encoding.*
+import charset4cj.charset.*
+import charset4cj.charset.encoding.*
 
 public class ReaderFactory {
 

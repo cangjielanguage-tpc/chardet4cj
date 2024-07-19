@@ -10,9 +10,9 @@
 //data_file:../util_test/iso_2022_cn.txt
 
 
-from std import fs.*
-from std import io.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import std.io.*
+import chardet4cj.*
 
 @Test
 public class UniversalDetectorTest {

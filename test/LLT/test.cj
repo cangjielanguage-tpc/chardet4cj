@@ -1,7 +1,7 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from chardet4cj import chardet4cj.*
+import chardet4cj.*
 
 main() {
     let str = Constants.CHARSET_UTF_8

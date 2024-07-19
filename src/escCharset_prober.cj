@@ -3,7 +3,7 @@
  */
 package chardet4cj
 
-from std import collection.*
+import std.collection.*
 
 public class EscCharsetProber <: CharsetProber {
 

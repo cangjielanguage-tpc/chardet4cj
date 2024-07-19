@@ -1,7 +1,7 @@
 // 3rd_party_lib:chardet4cj/build/chardet4cj
 // 3rd_party_lib:chardet4cj/build/charset
-from chardet4cj import chardet4cj.*
-from fuzz import fuzz.*
+import chardet4cj.*
+import fuzz.fuzz.*
 
 var returnFlag: Int32 = 0
 

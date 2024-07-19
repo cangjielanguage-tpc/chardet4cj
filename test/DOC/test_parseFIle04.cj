@@ -2,8 +2,8 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFiles: File = File("./utf8.txt",Open(true, false))

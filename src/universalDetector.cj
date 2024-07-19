@@ -3,8 +3,9 @@
  */
 package chardet4cj
 
-from std import fs.*
-from std import collection.*
+import std.fs.*
+import std.collection.*
+import std.io.*
 
 public class UniversalDetector {
     public static let  SHORTCUT_THRESHOLD: Float32 = 0.95

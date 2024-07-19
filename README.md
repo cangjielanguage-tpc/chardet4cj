@@ -3,9 +3,9 @@
 </div>
 
 <p align="center">
-<img alt="" src="https://img.shields.io/badge/release-v0.0.2-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.51.4-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.53.4-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-90%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -142,8 +142,8 @@ test.cj.out
 
 
 ```cangjie
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFile1: Path = Path("./utf8.txt")
@@ -174,8 +174,8 @@ UTF-8
 
 
 ```cangjie
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFiles2: File = File("./utf16be.txt",Open(true, false))
@@ -198,8 +198,8 @@ UTF-16BE
 
 
 ```cangjie
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFiles2: File = File("./utf16le.txt",Open(true, false))
@@ -222,8 +222,8 @@ UTF-16LE
 
 
 ```cangjie
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFiles: File = File("./utf8.txt",Open(true, false))
@@ -241,6 +241,16 @@ main() {
 ```shell
 ISO-2022-CN
 ```
+
+## 约束与限制
+
+在下述版本验证通过：
+
+    Cangjie Version: 0.53.4
+
+## 开源协议
+
+本项目基于 [MOZILLA PUBLIC LICENSE Version 1.1](./LICENSE) ，请自由的享受和参与开源。
 
 ## 参与贡献
 

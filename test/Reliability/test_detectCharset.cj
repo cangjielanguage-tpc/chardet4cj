@@ -1,12 +1,12 @@
 // 3rd_party_lib:chardet4cj/build/chardet4cj
 // 3rd_party_lib:chardet4cj/build/charset
 //data_file:../util_test/utf8.txt
-from chardet4cj import chardet4cj.*
-from std import io.*
-from std import fs.*
-from std import time.*
-from std import math.*
-from std import collection.*
+import chardet4cj.*
+import std.io.*
+import std.fs.*
+import std.time.*
+import std.math.*
+import std.collection.*
 
 main() {
     println("TCS: chardet4cj, time elapsed: 1 ns, RESULT:")
