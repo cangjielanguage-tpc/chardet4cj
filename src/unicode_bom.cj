@@ -3,7 +3,7 @@
  */
 package chardet4cj
 
-from std import io.*
+import std.io.*
 
 public class UnicodeBOMInputStream <: InputStream & Seekable {
 

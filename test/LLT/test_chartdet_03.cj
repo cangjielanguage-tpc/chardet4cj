@@ -1,9 +1,9 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from std import fs.*
-from std import io.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import std.io.*
+import chardet4cj.*
 
 main() {
 

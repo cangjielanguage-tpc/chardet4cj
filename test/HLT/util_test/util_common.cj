@@ -1,4 +1,4 @@
-from std import random.*
+import std.random.*
 
 public  class CommonUtils {
     public func getRandomStr(enter:UInt64):String{

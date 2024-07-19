@@ -3,8 +3,8 @@
  */
 package chardet4cj
 
-from std import io.*
-from std import math.*
+import std.io.*
+import std.math.*
 
 public class EncodingDetectorInputStream <: InputStream & Seekable {
 

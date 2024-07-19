@@ -4,9 +4,9 @@
 // 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //dependence:../util_test/util_common.cj
-from std import fs.*
-from std import io.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import std.io.*
+import chardet4cj.*
 
 @Test
 public class ChardetTest {

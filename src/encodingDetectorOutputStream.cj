@@ -3,6 +3,8 @@
  */
 package chardet4cj
 
+import std.io.*
+
 public class EncodingDetectorOutputStream <: OutputStream {
     private var out: OutputStream
     private let detector: UniversalDetector =  UniversalDetector()

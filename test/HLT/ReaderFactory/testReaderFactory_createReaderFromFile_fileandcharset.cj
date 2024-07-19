@@ -4,10 +4,10 @@
 // 3rd_party_lib_ohos:chardet4cj/build/release/aarch64-linux-ohos/charset
 
 //data_file:../util_test/utf8.txt
-from std import fs.*
-from std import io.*
-from chardet4cj import chardet4cj.*
-from charset import charset.*
+import std.fs.*
+import std.io.*
+import chardet4cj.*
+import charset4cj.charset.*
 
 @Test
 public class ReaderFactoryTest {

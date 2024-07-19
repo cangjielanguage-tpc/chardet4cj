@@ -1,8 +1,8 @@
 // 3rd_party_lib:chardet4cj/build/chardet4cj
 // 3rd_party_lib:chardet4cj/build/charset
-from chardet4cj import chardet4cj.*
-from fuzz import fuzz.*
-from std import io.*
+import chardet4cj.*
+import fuzz.fuzz.*
+import std.io.*
 
 var returnFlag: Int32 = 0
 var enterStream: ByteArrayStream = ByteArrayStream()

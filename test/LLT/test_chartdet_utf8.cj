@@ -7,8 +7,8 @@
 // EXEC: cjc %import-path %L %l %f  
 // EXEC: ./main
 
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFile1: File = File("./iso2022cn.txt",Open(true, false))

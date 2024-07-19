@@ -1,8 +1,8 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from chardet4cj import chardet4cj.*
-from std import io.*
+import chardet4cj.*
+import std.io.*
 
 main() {
     let intput: MBCSGroupProber = MBCSGroupProber()

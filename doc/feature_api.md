@@ -721,8 +721,8 @@ public class ChardetException <: Exception {
 ##### 1.1.2 示例
 
 ```
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFile1: Path = Path("./utf8.txt")
@@ -754,8 +754,8 @@ main() {
 ##### 1.2.2 示例
 
 ```
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFiles2: File = File("./utf16be.txt",Open(true, false))
@@ -779,8 +779,8 @@ main() {
 ##### 1.3.2 示例
 
 ```
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFiles2: File = File("./utf16le.txt",Open(true, false))
@@ -804,8 +804,8 @@ main() {
 ##### 1.4.2 示例
 
 ```
-from std import fs.*
-from chardet4cj import chardet4cj.*
+import std.fs.*
+import chardet4cj.*
 
 main() {
     var testFiles: File = File("./utf8.txt",Open(true, false))

@@ -2,11 +2,11 @@
 // EXEC: cjc %import-path %L %l %f
 // EXEC: ./main
 
-from chardet4cj import chardet4cj.*
-from std import io.*
-from std import fs.*
-from charset import charset.*
-from charset import  charset.encoding.*
+import chardet4cj.*
+import std.io.*
+import std.fs.*
+import charset4cj.charset.*
+import charset4cj.charset.encoding.*
 
 main() {
 
