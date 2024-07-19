@@ -14,8 +14,6 @@
 
 是一个字符编码高效识别检测库
 
-参考地址: https://github.com/albfernandez/juniversalchardet 版本2.4.0
-
 ### 特性
 
 - 🚀 支持 ISO-2022-CN 编码格式
