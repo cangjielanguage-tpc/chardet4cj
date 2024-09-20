@@ -10,7 +10,7 @@ main() {
     intput.write(data)
     let str: EncodingDetectorOutputStream = EncodingDetectorOutputStream(intput)
     str.close()
-    let bufs: Array<Byte> = Array<Byte>(3, item: 0)
+    let bufs: Array<Byte> = Array<Byte>(3, repeat: 0)
     try {
         str.write(bufs)
     } catch(e: Exception) {

@@ -23,7 +23,7 @@ public class UnicodeBOMInputStream <: InputStream & Seekable {
 			throw ChardetException("invalid input stream: null is not allowed")
 		}
         ins = inputStream
-        var boms: Array<Byte> = Array<Byte>(4, item: 0)
+        var boms: Array<Byte> = Array<Byte>(4, repeat: 0)
 
         var read = ins.read(boms)
 
@@ -67,10 +67,10 @@ public class UnicodeBOMInputStream <: InputStream & Seekable {
                     bytesSkipped = (ins as Seekable).getOrThrow().length
                 }
                 if (bytesSkipped > 0) {
-                    var skips: Array<Byte> = Array<Byte>(bytesSkipped, item: 0)
+                    var skips: Array<Byte> = Array<Byte>(bytesSkipped, repeat: 0)
                     ins.read(skips)
                 }
-                var byteskips: Array<Byte> = Array<Byte>(1, item: 0)
+                var byteskips: Array<Byte> = Array<Byte>(1, repeat: 0)
 			    for (_ in bytesSkipped..bytesToSkip) {
 			    	ins.read(byteskips)
 			    }
@@ -138,7 +138,7 @@ public class BOM {
     public func getBytes(): Array<Byte> {
 
         let length = bytes.size
-        var result: Array<Byte> = Array<Byte>(length, item: 0)
+        var result: Array<Byte> = Array<Byte>(length, repeat: 0)
         this.bytes.copyTo(result,0,0,length)
         return result
     }
@@ -147,15 +147,15 @@ public class BOM {
         return description
     }
 
-    public static let UTF_32_BE: BOM = BOM(Array<Byte>([ 0x00, 0x00, 0xFE, 0xFF ]), "UTF-32 big-endian")
+    public static let UTF_32_BE: BOM = BOM([ 0x00, 0x00, 0xFE, 0xFF ], "UTF-32 big-endian")
 
-    public static let UTF_32_LE: BOM = BOM(Array<Byte>([ 0xFF, 0xFE, 0x00, 0x00 ]),"UTF-32 little-endian")
+    public static let UTF_32_LE: BOM = BOM([ 0xFF, 0xFE, 0x00, 0x00 ],"UTF-32 little-endian")
 
-    public static let UTF_16_BE: BOM = BOM(Array<Byte>([ 0xFE, 0xFF ]), "UTF-16 big-endian")
+    public static let UTF_16_BE: BOM = BOM([ 0xFE, 0xFF ], "UTF-16 big-endian")
 
-    public static let UTF_16_LE: BOM = BOM(Array<Byte>([ 0xFF, 0xFE ]), "UTF-16 little-endian")
+    public static let UTF_16_LE: BOM = BOM([ 0xFF, 0xFE ], "UTF-16 little-endian")
 
-    public static let UTF_8: BOM = BOM(Array<Byte>([ 0xEF, 0xBB, 0xBF ]), "UTF-8")
+    public static let UTF_8: BOM = BOM([ 0xEF, 0xBB, 0xBF ], "UTF-8")
 
     public static let NONE: BOM = BOM(Array<Byte>(), "NONE")
 

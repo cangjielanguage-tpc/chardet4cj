@@ -13,7 +13,7 @@ public class PkgIntTest {
 
     @TestCase
     func testPkgInt_unpack_01(): Unit {
-        var arr1: Array<Int32> = Array<Int32>([12, 23, -12, 598, 127, -1, 0, 12454684])
+        var arr1: Array<Int32> = [12, 23, -12, 598, 127, -1, 0, 12454684]
         let pkgInt_ins1: PkgInt = PkgInt(1, 2, 3, -1, arr1)
         res = pkgInt_ins1.unpack(0) 
         @Assert(res, 12)
@@ -32,7 +32,7 @@ public class PkgIntTest {
     @TestCase
     func testPkgInt_unpack_02(): Unit {
         returnFlag = -1
-        var arr1: Array<Int32> = Array<Int32>([12, 23, -12, 598, 127, -1, 0, 12454684])
+        var arr1: Array<Int32> = [12, 23, -12, 598, 127, -1, 0, 12454684]
         let pkgInt_ins1: PkgInt = PkgInt(0, 2, 3, -1, arr1)
         res = pkgInt_ins1.unpack(0) 
         @Assert(res, 12)
@@ -51,7 +51,7 @@ public class PkgIntTest {
     @TestCase
     func testPkgInt_unpack_03(): Unit {
         returnFlag = -1
-        var arr1: Array<Int32> = Array<Int32>([12, 23, -12, 598, 127, -1, 0, 12454684])
+        var arr1: Array<Int32> = [12, 23, -12, 598, 127, -1, 0, 12454684]
         let pkgInt_ins1: PkgInt = PkgInt(0, 2, 0, -1, arr1)
         res = pkgInt_ins1.unpack(0) 
         @Assert(res, 12)

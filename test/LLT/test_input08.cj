@@ -12,7 +12,7 @@ main() {
     intput.write(data)
     var testFile: File = File("./utf8.txt",Open(true, false))
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(testFile)
-    let bufs: Array<Byte> = Array<Byte>(5, item: 0)
+    let bufs: Array<Byte> = Array<Byte>(5, repeat: 0)
     str.read(bufs)
     let src = str.skip(0)
     str.getDetectedCharset()

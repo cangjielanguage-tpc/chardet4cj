@@ -44,7 +44,7 @@ public class EncodingDetectorOutputStream <: OutputStream {
 
     public func write(b: Int32): Unit {
         this.closed()
-        this.write(Array<Byte>([UInt8(b)]))
+        this.write([UInt8(b)])
     }
 
     public func getDetectedCharset(): String {
