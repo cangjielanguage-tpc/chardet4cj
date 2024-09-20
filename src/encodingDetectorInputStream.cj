@@ -41,7 +41,7 @@ public class EncodingDetectorInputStream <: InputStream & Seekable {
     }
 
     public func read(): Int64 { 
-        var data: Array<Byte> = Array<Byte>((input as Seekable).getOrThrow().length, item: 0)
+        var data: Array<Byte> = Array<Byte>((input as Seekable).getOrThrow().length, repeat: 0)
         var nrOfBytesRead: Int64 = this.read(data,0,1)
         if (nrOfBytesRead > 0){
             return Int64(data[0])
@@ -87,7 +87,7 @@ public class EncodingDetectorInputStream <: InputStream & Seekable {
             var lastRead: Int64 = 0
             var count: Int64 = -1
             var i: Int64 = 0
-            var temp = Array<Byte>(1,item:0)
+            var temp = Array<Byte>(1,repeat:0)
             while ( i < n && lastRead >= 0) {
                 if (this.input.read(temp) < 1) {
                     throw ChardetException("read failed")
@@ -138,7 +138,7 @@ func skip(input: InputStream,n: Int64): Int64 {
     }
 
     var size: Int64 = min(MAX_SKIP_BUFFER_SIZE, remaining);
-    var skipBuffer: Array<Byte> = Array<Byte>(min(size, remaining), item: 0)
+    var skipBuffer: Array<Byte> = Array<Byte>(min(size, remaining), repeat: 0)
     while (remaining > 0) {
         nr = input.read(skipBuffer)
         if (nr < 0) {

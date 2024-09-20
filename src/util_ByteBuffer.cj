@@ -329,7 +329,7 @@ public func ArrayCopy(src: Array<Byte>, srcPos: Int64, dest: Array<Byte>, destPo
 public open class HeapByteBuffer <: ByteBuffer & ToString {
 
     init (cap: Int64, lims: Int64) {
-        super (-1, 0, lims, cap, Array<Byte>(cap, item: 0), 0)
+        super (-1, 0, lims, cap, Array<Byte>(cap, repeat: 0), 0)
     }
 
     init (bufs: Array<Byte>, off: Int64, len: Int64) {

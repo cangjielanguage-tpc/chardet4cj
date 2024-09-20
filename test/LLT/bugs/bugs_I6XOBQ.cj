@@ -7,7 +7,7 @@ import std.io.*
 main() {
     let intput: ByteArrayStream = ByteArrayStream()
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(intput)
-    var temp = Array<Byte>(1,item:0)
+    var temp = Array<Byte>(1,repeat:0)
     try {
         str.read(temp)
     } catch(e: Exception) {

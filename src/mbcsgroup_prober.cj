@@ -83,7 +83,7 @@ public class MBCSGroupProber <: CharsetProber {
         var strc: ProbingState = ProbingState.NOT_ME
 
         var keepNext: Bool = true
-        var highbyteBuf: Array<Byte> = Array<Byte>(Int64(length), item: 0)
+        var highbyteBuf: Array<Byte> = Array<Byte>(Int64(length), repeat: 0)
         var highpos: Int32 = 0
         var maxPos: Int32 = offset + length
         if (maxPos <= 0) {
