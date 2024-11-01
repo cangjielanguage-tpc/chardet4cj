@@ -15,7 +15,7 @@ import chardet4cj.*
 @Test
 public class UniversalDetectorTest {
     var detector: UniversalDetector = UniversalDetector()
-    var enterStream: ByteArrayStream = ByteArrayStream()
+    var enterStream: ByteBuffer = ByteBuffer()
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
@@ -42,9 +42,9 @@ public class UniversalDetectorTest {
     @TestCase
     func testUniversalDetector_detectCharsetByStream_02(): Unit {
         returnFlag = -1
-        let byteArrayStreamIns_1: ByteArrayStream = ByteArrayStream() // 缓冲区为空
+        let ByteBufferIns_1: ByteBuffer = ByteBuffer() // 缓冲区为空
         try {
-            resStr = UniversalDetector.detectCharset(byteArrayStreamIns_1)
+            resStr = UniversalDetector.detectCharset(ByteBufferIns_1)
         } catch (e1: ChardetException) {
             @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true)
             returnFlag = 0
@@ -56,7 +56,7 @@ public class UniversalDetectorTest {
     @TestCase
     func testUniversalDetector_detectCharsetByStream_03(): Unit {
         returnFlag = -1
-        var enterStream_1: ByteArrayStream = ByteArrayStream()
+        var enterStream_1: ByteBuffer = ByteBuffer()
         var inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(enterStream_1)
         try {
             resStr = UniversalDetector.detectCharset(inputStream)

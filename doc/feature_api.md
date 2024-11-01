@@ -69,20 +69,20 @@ public abstract class CharsetProber {
      * 参数 buf - 要处理的原数据
      * 参数 offset - 起始位置
      * 参数 length - 长度
-     * 返回值 ByteBuffer - 处理后的 ByteBuffer
+     * 返回值 ChardetByteBuffer - 处理后的 ChardetByteBuffer
      * 异常 ChardetException 当buf是个空数组时，offset和length之和小于等于零时，抛出异常
      */
-    public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer
+    public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ChardetByteBuffer
 
     /*
      * 使用英文字符填充
      * 参数 buf - 要处理的原数据
      * 参数 offset - 起始位置
      * 参数 length - 长度
-     * 返回值 ByteBuffer - 处理后的 ByteBuffer
+     * 返回值 ChardetByteBuffer - 处理后的 ChardetByteBuffer
      * 异常 ChardetException 当buf是个空数组时，offset和length之和小于等于零时，抛出异常
      */
-    public func filterWithEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer
+    public func filterWithEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ChardetByteBuffer
 
     /*
      * 判断是否活动

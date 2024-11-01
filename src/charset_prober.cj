@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2023-2024. All rights resvered.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2023-2024. All rights reserved.
  */
 package chardet4cj
 
@@ -30,11 +30,11 @@ public abstract class CharsetProber {
 
     public func getConfidence(): Float32
 
-    public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer {
+    public func filterWithoutEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ChardetByteBuffer {
         if (buf.size == 0) {
             throw ChardetException("this buf is empty")
         }
-        var out: ByteBuffer = ByteBuffer.allocate(Int64(length))
+        var out: ChardetByteBuffer = ChardetByteBuffer.allocate(Int64(length))
 
         var meetMSB: Bool = false
         var c: Byte = 0
@@ -72,11 +72,11 @@ public abstract class CharsetProber {
         return out
     }
 
-    public func filterWithEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ByteBuffer {
+    public func filterWithEnglishLetters(buf: Array<Byte>, offset: Int32, length: Int32): ChardetByteBuffer {
         if (buf.size == 0) {
             throw ChardetException("this buf is empty")
         }
-        var out: ByteBuffer = ByteBuffer.allocate(Int64(length))
+        var out: ChardetByteBuffer = ChardetByteBuffer.allocate(Int64(length))
         var isInTag: Bool = false
         var c: Byte = 0
 

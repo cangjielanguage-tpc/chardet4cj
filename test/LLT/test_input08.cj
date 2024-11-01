@@ -7,7 +7,7 @@ import std.io.*
 import std.fs.*
 
 main() {
-    let intput: ByteArrayStream = ByteArrayStream()
+    let intput: ByteBuffer = ByteBuffer()
     let data: Array<Byte> = [0x4b, 0x03, 0x00, 0x03,0x4b, 0x03, 0x00, 0x03]
     intput.write(data)
     var testFile: File = File("./utf8.txt",Open(true, false))

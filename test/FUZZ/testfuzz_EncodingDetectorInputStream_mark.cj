@@ -6,7 +6,7 @@ import fuzz.fuzz.*
 import std.io.*
 
 var returnFlag: Int32 = 0
-let inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(ByteArrayStream())
+let inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(ByteBuffer())
 
 func fuzz_mark(dp: DataProvider): Int32 {
     // public func mark(readlimit: Int32): Unit

@@ -11,7 +11,7 @@ import chardet4cj.*
 
 @Test
 public class UnicodeBOMInputStreamTest {
-    var enterStream: ByteArrayStream = ByteArrayStream()
+    var enterStream: ByteBuffer = ByteBuffer()
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""

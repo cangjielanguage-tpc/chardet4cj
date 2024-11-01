@@ -11,7 +11,7 @@ main() {
 
 
     let data: String = "概要"
-    var input: ByteArrayStream = ByteArrayStream()
+    var input: ByteBuffer = ByteBuffer()
     input.write(data.toArray())
     var originalEncoding: String = UniversalDetector.detectCharset(input)
     println(originalEncoding)

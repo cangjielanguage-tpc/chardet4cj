@@ -5,7 +5,7 @@ import chardet4cj.*
 import std.io.*
 
 main() {
-    let intput: ByteArrayStream = ByteArrayStream()
+    let intput: ByteBuffer = ByteBuffer()
     var es = ""
     try{
         UnicodeBOMInputStream(intput)
