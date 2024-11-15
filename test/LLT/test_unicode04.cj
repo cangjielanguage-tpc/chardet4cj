@@ -5,9 +5,9 @@ import chardet4cj.*
 import std.io.*
 
 main() {
-    let intput: ByteArrayStream = ByteArrayStream()
-    let intput1: ByteArrayStream = ByteArrayStream()
-    let intput2: ByteArrayStream = ByteArrayStream()
+    let intput: ByteBuffer = ByteBuffer()
+    let intput1: ByteBuffer = ByteBuffer()
+    let intput2: ByteBuffer = ByteBuffer()
     let data: Array<Byte> = [0x50, 0x4b, 0x03]
     let data1: Array<Byte> = [0x50, 0x4b]
     let data2: Array<Byte> = [0x50]

@@ -10,7 +10,7 @@ import chardet4cj.*
 
 @Test
 public class EncodingDetectorInputStreamTest {
-    var enterStream: ByteArrayStream = ByteArrayStream()
+    var enterStream: ByteBuffer = ByteBuffer()
     var commonUtils_ins: CommonUtils = CommonUtils()
     var returnFlag: Int64 = -1
     var res: Int64 = 0
@@ -44,7 +44,7 @@ public class EncodingDetectorInputStreamTest {
     @TestCase
     func testEncodingDetectorInputStream_skip_02(): Unit {
         returnFlag = -1
-        var enterStream: ByteArrayStream = ByteArrayStream()
+        var enterStream: ByteBuffer = ByteBuffer()
         var inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(enterStream) // 缓冲区为空
         var availableTag: Int32 = inputStream.available() // 0代表可用
         @Assert(availableTag, 0)

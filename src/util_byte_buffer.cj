@@ -1,5 +1,5 @@
 /*
- * Copyright (c) Huawei Technologies Co., Ltd. 2023-2024. All rights resvered.
+ * Copyright (c) Huawei Technologies Co., Ltd. 2023-2024. All rights reserved.
  */
 package chardet4cj
 
@@ -164,7 +164,7 @@ public abstract class Buffer <: ToString {
     }
 }
 
-public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buffer>  {
+public abstract class ChardetByteBuffer <: Buffer & ToString & Hashable & Equatable<Buffer>  {
 
     let hb: Array<Byte>
 
@@ -176,46 +176,46 @@ public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buf
         this.offset = offsets
     }
 
-    public static func allocate(capacitys: Int64): ByteBuffer {
+    public static func allocate(capacitys: Int64): ChardetByteBuffer {
         if (capacitys < 0) {
             throw ChardetException("capacitys < 0: ${capacitys}")
         }
-        return HeapByteBuffer(capacitys, capacitys)
+        return HeapChardetByteBuffer(capacitys, capacitys)
     }
 
-    public static func wrap(arrays: Array<UInt8>, offset: Int64, length: Int64): ByteBuffer {
+    public static func wrap(arrays: Array<UInt8>, offset: Int64, length: Int64): ChardetByteBuffer {
         try{
-            return HeapByteBuffer(arrays,offset,length)
+            return HeapChardetByteBuffer(arrays,offset,length)
         } catch (ex: IllegalArgumentException) {
             throw ex
         }
     }
 
-    public static func wrap(arrays: Array<UInt8>): ByteBuffer {
+    public static func wrap(arrays: Array<UInt8>): ChardetByteBuffer {
         return wrap(arrays, 0, arrays.size)
     }
 
-    public func slice(): ByteBuffer
+    public func slice(): ChardetByteBuffer
 
-    public func duplicate(): ByteBuffer
+    public func duplicate(): ChardetByteBuffer
 
-    public func asReadOnlyBuffer(): ByteBuffer
+    public func asReadOnlyBuffer(): ChardetByteBuffer
 
     public func get(): UInt8
 
-    public func put(bs: UInt8): ByteBuffer
+    public func put(bs: UInt8): ChardetByteBuffer
 
     public func get(indexs: Int64): UInt8
 
 
-    public func put(indexs: Int64, b: UInt8): ByteBuffer
+    public func put(indexs: Int64, b: UInt8): ChardetByteBuffer
 
-    public func putLong(val: Int64): ByteBuffer
-    public func putInt(val: Int32): ByteBuffer
-    public func putShort(val: Int16): ByteBuffer
-    public func putUInt64(val: UInt64): ByteBuffer
-    public func putUInt32(val: UInt32): ByteBuffer
-    public func putUInt16(val: UInt16): ByteBuffer
+    public func putLong(val: Int64): ChardetByteBuffer
+    public func putInt(val: Int32): ChardetByteBuffer
+    public func putShort(val: Int16): ChardetByteBuffer
+    public func putUInt64(val: UInt64): ChardetByteBuffer
+    public func putUInt32(val: UInt32): ChardetByteBuffer
+    public func putUInt16(val: UInt16): ChardetByteBuffer
 
     public func getLong(): Int64
     public func getInt(): Int32
@@ -224,17 +224,17 @@ public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buf
     public func getUInt32(): UInt32
     public func getUInt16(): UInt16
 
-    public func get(dst: Array<UInt8>, offset: Int64, length: Int64) : ByteBuffer
+    public func get(dst: Array<UInt8>, offset: Int64, length: Int64) : ChardetByteBuffer
 
-    public open func get(dst: Array<UInt8>): ByteBuffer {
+    public open func get(dst: Array<UInt8>): ChardetByteBuffer {
         return get(dst, 0, dst.size)
     }
 
-    public func put(src: ByteBuffer) : ByteBuffer
+    public func put(src: ChardetByteBuffer) : ChardetByteBuffer
 
-    public func put(src: Array<UInt8>, offset:Int64, length: Int64): ByteBuffer
+    public func put(src: Array<UInt8>, offset:Int64, length: Int64): ChardetByteBuffer
 
-    public open func put(srcs: Array<UInt8>): ByteBuffer {
+    public open func put(srcs: Array<UInt8>): ChardetByteBuffer {
         return this.put(srcs, 0, srcs.size)
     }
 
@@ -250,41 +250,41 @@ public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buf
         return this.offset
     }
 
-    public override func position(newPosit: Int64): ByteBuffer {
+    public override func position(newPosit: Int64): ChardetByteBuffer {
         super.position(newPosit)
         return this
     }
 
-    public override func limit(newLim: Int64): ByteBuffer {
+    public override func limit(newLim: Int64): ChardetByteBuffer {
         super.limit(newLim)
         return this
     }
 
-    public override func reset(): ByteBuffer {
+    public override func reset(): ChardetByteBuffer {
         super.reset()
         return this
     }
 
-    public override func clear (): ByteBuffer {
+    public override func clear (): ChardetByteBuffer {
         super.clear()
         return this
     }
 
-    public override func flip(): ByteBuffer {
+    public override func flip(): ChardetByteBuffer {
         super.flip()
         return this
     }
 
-    public override func rewind(): ByteBuffer {
+    public override func rewind(): ChardetByteBuffer {
         super.rewind()
         return this
     }
 
-    public func compact(): ByteBuffer
+    public func compact(): ChardetByteBuffer
 
     public open func toString(): String {
         let sbd = StringBuilder()
-        sbd.append("ByteBuffer: [offset=")
+        sbd.append("ChardetByteBuffer: [offset=")
         sbd.append(this.offset)
         sbd.append(" mark=")
         sbd.append(this.mar)
@@ -318,7 +318,7 @@ public abstract class ByteBuffer <: Buffer & ToString & Hashable & Equatable<Buf
         return !refEq(this, thats)
     }
 
-    public func slice(pos: Int64, limit: Int64): ByteBuffer
+    public func slice(pos: Int64, limit: Int64): ChardetByteBuffer
 
 }
 
@@ -326,7 +326,7 @@ public func ArrayCopy(src: Array<Byte>, srcPos: Int64, dest: Array<Byte>, destPo
     src.copyTo(dest, srcPos, destPos, length)
 }
 
-public open class HeapByteBuffer <: ByteBuffer & ToString {
+public open class HeapChardetByteBuffer <: ChardetByteBuffer & ToString {
 
     init (cap: Int64, lims: Int64) {
         super (-1, 0, lims, cap, Array<Byte>(cap, repeat: 0), 0)
@@ -340,21 +340,21 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
         super(mark, pos, lim, cap, bufs, off)
     }
 
-    public override func slice(): ByteBuffer {
-        return HeapByteBuffer(this.hb, -1, 0, this.remaining(), this.remaining(), this.position() + offset)
+    public override func slice(): ChardetByteBuffer {
+        return HeapChardetByteBuffer(this.hb, -1, 0, this.remaining(), this.remaining(), this.position() + offset)
     }
 
-    public override func slice (pos: Int64, limit: Int64): ByteBuffer {
+    public override func slice (pos: Int64, limit: Int64): ChardetByteBuffer {
         let rem = limit - pos
-        return HeapByteBuffer(hb, -1, 0, rem, rem, pos + offset)
+        return HeapChardetByteBuffer(hb, -1, 0, rem, rem, pos + offset)
     }
 
-    public override func duplicate(): ByteBuffer {
-        return HeapByteBuffer(hb, this.markValue(), this.position(), this.limit(), this.capacity(), offset)
+    public override func duplicate(): ChardetByteBuffer {
+        return HeapChardetByteBuffer(hb, this.markValue(), this.position(), this.limit(), this.capacity(), offset)
     }
 
-    public override func asReadOnlyBuffer(): ByteBuffer {
-        return HeapByteBuffer(hb, this.markValue(), this.position(), this.limit(), this.capacity(), offset)
+    public override func asReadOnlyBuffer(): ChardetByteBuffer {
+        return HeapChardetByteBuffer(hb, this.markValue(), this.position(), this.limit(), this.capacity(), offset)
     }
 
     protected func ix(ii: Int64): Int64 {
@@ -369,7 +369,7 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
         return hb[ix(checkIndex(i))]
     }
 
-    public override func get(dsts: Array<Byte>, offset: Int64, length: Int64): ByteBuffer {
+    public override func get(dsts: Array<Byte>, offset: Int64, length: Int64): ChardetByteBuffer {
         checkBounds(offset, length, dsts.size)
         if (length > this.remaining()) {
             throw ChardetException("buffer underflow") // BufferUnderflowException
@@ -379,17 +379,17 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
         return this
     }
 
-    public override func put(x: Byte): ByteBuffer {
+    public override func put(x: Byte): ChardetByteBuffer {
         hb[ix(nextGetIndex())] = x
         return this
     }
 
-    public override func put(i: Int64, x: Byte): ByteBuffer {
+    public override func put(i: Int64, x: Byte): ChardetByteBuffer {
         hb[ix(checkIndex(i))] = x
         return this
     }
 
-    public override func put(src: Array<Byte>, offsets: Int64, length: Int64): ByteBuffer {
+    public override func put(src: Array<Byte>, offsets: Int64, length: Int64): ChardetByteBuffer {
         checkBounds(offsets, length, src.size)
         if (length > remaining()) {
             throw ChardetException("buffer overflow") // BufferOverflowException
@@ -399,12 +399,12 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
         return this
     }
 
-    public override func put(srcs: ByteBuffer): ByteBuffer {
-        if (srcs is HeapByteBuffer) {
+    public override func put(srcs: ChardetByteBuffer): ChardetByteBuffer {
+        if (srcs is HeapChardetByteBuffer) {
             if (srcs == this) {
                 throw ChardetException("the source buffer is this buffer")
             }
-            let sb: HeapByteBuffer = match ((srcs as HeapByteBuffer)) {
+            let sb: HeapChardetByteBuffer = match ((srcs as HeapChardetByteBuffer)) {
                 case None => throw ChardetException("data conversion can still fail")
                 case Some (v) => v
             }
@@ -419,7 +419,7 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
         return this
     }
 
-    public override func compact(): ByteBuffer {
+    public override func compact(): ChardetByteBuffer {
         ArrayCopy(hb, ix(position()), hb, ix(0), remaining())
         position(remaining())
         limit(capacity())
@@ -428,17 +428,17 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
     }
 
     @OverflowWrapping
-    public override func putLong(val: Int64): ByteBuffer {
+    public override func putLong(val: Int64): ChardetByteBuffer {
         this.putUInt64(UInt64(val))
     }
 
     @OverflowWrapping
-    public override func putInt(val: Int32): ByteBuffer {
+    public override func putInt(val: Int32): ChardetByteBuffer {
         this.putUInt32(UInt32(val))
     }
 
     @OverflowWrapping
-    public override func putShort(val: Int16): ByteBuffer {
+    public override func putShort(val: Int16): ChardetByteBuffer {
         this.putUInt16(UInt16(val))
     }
 
@@ -458,7 +458,7 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
     }
 
     @OverflowWrapping
-    public func putUInt64(val: UInt64): ByteBuffer {
+    public func putUInt64(val: UInt64): ChardetByteBuffer {
         this.put(UInt8((val >> 56) & 0xff))
         this.put(UInt8((val >> 48) & 0xff))
         this.put(UInt8((val >> 40) & 0xff))
@@ -471,7 +471,7 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
     }
 
     @OverflowWrapping
-    public func putUInt32(val: UInt32): ByteBuffer {
+    public func putUInt32(val: UInt32): ChardetByteBuffer {
         this.put(UInt8((val >> 24) & 0xff))
         this.put(UInt8((val >> 16) & 0xff))
         this.put(UInt8((val >> 8) & 0xff))
@@ -480,7 +480,7 @@ public open class HeapByteBuffer <: ByteBuffer & ToString {
     }
 
     @OverflowWrapping
-    public func putUInt16(val: UInt16): ByteBuffer {
+    public func putUInt16(val: UInt16): ChardetByteBuffer {
         this.put(UInt8((val >> 8) & 0xff))
         this.put(UInt8(val & 0xff))
         return this

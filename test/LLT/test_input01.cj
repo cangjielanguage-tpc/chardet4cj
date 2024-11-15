@@ -5,7 +5,7 @@ import chardet4cj.*
 import std.io.*
 
 main() {
-    let intput: ByteArrayStream = ByteArrayStream()
+    let intput: ByteBuffer = ByteBuffer()
     let str: EncodingDetectorInputStream   = EncodingDetectorInputStream(intput)
     let src =  str.available()
     str.close()

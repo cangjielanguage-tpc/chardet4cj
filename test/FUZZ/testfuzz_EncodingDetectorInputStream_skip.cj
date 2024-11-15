@@ -5,7 +5,7 @@ import fuzz.fuzz.*
 import std.io.*
 
 var returnFlag: Int32 = 0
-var enterStream: ByteArrayStream = ByteArrayStream()
+var enterStream: ByteBuffer = ByteBuffer()
 
 @OverflowWrapping
 func fuzz_skip(dp: DataProvider): Int32 {

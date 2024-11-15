@@ -6,7 +6,7 @@ import fuzz.fuzz.*
 import std.io.*
 
 var returnFlag: Int32 = 0
-var enterStream: ByteArrayStream = ByteArrayStream()
+var enterStream: ByteBuffer = ByteBuffer()
 var charsetp: EscCharsetProber = EscCharsetProber()
 
 func fuzz_handleData(dp: DataProvider): Int32 {

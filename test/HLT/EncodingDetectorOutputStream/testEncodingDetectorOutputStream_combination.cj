@@ -10,7 +10,7 @@ import chardet4cj.*
 
 @Test
 public class EncodingDetectorOutputStreamTest {
-    var outputStream: EncodingDetectorOutputStream = EncodingDetectorOutputStream(ByteArrayStream())
+    var outputStream: EncodingDetectorOutputStream = EncodingDetectorOutputStream(ByteBuffer())
     var commonUtils_ins: CommonUtils = CommonUtils()
     var returnFlag: Int64 = -1
     var res: Int64 = 0
@@ -36,7 +36,7 @@ public class EncodingDetectorOutputStreamTest {
     func testEncodingDetectorOutputStream_02(): Unit {
         returnFlag = 0
         var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toArray()
-        var out = ByteArrayStream()
+        var out = ByteBuffer()
         out.write(bufdata)
         var outputStream: EncodingDetectorOutputStream = EncodingDetectorOutputStream(out)
         var charset: String = outputStream.getDetectedCharset()

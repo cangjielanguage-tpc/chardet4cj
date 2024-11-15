@@ -10,7 +10,7 @@ import chardet4cj.*
 
 @Test
 public class EncodingDetectorInputStreamTest {
-    var inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(ByteArrayStream())
+    var inputStream: EncodingDetectorInputStream = EncodingDetectorInputStream(ByteBuffer())
     var commonUtils_ins: CommonUtils = CommonUtils()
     var returnFlag: Int64 = 0
     var res: Int64 = 0

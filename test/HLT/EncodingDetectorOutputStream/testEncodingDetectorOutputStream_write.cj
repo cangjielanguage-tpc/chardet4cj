@@ -10,7 +10,7 @@ import chardet4cj.*
 
 @Test
 public class EncodingDetectorOutputStreamTest {
-    var enterStream: ByteArrayStream = ByteArrayStream()
+    var enterStream: ByteBuffer = ByteBuffer()
     var commonUtils_ins: CommonUtils = CommonUtils()
     var returnFlag: Int64 = -1
     var res: Int64 = 0
@@ -53,7 +53,7 @@ public class EncodingDetectorOutputStreamTest {
     func testEncodingDetectorOutputStream_write_02(): Unit {
         var bufdata: Array<Byte> = "testEncodingDetectorOutputStream_write_02".toArray()
         @Assert(bufdata.size, 41)
-        var out = ByteArrayStream()
+        var out = ByteBuffer()
         var outputStream2: EncodingDetectorOutputStream = EncodingDetectorOutputStream(out)
         outputStream2.flush()
         outputStream2.write(12)

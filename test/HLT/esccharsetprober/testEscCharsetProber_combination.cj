@@ -17,9 +17,9 @@ public class EscCharsetProberTest {
     @TestCase
     func testEscCharsetProber_combination_01(): Unit {
         var bufdata: Array<Byte> = "testCharsetProber_filterWithEnglishLetters_01".toArray()
-        var bytebuf_1: ByteBuffer = charsetp.filterWithoutEnglishLetters(bufdata, 0, Int32(bufdata.size - 10))
+        var bytebuf_1: ChardetByteBuffer = charsetp.filterWithoutEnglishLetters(bufdata, 0, Int32(bufdata.size - 10))
         let str: String = bytebuf_1.toString()
-        @Assert(str, "ByteBuffer: [offset=0 mark=-1 pos=0 lim=35 cap=35]")
+        @Assert(str, "ChardetByteBuffer: [offset=0 mark=-1 pos=0 lim=35 cap=35]")
         var strRes: String = charsetp.getCharSetName() 
         @Assert(strRes, "") 
         var confidence: Float32 = charsetp.getConfidence()
