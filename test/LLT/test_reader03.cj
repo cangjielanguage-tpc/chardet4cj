@@ -10,7 +10,7 @@ import charset4cj.charset.encoding.*
 
 main() {
 
-    var testFile1: File = File("./utf16be.txt",Open(true, false))
+    var testFile1: File = File("./utf16be.txt",OpenMode.Read)
     var originalEncoding1: File = ReaderFactory.createBufferedReader(testFile1,Charsets.UTF8)
     let src = originalEncoding1.length
     println(src)

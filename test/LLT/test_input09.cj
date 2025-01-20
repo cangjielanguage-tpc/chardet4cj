@@ -7,7 +7,7 @@ import std.io.*
 import std.fs.*
 
 main() {
-    var testFile: File = File("./utf8.txt",Open(true, false))
+    var testFile: File = File("./utf8.txt",OpenMode.Read)
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(testFile)
     let bufs: Array<Byte> = Array<Byte>(5, repeat: 0)
     str.read(bufs)

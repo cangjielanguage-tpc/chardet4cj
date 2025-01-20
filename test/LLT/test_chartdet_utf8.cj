@@ -11,19 +11,19 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFile1: File = File("./iso2022cn.txt",Open(true, false))
+    var testFile1: File = File("./iso2022cn.txt",OpenMode.Read)
     var originalEncoding1: String = UniversalDetector.detectCharset(testFile1)
     println(originalEncoding1)
 
-    var testFile: File = File("./utf8n-emoji.txt",Open(true, false))
+    var testFile: File = File("./utf8n-emoji.txt",OpenMode.Read)
     var originalEncoding: String = UniversalDetector.detectCharset(testFile)
     println(originalEncoding)
 
-    var testFiles: File = File("./utf16le.txt",Open(true, false))
+    var testFiles: File = File("./utf16le.txt",OpenMode.Read)
     var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
     println(originalEncodings)
 
-    var testFiles2: File = File("./utf16be.txt",Open(true, false))
+    var testFiles2: File = File("./utf16be.txt",OpenMode.Read)
     var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
     println(originalEncodings2)
     

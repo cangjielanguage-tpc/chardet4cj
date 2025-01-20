@@ -13,7 +13,7 @@ public class UniversalDetectorTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-    var file_2: File = File("../util_test/utf-16be.txt", Open(true, false))
+    var file_2: File = File("../util_test/utf-16be.txt", OpenMode.Read)
 
     @TestCase
     func test_detectCharset_UTF16BE(): Unit {
@@ -26,7 +26,7 @@ public class UniversalDetectorTest {
         @Assert(resStr, "UTF-16BE")
 
         try {
-            var file3_1: File = File("../util_test/仓颉utf-16be.txt", Open(true, false)) //文件不存在
+            var file3_1: File = File("../util_test/仓颉utf-16be.txt", OpenMode.Read) //文件不存在
             resStr = UniversalDetector.detectCharset(file3_1)
         } catch (e2: FSException) {
             @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)

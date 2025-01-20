@@ -17,7 +17,7 @@ public class ReaderFactoryTest {
 
     @TestCase
     func testReaderFactory_createReaderFromFile_01(): Unit {
-        var file_1: File = File("../util_test/utf8.txt", Open(true, false)) //文件utf8格式
+        var file_1: File = File("../util_test/utf8.txt", OpenMode.Read) //文件utf8格式
         var originalEncoding1: File = ReaderFactory.createReaderFromFile(file_1, Charsets.UTF8)
         dataLen = originalEncoding1.length
         @Assert(dataLen, 1768)
@@ -36,7 +36,7 @@ public class ReaderFactoryTest {
     func testReaderFactory_createReaderFromFile_02(): Unit {
         returnFlag = -1
         try {
-            var file_1: File = File("../util_test/utf8_0000.cj", Open(true, false)) //文件路径不存在
+            var file_1: File = File("../util_test/utf8_0000.cj", OpenMode.Read) //文件路径不存在
             ReaderFactory.createReaderFromFile(file_1, Charsets.UTF8)
         } catch (e1: FSException) {
             @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)

@@ -758,7 +758,7 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFiles2: File = File("./utf16be.txt",Open(true, false))
+    var testFiles2: File = File("./utf16be.txt",OpenMode.Read)
     var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
     println(originalEncodings2)
     if (originalEncodings2 != "UTF-16BE") {
@@ -783,7 +783,7 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFiles2: File = File("./utf16le.txt",Open(true, false))
+    var testFiles2: File = File("./utf16le.txt",OpenMode.Read)
     var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
     println(originalEncodings2)
     if (originalEncodings2 != "UTF-16LE") {
@@ -808,7 +808,7 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFiles: File = File("./utf8.txt",Open(true, false))
+    var testFiles: File = File("./utf8.txt",OpenMode.Read)
     var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
     println("ISO-2022-CN")
     if (originalEncodings != "UTF-8") {

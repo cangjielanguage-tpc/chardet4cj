@@ -10,7 +10,7 @@ main() {
     let intput: ByteBuffer = ByteBuffer()
     let data: Array<Byte> = [0x4b, 0x03, 0x00, 0x03,0x4b, 0x03, 0x00, 0x03]
     intput.write(data)
-    var testFile: File = File("./utf8.txt",Open(true, false))
+    var testFile: File = File("./utf8.txt",OpenMode.Read)
     let str: EncodingDetectorInputStream = EncodingDetectorInputStream(testFile)
     let bufs: Array<Byte> = Array<Byte>(5, repeat: 0)
     str.read(bufs)

@@ -5,7 +5,7 @@
 <p align="center">
 <img alt="" src="https://img.shields.io/badge/release-v0.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.56.4-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.58.3-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-90%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -176,7 +176,7 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFiles2: File = File("./utf16be.txt",Open(true, false))
+    var testFiles2: File = File("./utf16be.txt",OpenMode.Read)
     var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
     println(originalEncodings2)
     if (originalEncodings2 != "UTF-16BE") {
@@ -200,7 +200,7 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFiles2: File = File("./utf16le.txt",Open(true, false))
+    var testFiles2: File = File("./utf16le.txt",OpenMode.Read)
     var originalEncodings2: String = UniversalDetector.detectCharset(testFiles2)
     println(originalEncodings2)
     if (originalEncodings2 != "UTF-16LE") {
@@ -224,7 +224,7 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFiles: File = File("./utf8.txt",Open(true, false))
+    var testFiles: File = File("./utf8.txt",OpenMode.Read)
     var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
     println("ISO-2022-CN")
     if (originalEncodings != "UTF-8") {
@@ -244,7 +244,7 @@ ISO-2022-CN
 
 在下述版本验证通过：
 
-    Cangjie Version: 0.56.4
+    Cangjie Version: 0.58.3
 
 ## 开源协议
 

@@ -15,7 +15,7 @@ public class MBCSGroupProber <: CharsetProber {
 
     public init() {
         super()
-        probers.append(UTF8Prober())
+        probers.add(UTF8Prober())
         for (prober in this.probers) {
             prober.setActive(true)
             this.activeNum++

@@ -6,7 +6,7 @@ import std.fs.*
 import chardet4cj.*
 
 main() {
-    var testFiles: File = File("./utf8.txt",Open(true, false))
+    var testFiles: File = File("./utf8.txt",OpenMode.Read)
     var originalEncodings: String = UniversalDetector.detectCharset(testFiles)
     println("ISO-2022-CN")
     if (originalEncodings != "UTF-8") {
