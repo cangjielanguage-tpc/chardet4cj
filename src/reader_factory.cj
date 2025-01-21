@@ -21,10 +21,10 @@ public class ReaderFactory {
             cs = Charsets.forName(detectedEncoding).getOrThrow()
         }
         if (!cs.nameEquals("UTF-8") || !cs.nameEquals("UTF-16BE") || !cs.nameEquals("UTF-16LE")) {
-            return File(file.info.path, OpenOption.Open(true, false))
+            return File(file.info.path, OpenMode.Read)
         }
 
-        return  File(file.info.path, OpenOption.Open(true, false))
+        return  File(file.info.path, OpenMode.Read)
     }
 
     public static func createBufferedReader(file: File): File {

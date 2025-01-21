@@ -16,9 +16,9 @@ public class ReaderFactoryTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var dataLen: Int64 = 0
-    var file_1: File = File("../util_test/utf8.txt", Open(true, false))
-    var file_2: File = File("../util_test/utf-16be.txt", Open(true, false))
-    var file_3: File = File("../util_test/utf-16le.txt", Open(true, false))
+    var file_1: File = File("../util_test/utf8.txt", OpenMode.Read)
+    var file_2: File = File("../util_test/utf-16be.txt", OpenMode.Read)
+    var file_3: File = File("../util_test/utf-16le.txt", OpenMode.Read)
 
     @TestCase
     func testReaderFactory_createBufferedReader_01(): Unit {
@@ -39,7 +39,7 @@ public class ReaderFactoryTest {
     func testReaderFactory_createBufferedReader_02(): Unit {
         returnFlag = -1
         try {
-            var file_1: File = File("../../../util_test/utf8_16.txt", Open(true, false)) //文件路径不存在
+            var file_1: File = File("../../../util_test/utf8_16.txt", OpenMode.Read) //文件路径不存在
             ReaderFactory.createBufferedReader(file_1)
         } catch (e1: FSException) {
             @Assert(e1.toString().contains("FSException: The path"), true) // FSException: The path `../../../util_test` does not exist.
@@ -52,7 +52,7 @@ public class ReaderFactoryTest {
     @TestCase
     func testReaderFactory_createBufferedReader_03(): Unit {
         returnFlag = -1
-        var file_1: File = File("../util_test/utf8.txt", Open(false, false)) //文件不可读
+        var file_1: File = File("../util_test/utf8.txt", OpenMode.Append) //文件不可读
         try {
             ReaderFactory.createBufferedReader(file_1)
         } catch (e1: FSException) {

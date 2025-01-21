@@ -18,8 +18,8 @@ public class EscCharsetProber <: CharsetProber {
 
     public init() {
         super()
-        this.codingSM.append(CodingStateMachine(hzsModel))
-        this.codingSM.append(CodingStateMachine(iso2022cnModel))
+        this.codingSM.add(CodingStateMachine(hzsModel))
+        this.codingSM.add(CodingStateMachine(iso2022cnModel))
 		for (i in 0..this.codingSM.size) {
 			this.codingSM[i].reset()
 		}

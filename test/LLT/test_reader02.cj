@@ -11,8 +11,8 @@ import charset4cj.charset.encoding.*
 
 main() {
 
-    var testFile1: File = File("./utf16le.txt",Open(true, false))
-    var testFile2: File = File("./utf8n.txt",Open(true, false))
+    var testFile1: File = File("./utf16le.txt",OpenMode.Read)
+    var testFile2: File = File("./utf8n.txt",OpenMode.Read)
 
     var originalEncoding1: File = ReaderFactory.createBufferedReader(testFile1)
     var originalEncoding2: File = ReaderFactory.createReaderFromFile(testFile2)

@@ -73,7 +73,7 @@ public class UniversalDetector {
                         case Some(_) => this.escCharsetProber = Option<CharsetProber>.None
                     }
                     if (this.probers.isEmpty()) {
-                        this.probers.append(MBCSGroupProber())
+                        this.probers.add(MBCSGroupProber())
                     }
                 }
             } else {
@@ -234,7 +234,7 @@ public class UniversalDetector {
     }
 
     public static func detectCharset(path: Path): String {
-        return detectCharset(File(path,OpenOption.Open(true,false)))
+        return detectCharset(File(path,OpenMode.Read))
     }
 
     public static func detectCharset(file: File): String {

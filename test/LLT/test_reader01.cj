@@ -10,7 +10,7 @@ import charset4cj.charset.encoding.*
 
 main() {
 
-    var testFile1: File = File("./utf8n.txt",Open(true, false))
+    var testFile1: File = File("./utf8n.txt",OpenMode.Read)
     var originalEncoding1: File = ReaderFactory.createReaderFromFile(testFile1,Charsets.UTF8)
     let str = originalEncoding1.length
     println(str)

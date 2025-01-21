@@ -13,7 +13,7 @@ public class UniversalDetectorTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-    var file_1: File = File("../util_test/utf8.txt", Open(true, false))
+    var file_1: File = File("../util_test/utf8.txt", OpenMode.Read)
 
     @TestCase
     func test_detectCharset_UTF8(): Unit {

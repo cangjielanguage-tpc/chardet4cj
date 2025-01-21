@@ -14,7 +14,7 @@ public class UniversalDetectorTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-    var file: File = File("../util_test/utf-16le.txt", Open(true, false))
+    var file: File = File("../util_test/utf-16le.txt", OpenMode.Read)
 
     @TestCase
     func test_detectCharset_UTF16LE(): Unit {
@@ -22,7 +22,7 @@ public class UniversalDetectorTest {
         resStr = UniversalDetector.detectCharset(file) // UTF-16LE
         @Assert(resStr, "UTF-16LE")
         try {
-            var file_2: File = File("../util_test/utf-16le.txt", Open(false, false))
+            var file_2: File = File("../util_test/utf-16le.txt", OpenMode.Append)
             resStr = UniversalDetector.detectCharset(file_2)
         } catch (e1: FSException) {
             @Assert(e1.toString().contains("FSException: The file does not have the read permission"), true)

@@ -18,7 +18,7 @@ main() {
         let thread = spawn {
             var result = ArrayList<String>()
             for (_ in 0..loopCount) {
-                var file_1: File = File("../util_test/utf8.txt", Open(true, false))
+                var file_1: File = File("../util_test/utf8.txt", OpenMode.Read)
                 try {
                     var resStr: String = UniversalDetector.detectCharset(file_1)
                     if (resStr == "UTF-8") {

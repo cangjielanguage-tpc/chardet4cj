@@ -19,9 +19,9 @@ public class UniversalDetectorTest {
     var returnFlag: Int64 = 0
     var res: Int64 = 0
     var resStr: String = ""
-    var file_1: File = File("../util_test/utf8.txt", Open(true, false))
-    var file_2: File = File("../util_test/utf-16be.txt", Open(true, false))
-    var file_3: File = File("../util_test/utf-16le.txt", Open(true, false))
+    var file_1: File = File("../util_test/utf8.txt", OpenMode.Read)
+    var file_2: File = File("../util_test/utf-16be.txt", OpenMode.Read)
+    var file_3: File = File("../util_test/utf-16le.txt", OpenMode.Read)
 
     @TestCase
     func testUniversalDetector_detectCharsetByStream_01(): Unit {
