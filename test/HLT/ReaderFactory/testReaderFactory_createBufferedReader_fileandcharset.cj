@@ -10,27 +10,42 @@ import std.io.*
 import chardet4cj.*
 import charset4cj.charset.*
 
+var returnFlag1: Int64 = -1
+var dataLen: Int64 = 0
+
+@When[os == "Linux"]
+func exception(file_1:File):Unit{
+        try {
+            var originalEncoding2: File = ReaderFactory.createBufferedReader(file_1, Charsets.UTF16BE)
+            dataLen = originalEncoding2.length
+        } catch (e1: ChardetException) {
+            @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true)
+            returnFlag1 = 0
+        }
+}
+
+@When[os == "Windows"]
+func exception(file_1:File):Unit{
+        try {
+            var originalEncoding2: File = ReaderFactory.createBufferedReader(file_1, Charsets.UTF16BE)
+            dataLen = originalEncoding2.length
+        } catch (e1: FSException) {
+            @Assert(e1.toString().contains("FSException: The file not opened, can not to read"), true)
+            returnFlag1 = 0
+        }
+}
+
 @Test
 public class ReaderFactoryTest {
     var returnFlag: Int64 = -1
-    var res: Int32 = 0
-    var dataLen: Int64 = 0
-
     @TestCase
     func testReaderFactory_createBufferedReader_01(): Unit {
         var file_1: File = File("../util_test/utf8.txt", Open(true, false)) //文件utf8格式
         var originalEncoding1: File = ReaderFactory.createBufferedReader(file_1, Charsets.UTF8)
         dataLen = originalEncoding1.length
         @Assert(dataLen, 1768)
-
-        try {
-            var originalEncoding2: File = ReaderFactory.createBufferedReader(file_1, Charsets.UTF16BE) 
-            dataLen = originalEncoding2.length
-        } catch (e1: ChardetException) {
-            @Assert(e1.toString().contains("ChardetException: this inputStream is empty"), true)
-            returnFlag = 0
-        }
-        @Assert(returnFlag, 0)
+        exception(file_1)
+        @Assert(returnFlag1, 0)
     }
 
     @TestCase
