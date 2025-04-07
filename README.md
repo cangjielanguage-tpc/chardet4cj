@@ -3,9 +3,9 @@
 </div>
 
 <p align="center">
-<img alt="" src="https://img.shields.io/badge/release-v1.0.0-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/release-v1.0.1-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.58.3-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v0.59.6-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-90%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -57,7 +57,6 @@
 │   └── LLT
 ├── CHANGELOG.md
 ├── LICENSE.txt
-├── module.json
 ├── README.md
 └── README.OpenSource
 ```
@@ -89,7 +88,7 @@ cjpm build
 ```shell
 cd chardet4cj/test/
 mkdir tmp
-cjc -O2 --import-path xxxxx/chardet4cj/build/ -L xxxxx/chardet4cj/build/chardet4cj  -l chardet4cj_chardet4cj  -L xxxxx/chardet4cj/build/charset -l charset_charset.encoding -l charset_charset.simplechinese -l charset_charset.singlebyte -l charset_charset.korean -l charset_charset -l charset_charset.japanese -l charset_charset.unicode -l charset_charset.traditionchinese -l charset_charset.encoding -l charset_charset.simplechinese -l charset_charset.singlebyte -l charset_charset.korean -l charset_charset -l charset_charset.japanese -l charset_charset.unicode -l charset_charset.traditionchinese -l charset_charset.encoding -l charset_charset.simplechinese -l charset_charset.singlebyte -l charset_charset.korean -l charset_charset -l charset_charset.japanese -l charset_charset.unicode -l charset_charset.traditionchinese  test/LLT/test.cj -o tmp/test.cj.out --test
+cjc -O2 --import-path ../target/release -L ../target/release/chardet4cj -L ../target/release/charset4cj  -l chardet4cj  -l charset4cj -l charset4cj.charset.encoding -l charset4cj.charset.simplechinese -l charset4cj.charset.singlebyte -l charset4cj.charset.korean -l charset4cj.charset -l charset4cj.charset.japanese -l charset4cj.charset.unicode -l charset4cj.charset.traditionchinese -l charset4cj.charset.exception  LLT/test.cj -o tmp/test.cj.out --test
 ```
 
 ##### 1.1 具体说明
@@ -98,17 +97,17 @@ cjc -O2 --import-path xxxxx/chardet4cj/build/ -L xxxxx/chardet4cj/build/chardet4
 ```shell
 cjc -O2
 ```
-- --import-path 导入chardet4cj库编译出来的库文件地址, 注意地址最后有"."
+- --import-path 导入chardet4cj库编译出来的库文件地址
 - -L 导入库文件的完整路径
 - 导入多个库,每个库都需要--import-path和 -L
 
 ```shell
---import-path xxxxx/chardet4cj/build/ -L xxxxx/chardet4cj/build/chardet4cj -l chardet4cj_chardet4cj
+--import-path xxxxx/chardet4cj/target/release -L xxxxx/chardet4cj/target/release/chardet4cj -l chardet4cj
 ```
-- -l 要导入的具体的包, 用"库名_包名"
+- -l 要导入的具体的包
 - 导入一个库中有多个包时,用多个 -l
 ```shell
---import-path xxxxx/chardet4cj/build/ -L xxxxx/chardet4cj/build/charset -l charset_charset.encoding -l charset_charset.simplechinese -l charset_charset.singlebyte -l charset_charset.korean -l charset_charset -l charset_charset.japanese -l charset_charset.unicode -l charset_charset.traditionchinese -l charset_charset.encoding -l charset_charset.simplechinese -l charset_charset.singlebyte -l charset_charset.korean -l charset_charset -l charset_charset.japanese -l charset_charset.unicode -l charset_charset.traditionchinese -l charset_charset.encoding -l charset_charset.simplechinese -l charset_charset.singlebyte -l charset_charset.korean -l charset_charset -l charset_charset.japanese -l charset_charset.unicode -l charset_charset.traditionchinese
+--import-path ../target/release -L ../target/release/chardet4cj -L ../target/release/charset4cj  -l chardet4cj  -l charset4cj -l charset4cj.charset.encoding -l charset4cj.charset.simplechinese -l charset4cj.charset.singlebyte -l charset4cj.charset.korean -l charset4cj.charset -l charset4cj.charset.japanese -l charset4cj.charset.unicode -l charset4cj.charset.traditionchinese -l charset4cj.charset.exception
 ```
 
 - 测试用例的完整路径和用例中引入文件的完整路径
@@ -118,8 +117,8 @@ cjc -O2
 xxxxx/chardet4cj/test/LLT/test.cj -o xxxxx/chardet4cj/test/tmp/test.cj.out --test
 ```
 
-#### 2. 把编译好的文件复制到 .out 文件下(chardet4cj/test/tmp/) 
-- chardet4cj/build/chardet4cj/、chardet4cj/build/charset/ 目录中的文件都复制到 .out 文件位置(chardet4cj/test/tmp/ 中)
+#### 2. 把编译好的文件（linux下是so，windows下是dll）复制到 .out 文件下(chardet4cj/test/tmp/) 
+- chardet4cj/target/release/chardet4cj/、chardet4cj/target/release/charset4cj/ 目录中的文件都复制到 .out 文件位置(chardet4cj/test/tmp/ 中)
 
 #### 3. 进入到.out文件位置，执行用例
 - 进入到.out文件位置执行用例
@@ -244,7 +243,7 @@ ISO-2022-CN
 
 在下述版本验证通过：
 
-    Cangjie Version: 0.58.3
+    Cangjie Version: 0.59.6
 
 ## 开源协议
 
