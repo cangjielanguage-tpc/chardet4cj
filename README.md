@@ -3,9 +3,9 @@
 </div>
 
 <p align="center">
-<img alt="" src="https://img.shields.io/badge/release-v1.0.2-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/release-v1.0.3-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/build-pass-brightgreen" style="display: inline-block;" />
-<img alt="" src="https://img.shields.io/badge/cjc-v0.60.5-brightgreen" style="display: inline-block;" />
+<img alt="" src="https://img.shields.io/badge/cjc-v1.0.0-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/cjcov-90%25-brightgreen" style="display: inline-block;" />
 <img alt="" src="https://img.shields.io/badge/project-open-brightgreen" style="display: inline-block;" />
 </p>
@@ -243,7 +243,7 @@ ISO-2022-CN
 
 在下述版本验证通过：
 
-    Cangjie Version: 0.60.5
+    Cangjie Version: 1.0.0
 
 ## 开源协议
 
