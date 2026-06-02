@@ -42,7 +42,7 @@ public class ReaderFactoryTest {
             var file_1: File = File("../../../util_test/utf8_16.txt", OpenMode.Read) //文件路径不存在
             ReaderFactory.createBufferedReader(file_1)
         } catch (e1: FSException) {
-            @Assert(e1.toString().contains("FSException: The path"), true) // FSException: The path `../../../util_test` does not exist.
+            @Assert(e1.toString().contains("does not exist"), true) // FSException: The path `../../../util_test` does not exist.
             returnFlag = 0
         }
 
@@ -56,7 +56,7 @@ public class ReaderFactoryTest {
         try {
             ReaderFactory.createBufferedReader(file_1)
         } catch (e1: FSException) {
-            @Assert(e1.toString().contains("FSException: The file does not have the read permission."), true)
+            @Assert(e1.toString().contains("does not have the read permission"), true) // FSException: The file `/home/wyf/gitcode/up/chardet4cj/test/tmp/test/HLT/ReaderFactory/../util_test/utf8.txt` does not have the read permission.
             returnFlag = 0
         }
 

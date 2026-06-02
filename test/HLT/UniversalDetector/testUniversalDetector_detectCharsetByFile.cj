@@ -44,7 +44,7 @@ public class UniversalDetectorTest {
             var file2_1: File = File("../util_test/utf-16be.py", OpenMode.Read)
             resStr = UniversalDetector.detectCharset(file2_1) // UTF-16BE
         } catch (e1: FSException) {
-            @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)
+            @Assert(e1.toString().contains("does not exist or permission denied"), true) // FSException: The file `/home/wyf/gitcode/up/chardet4cj/test/tmp/test/HLT/UniversalDetector/../util_test/utf-16be.py` does not exist or permission denied!
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
@@ -64,7 +64,7 @@ public class UniversalDetectorTest {
             var file3_1: File = File("../util_test/仓颉utf-16be.txt", OpenMode.Read) //文件不存在
             resStr = UniversalDetector.detectCharset(file3_1)
         } catch (e2: FSException) {
-            @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)
+            @Assert(e2.toString().contains("does not exist or permission denied"), true) // FSException: The file `/home/wyf/gitcode/up/chardet4cj/test/tmp/test/HLT/UniversalDetector/../util_test/仓颉utf-16be.txt` does not exist or permission denied!
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
@@ -79,7 +79,7 @@ public class UniversalDetectorTest {
             var file4_1: File = File("../util_test/utf-16le.txt", OpenMode.Append)
             resStr = UniversalDetector.detectCharset(file4_1)
         } catch (e1: FSException) {
-            @Assert(e1.toString().contains("FSException: The file does not have the read permission"), true)
+            @Assert(e1.toString().contains("does not have the read permission"), true) // FSException: The file `/home/wyf/gitcode/up/chardet4cj/test/tmp/test/HLT/UniversalDetector/../util_test/utf-16le.txt` does not have the read permission.
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
