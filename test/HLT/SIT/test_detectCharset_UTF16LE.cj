@@ -25,7 +25,7 @@ public class UniversalDetectorTest {
             var file_2: File = File("../util_test/utf-16le.txt", OpenMode.Append)
             resStr = UniversalDetector.detectCharset(file_2)
         } catch (e1: FSException) {
-            @Assert(e1.toString().contains("FSException: The file does not have the read permission"), true)
+            @Assert(e1.toString().contains("does not have the read permission"), true) // FSException: The file `/home/wyf/gitcode/up/chardet4cj/test/tmp/test/HLT/SIT/../util_test/utf-16le.txt` does not have the read permission.
             returnFlag = 0
         }
         @Assert(returnFlag, 0)

@@ -39,10 +39,9 @@ public class ReaderFactoryTest {
             var file_1: File = File("../util_test/utf8_0000.cj", OpenMode.Read) //文件路径不存在
             ReaderFactory.createReaderFromFile(file_1, Charsets.UTF8)
         } catch (e1: FSException) {
-            @Assert(e1.toString().contains("FSException: The file does not exist or permission denied!"), true)
+            @Assert(e1.toString().contains("does not exist or permission denied"), true) // FSException: The file `/home/wyf/gitcode/up/chardet4cj/test/tmp/test/HLT/ReaderFactory/../util_test/utf8_0000.cj` does not exist or permission denied!
             returnFlag = 0
         }
-
         @Assert(returnFlag, 0)
     }
 }

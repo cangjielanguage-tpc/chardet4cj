@@ -61,7 +61,7 @@ public class UniversalDetectorTest {
         try {
             resStr = UniversalDetector.detectCharset(path_2)
         } catch (e2: FSException) {
-            @Assert(e2.toString().contains("FSException: The file does not exist or permission denied!"), true)
+            @Assert(e2.toString().contains("does not exist or permission denied"), true)
             returnFlag = 0
         }
         @Assert(returnFlag, 0)
