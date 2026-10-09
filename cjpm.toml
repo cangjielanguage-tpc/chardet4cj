@@ -1,8 +1,8 @@
 [dependencies]
-  charset4cj = {branch = "v1.0.0", git = "https://gitcode.com/Cangjie-TPC/charset4cj.git"}
+  charset4cj = {branch = "v1.0.5", git = "https://gitcode.com/Cangjie-TPC/charset4cj.git"}
 
 [package]
-  cjc-version = "1.0.0"
+  cjc-version = "1.2.0"
   compile-option = "-O2"
   description = "nothing here"
   link-option = ""
@@ -10,5 +10,5 @@
   output-type = "dynamic"
   src-dir = "src"
   target-dir = ""
-  version = "1.0.4"
+  version = "1.0.5"
   package-configuration = {}
